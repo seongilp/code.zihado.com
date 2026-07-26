@@ -859,6 +859,30 @@
           "status": "working",
           "live": null,
           "github": "https://github.com/rescenedev/ev"
+        },
+        {
+          "slug": "mp3-player",
+          "name": "네이티브 MP3 플레이어 (Zig SDK 실험)",
+          "folder": "native/mp3_player",
+          "oneLiner": "웹뷰 없이 Zig로 GPU 캔버스에 직접 그리는 실험적 Native SDK로 만든 macOS 로컬 음악 플레이어",
+          "does": [
+            "~/Music·~/Downloads를 스캔해 트랙 목록을 표시하고 재생·일시정지·이전/다음·탐색바·볼륨 컨트롤",
+            "재생 중 오디오를 분석해 실시간 스펙트럼 바를 그리고, 한글 파일명은 자모를 조합(NFD→NFC)해 정상 표시",
+            "시스템 다크모드·고대비·모션감소 설정을 감지해 테마에 자동 반영"
+          ],
+          "stack": [
+            "Zig",
+            "Native SDK (선언적 .native 마크업 + Zig 로직)",
+            "Metal GPU 서페이스 (WebView 미사용)"
+          ],
+          "learn": [
+            "웹뷰·브라우저 없이 GPU 서페이스에 직접 그리는 네이티브 데스크톱 앱 구조 이해하기",
+            "선언적 뷰(markup)와 Model-Update 로직을 분리하는 Elm 스타일 아키텍처",
+            "유니코드 정규화(NFD 자모 → NFC 음절)로 파일명 표시 버그 고치기"
+          ],
+          "status": "working",
+          "live": null,
+          "github": null
         }
       ]
     },

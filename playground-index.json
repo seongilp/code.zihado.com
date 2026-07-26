@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 포트폴리오 업데이트 시 실제 디렉토리 목록과 이 파일을 비교해서, 여기 없는 새 디렉토리만 조사해 projects.json에 추가하고 이 파일을 갱신한다. status: showcased(쇼케이스 등록됨, slug는 projects.json의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-07-20",
+  "lastScanned": "2026-07-26",
   "directories": {
     "ankiyo": {
       "status": "showcased",
@@ -46,6 +46,10 @@
     "etf-doctor": {
       "status": "showcased",
       "slug": "etf-doctor"
+    },
+    "fast-law-search": {
+      "status": "skipped",
+      "reason": "law.zihado.com 카드(slug: law)와 동일 프로젝트 — 같은 라이브 URL(law.zihado.com)과 같은 판례 저장소(legalize-kr/legalize-kr)를 쓰는 소스 디렉토리"
     },
     "google": {
       "status": "showcased",
@@ -124,6 +128,15 @@
     "musinsa.rescene.co": {
       "status": "showcased",
       "slug": "musinsa"
+    },
+    "nanokvm": {
+      "status": "skipped",
+      "reason": "빈 디렉토리 (.gstack 캐시만 존재)"
+    },
+    "native": {
+      "status": "showcased",
+      "slug": "mp3-player",
+      "note": "실제 프로젝트는 native/mp3_player"
     },
     "naver-alarm": {
       "status": "showcased",

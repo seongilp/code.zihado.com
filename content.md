@@ -16,7 +16,7 @@
 | 🌐 웹 서비스·대시보드 | 19 | 국회 감시 대시보드, 법령 검색, 실시간 같이보기(Unflix) |
 | 🤖 자동화·봇·스크래핑 | 8 | 출석 자동화 봇, 재입고 알림, 로또 자동 구매 |
 | 📱 모바일 앱 | 3 | 사진 정리 앱(루멘), 암기 앱(안키요) |
-| 🖥️ 데스크탑·네이티브 도구 | 3 | 파일 검색 CLI, 한글문서 Spotlight 검색 |
+| 🖥️ 데스크탑·네이티브 도구 | 4 | 파일 검색 CLI, 한글문서 Spotlight 검색 |
 | ⌨️ CLI·금융 | 1 | 토스증권 CLI |
 | 🔐 보안·인프라·데이터 | 9 | NAS 웹 콘솔(Nimbo), 커스텀 NAS OS(Zen), 컨테이너 하드닝 |
 
@@ -242,6 +242,12 @@ iPhone과 Apple Watch에서 일본어 가나·단어를 학습하는 앱.
 - 타이핑마다 실시간 재검색, 한글 문서 속 내용도 검색·미리보기
 - **스택**: zsh · ripgrep · fzf · fd · bat · bats-core
 - **🎓 배울 수 있는 것**: 쉘 스크립트로 대화형 TUI / Homebrew tap 배포
+
+### 네이티브 MP3 플레이어 (Zig SDK 실험) · `native/mp3_player`
+웹뷰 없이 Zig로 GPU 캔버스에 직접 그리는 실험적 Native SDK로 만든 macOS 로컬 음악 플레이어.
+- ~/Music·~/Downloads 스캔 후 재생·탐색·볼륨 컨트롤, 실시간 스펙트럼 시각화
+- **스택**: Zig · Native SDK (.native 마크업 + Zig 로직) · Metal GPU 서페이스
+- **🎓 배울 수 있는 것**: 웹뷰 없는 네이티브 렌더링 구조 / Elm 스타일 Model-Update 아키텍처
 
 ---
 
