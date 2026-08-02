@@ -53,7 +53,7 @@ python3 -m http.server 8799     # 또는: npx serve
 ## Cloudflare Pages 배포
 
 Pages 프로젝트 `vibe-zihado-com`이 GitHub 저장소
-(`seongilp/vibe.zihado.com`)와 **git 연동**되어 있어, 푸시하면 자동 배포됩니다.
+(`seongilp/code.zihado.com`)와 **git 연동**되어 있어, 푸시하면 자동 배포됩니다.
 
 ```bash
 # 프로덕션 배포 = main에 푸시
