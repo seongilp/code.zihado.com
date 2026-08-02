@@ -3,7 +3,7 @@
 AI와 짝을 이뤄 만든 40여 개 프로젝트를 분야별로 모은 **동네 주민 코딩 교육용 포트폴리오** 사이트입니다.
 빌드가 필요 없는 단일 정적 페이지(`index.html` + `projects.json`)로, Cloudflare Pages에 그대로 올라갑니다.
 
-🔗 **라이브**: https://vibe.zihado.com
+🔗 **라이브**: https://code.zihado.com
 
 ## 파일 구성
 
@@ -22,7 +22,7 @@ AI와 짝을 이뤄 만든 40여 개 프로젝트를 분야별로 모은 **동�
 
 | 브랜치 | 테마 | 주소 |
 |--------|------|------|
-| `main` | **플랫 디자인** (현재 프로덕션) | https://vibe.zihado.com |
+| `main` | **플랫 디자인** (현재 프로덕션) | https://code.zihado.com |
 | `flat-theme` | 플랫 디자인 원본 | https://flat-theme.vibe-coding-dmy.pages.dev |
 | `new-theme` | 네오브루탈리즘 | https://new-theme.vibe-coding-dmy.pages.dev |
 
@@ -44,7 +44,7 @@ AI와 짝을 이뤄 만든 40여 개 프로젝트를 분야별로 모은 **동�
 브라우저로 `index.html`을 직접 열면 보안 정책 때문에 데이터를 못 불러옵니다. 작은 서버로 띄우세요:
 
 ```bash
-cd vibe-coding
+cd code.zihado.com
 python3 -m http.server 8799     # 또는: npx serve
 ```
 
@@ -64,7 +64,7 @@ git push origin new-theme
 ```
 
 `wrangler pages deploy` 직접 업로드는 git 연동 프로젝트라 사용하지 않습니다.
-커스텀 도메인(`vibe.zihado.com`)은 Cloudflare 대시보드 → Pages → Custom domains에서 연결돼 있습니다.
+커스텀 도메인(`code.zihado.com`)은 Cloudflare 대시보드 → Pages → Custom domains에서 연결돼 있습니다.
 
 ## 라이선스 / 출처
 

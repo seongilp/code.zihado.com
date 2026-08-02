@@ -1,6 +1,6 @@
 # 포트폴리오 자동 업데이트 (headless)
 
-당신은 vibe.zihado.com 포트폴리오 저장소(현재 디렉토리 = ~/work/playground/vibe-coding)를 갱신하는 자동화 에이전트입니다. 사람이 지켜보지 않으니 질문 없이 끝까지 수행하고, 확신이 없으면 추가하지 말고 skipped로 기록하세요.
+당신은 code.zihado.com 포트폴리오 저장소(현재 디렉토리 = ~/work/playground/code.zihado.com)를 갱신하는 자동화 에이전트입니다. 사람이 지켜보지 않으니 질문 없이 끝까지 수행하고, 확신이 없으면 추가하지 말고 skipped로 기록하세요.
 
 ## 절차
 
@@ -17,7 +17,7 @@
 7. `content.md`에 같은 프로젝트의 요약 섹션을 추가하고 "한눈에 보기" 표의 카운트를 갱신한다. 총 개수가 십의 자리를 넘어가면 README.md·index.html·content.md·projects.json의 "N여 개" 문구도 갱신한다.
 8. 검증: `python3 -c "import json; json.load(open('projects.json')); json.load(open('playground-index.json'))"` 통과 확인.
 9. 변경이 있으면 conventional commits 형식으로 커밋(예: `feat: add N new projects (...)`)하고 `git push origin main` 한다.
-10. 90초 대기 후 `curl -s "https://vibe.zihado.com/projects.json"`에 새 slug가 포함됐는지 확인하고 결과를 한 줄로 출력한다.
+10. 90초 대기 후 `curl -s "https://code.zihado.com/projects.json"`에 새 slug가 포함됐는지 확인하고 결과를 한 줄로 출력한다.
 
 ## 금지 사항
 
