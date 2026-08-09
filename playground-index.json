@@ -47,6 +47,14 @@
       "status": "showcased",
       "slug": "ev"
     },
+    "cli/everything": {
+      "status": "skipped",
+      "reason": "ev 카드(folder=cli)와 같은 프로젝트 — rescenedev/ev"
+    },
+    "cli/homebrew-ev": {
+      "status": "skipped",
+      "reason": "ev 배포용 Homebrew tap — 독립 서비스 아님"
+    },
     "code.zihado.com": {
       "status": "excluded",
       "reason": "이 쇼케이스 사이트 저장소 자신 (구 vibe-coding)"
@@ -149,9 +157,76 @@
       "status": "showcased",
       "slug": "macos"
     },
+    "macos/all_new_finder": {
+      "status": "showcased",
+      "slug": "anf"
+    },
+    "macos/alldoc": {
+      "status": "showcased",
+      "slug": "macos",
+      "note": "'macOS 네이티브 앱 모음' 카드에 포함 — DMG·랜딩페이지 생기면 개별 카드로 분리"
+    },
+    "macos/anf-ai": {
+      "status": "skipped",
+      "reason": "all_new_finder와 같은 저장소(rescenedev/anf)의 작업 사본"
+    },
+    "macos/anf-feat": {
+      "status": "skipped",
+      "reason": "all_new_finder와 같은 저장소(rescenedev/anf)의 작업 사본"
+    },
+    "macos/awesome-macos-skills": {
+      "status": "skipped",
+      "reason": "앱이 아니라 macOS 앱 개발 레퍼런스 문서"
+    },
+    "macos/coui": {
+      "status": "showcased",
+      "slug": "containerdesk"
+    },
+    "macos/disko": {
+      "status": "showcased",
+      "slug": "macos",
+      "note": "'macOS 네이티브 앱 모음' 카드에 포함"
+    },
     "macos/diskspeed": {
       "status": "showcased",
       "slug": "diskspeed"
+    },
+    "macos/gom": {
+      "status": "showcased",
+      "slug": "macos",
+      "note": "'macOS 네이티브 앱 모음' 카드에 포함"
+    },
+    "macos/lumen": {
+      "status": "showcased",
+      "slug": "lumen-mac"
+    },
+    "macos/markforge": {
+      "status": "showcased",
+      "slug": "markforge"
+    },
+    "macos/meradio": {
+      "status": "showcased",
+      "slug": "meradio"
+    },
+    "macos/photo-crop-resize": {
+      "status": "skipped",
+      "reason": "macos/lumen 사본 (README 동일)"
+    },
+    "macos/pomodoro": {
+      "status": "showcased",
+      "slug": "pomodoro"
+    },
+    "macos/terminus": {
+      "status": "showcased",
+      "slug": "termina"
+    },
+    "macos/vpdf": {
+      "status": "showcased",
+      "slug": "vpdf"
+    },
+    "macos/winamp": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
     },
     "makemoney": {
       "status": "skipped",

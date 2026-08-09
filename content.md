@@ -1,6 +1,6 @@
 # 100개 서비스 만들기 프로젝트 🚀
 
-> 1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 51개
+> 1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 59개
 
 혼자서, 그리고 AI와 짝을 이뤄 만든 프로젝트 모음입니다.
 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 — 거창하지 않아도 **'직접 굴러가는 것'을 만드는 게 코딩의 시작**입니다.
@@ -16,7 +16,7 @@
 | 🌐 웹 서비스·대시보드 | 20 | 국회 감시 대시보드, 법령 검색, 실시간 같이보기(Unflix) |
 | 🤖 자동화·봇·스크래핑 | 9 | 출석 자동화 봇, 재입고 알림, 로또 자동 구매 |
 | 📱 모바일 앱 | 3 | 사진 정리 앱(루멘), 암기 앱(안키요) |
-| 🖥️ 데스크탑·네이티브 도구 | 5 | 파일 검색 CLI, 한글문서 Spotlight 검색 |
+| 🖥️ 데스크탑·네이티브 도구 | 13 | 파일 검색 CLI, 한글문서 Spotlight 검색 |
 | ⌨️ CLI·금융 | 1 | 토스증권 CLI |
 | 🔐 보안·인프라·데이터 | 13 | NAS 웹 콘솔(Nimbo), 커스텀 NAS OS(Zen), 컨테이너 하드닝 |
 
@@ -242,12 +242,13 @@ iPhone과 Apple Watch에서 일본어 가나·단어를 학습하는 앱.
 
 > 내 컴퓨터에서 도는 진짜 프로그램들. 파일 검색, 사진 뷰어, 브라우저까지 직접 만들었습니다.
 
-### macOS 네이티브 앱 모음 · `macos`
-직접 만든 macOS 앱들 — 파일 브라우저, 사진 뷰어, 문서 검색, Markdown 뷰어.
-- 분할뷰 파일 브라우저, NAS 사진 관리자, SQLite FTS5 문서 검색
-- **스택**: Swift 6 + SwiftUI/AppKit · Rust + GPUI · SQLite FTS5
-- **🎓 배울 수 있는 것**: 대용량 앱 성능 최적화 / Homebrew 배포·코드서명
-
+### macOS 네이티브 앱 모음 (그 외) · `macos`
+개별 카드로 뺀 앱들 외에, 아직 다듬는 중인 macOS 앱들을 한데 모았습니다.
+- alldoc: 문서 이름과 본문을 함께 찾는 검색기 (SQLite FTS5)
+- disko: DaisyDisk 스타일 폴더 용량 분석 (AppKit + CoreGraphics)
+- gom: SwiftUI 없이 AppKit만으로 만든 가벼운 동영상 플레이어
+- **스택**: Swift · AppKit · SQLite FTS5 · CoreGraphics
+- **🎓 배울 수 있는 것**: 대용량 데이터 앱의 성능 최적화 (수만 장 이미지 그리드) / macOS 네이티브 UI 패턴과 Homebrew 배포·코드서명
 ### 한글 문서 Spotlight 검색 · `hwpx`
 한글(.hwpx) 문서 본문을 macOS Spotlight로 검색하게 해주는 인덱서.
 - .hwpx(ZIP+XML) 본문 추출, Finder·mdfind 검색
@@ -274,6 +275,70 @@ iPhone과 Apple Watch에서 일본어 가나·단어를 학습하는 앱.
 - 테스트 파일은 임시 생성 후 종료 시 자동 삭제
 - **스택**: Swift · AppKit · SwiftPM · Homebrew Cask
 - **🎓 배울 수 있는 것**: 캐시를 우회해야 믿을 만한 측정이 된다는 것(F_NOCACHE) / DMG·brew로 남이 설치할 수 있게 배포하기
+
+
+### anf (all new finder) · `macos/all_new_finder`
+분할 뷰·내장 터미널·커맨드 팔레트를 하나로 합친 macOS 네이티브 파일 브라우저.
+- Finder·윈도우 탐색기·정통 오쏘독스(Mdir) 스타일을 한 화면에 합침
+- 파일 목록에서 바로 터미널을 열고 커맨드 팔레트로 기능을 호출
+- Swift + AppKit 네이티브 — Electron 없이 가볍게 동작
+- **스택**: Swift · AppKit · SwiftPM
+- **🎓 배울 수 있는 것**: 익숙한 도구를 '내 손에 맞게' 다시 만들어 보는 경험 / 490번의 커밋 — 오래 붙잡고 다듬어야 도구가 쓸 만해진다는 것
+
+### Lumen (macOS 사진 뷰어) · `macos/lumen`
+6만 장이 넘는 사진 라이브러리, 특히 NAS에 있는 것도 가볍게 다루는 macOS 사진 매니저.
+- JPEG·HEIC·RAW 등 재귀 스캔, 앨범·태그·색상 라벨로 정리
+- 크롭·리사이즈는 기본이 비파괴 — 새 파일로 저장하고 원본은 보존
+- NAS의 대용량 라이브러리도 끊김 없이 넘겨보게 최적화
+- **스택**: Swift 6 · SwiftUI · AppKit
+- **🎓 배울 수 있는 것**: 수만 장을 다뤄도 안 버벅이게 만드는 목록·썸네일 처리 / '되돌릴 수 없는 동작'을 기본값에서 빼두는 설계 태도
+
+### MarkForge (Markdown 뷰어) · `macos/markforge`
+Zed의 GPU 렌더링 엔진(GPUI)으로 만든 웹뷰 없는 네이티브 Markdown 뷰어.
+- Zed의 미리보기와 같은 엔진으로 Markdown을 GPU 가속 렌더링
+- VSCode 스타일 사이드바로 폴더를 열어 문서를 오가며 확인
+- 웹뷰·Electron 없이 즉시 실행
+- **스택**: Rust · GPUI · gpui-component
+- **🎓 배울 수 있는 것**: 웹 기술 없이 데스크탑 UI를 그리는 또 다른 길 / 이미 잘 만들어진 엔진을 가져다 쓰면 어디까지 빨라지는지
+
+### Termina (SSH·SFTP 클라이언트) · `macos/terminus`
+Ghostty의 GPU 터미널 코어를 얹은 macOS 네이티브 SSH·SFTP 관리자.
+- 저장한 호스트 목록에서 탭으로 여러 서버에 동시 접속
+- libghostty로 터미널을 렌더링하고 tmux 세션을 유지
+- 원격 파일 브라우저와 SSH 터널 상태를 한 화면에서 확인
+- **스택**: Swift · AppKit · libghostty
+- **🎓 배울 수 있는 것**: 서버에 접속하는 도구가 안에서 어떻게 동작하는지 / 검증된 코어(Ghostty)를 끼워 넣어 앱을 빨리 완성하는 법
+
+### ContainerDesk (Apple Container GUI) · `macos/coui`
+Apple Container를 Docker Desktop처럼 클릭으로 다루는 macOS 관리 앱.
+- 컨테이너 목록·검색과 시작·정지·삭제, 실시간 로그 스트리밍
+- 이미지 pull과 볼륨·네트워크 생성·삭제를 화면에서 처리
+- 엔진 자체를 사이드바에서 켜고 끄기
+- **스택**: Swift · SwiftUI · Apple Container
+- **🎓 배울 수 있는 것**: 명령어로만 되던 일을 GUI로 감싸 남도 쓰게 만드는 과정 / 3초마다 상태를 물어보며 화면을 최신으로 유지하는 폴링 설계
+
+### meradio (라디오 메뉴바 앱) · `macos/meradio`
+한국 라디오 57개 방송국을 메뉴 바에서 바로 듣는 macOS 앱.
+- 방송국 목록과 스트림 주소를 모아 메뉴 바에서 선택 재생
+- 독 아이콘도 창도 없이 메뉴 바에만 상주
+- Homebrew로 설치
+- **스택**: Swift · SwiftUI (MenuBarExtra) · Homebrew Cask
+- **🎓 배울 수 있는 것**: 창 없는 앱 — 메뉴 바에만 사는 프로그램 만들기 / 웹에 흩어진 스트림 주소를 모아 내 앱의 데이터로 쓰기
+
+### Pomodoro (뽀모도로 타이머) · `macos/pomodoro`
+메뉴 바에 사는 가벼운 뽀모도로 타이머 — iPhone·Apple Watch까지 App Store 출시.
+- 집중·짧은 휴식·긴 휴식 주기를 자동으로 전환
+- 독 아이콘 없이 메뉴 바에서만 동작
+- iPhone은 Live Activity·다이내믹 아일랜드 지원, Apple Watch 앱도 함께 배포
+- **스택**: Swift · SwiftUI (MenuBarExtra) · WidgetKit · App Store
+- **🎓 배울 수 있는 것**: 같은 아이디어를 Mac·iPhone·Watch 세 화면에 맞게 펼치는 법 / 작은 앱이라도 스토어 심사를 통과해 출시까지 가보는 경험
+
+### vpdf (PDF 뷰어) · `macos/vpdf`
+AppKit + PDFKit으로 만든 빠른 macOS 네이티브 PDF 뷰어.
+- SwiftUI 없이 AppKit·PDFKit만 써서 즉시 뜨는 가벼운 뷰어
+- DMG와 Homebrew Cask로 배포
+- **스택**: Swift · AppKit · PDFKit · Homebrew Cask
+- **🎓 배울 수 있는 것**: OS가 이미 주는 기능(PDFKit)을 찾아 쓰면 앱이 얼마나 빨리 완성되는지 / 만든 앱을 남이 설치할 수 있는 형태로 포장하기
 
 ---
 

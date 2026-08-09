@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 51개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 59개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-08-09",
@@ -906,24 +906,25 @@
       "projects": [
         {
           "slug": "macos",
-          "name": "macOS 네이티브 앱 모음",
+          "name": "macOS 네이티브 앱 모음 (그 외)",
           "folder": "macos",
-          "oneLiner": "직접 만든 macOS 앱들 — 파일 브라우저, 사진 뷰어, 문서 검색, Markdown 뷰어, SSH 클라이언트",
+          "oneLiner": "개별 카드로 뺀 앱들 외에, 아직 다듬는 중인 macOS 앱들을 한데 모았습니다",
           "does": [
-            "all_new_finder: 터미널·커맨드팔레트를 품은 분할뷰 파일 브라우저",
-            "Lumen photo: 대용량 로컬/NAS 사진 라이브러리 관리자",
-            "alldoc: 문서 이름+본문 검색 (SQLite FTS5), markforge: Rust+GPUI Markdown 뷰어"
+            "alldoc: 문서 이름과 본문을 함께 찾는 검색기 (SQLite FTS5)",
+            "disko: DaisyDisk 스타일 폴더 용량 분석 (AppKit + CoreGraphics)",
+            "gom: SwiftUI 없이 AppKit만으로 만든 가벼운 동영상 플레이어"
           ],
           "stack": [
-            "Swift 6 + SwiftUI/AppKit",
-            "Rust + GPUI",
-            "SQLite FTS5"
+            "Swift",
+            "AppKit",
+            "SQLite FTS5",
+            "CoreGraphics"
           ],
           "learn": [
             "대용량 데이터 앱의 성능 최적화 (수만 장 이미지 그리드)",
             "macOS 네이티브 UI 패턴과 Homebrew 배포·코드서명"
           ],
-          "status": "working",
+          "status": "prototype",
           "live": null,
           "github": "https://github.com/rescenedev/anf",
           "started": "2026-06-07",
@@ -1033,6 +1034,207 @@
           "github": "https://github.com/seongilp/diskspeed",
           "started": "2026-08-09",
           "updated": "2026-08-09"
+        },
+        {
+          "slug": "anf",
+          "name": "anf (all new finder)",
+          "folder": "macos/all_new_finder",
+          "oneLiner": "분할 뷰·내장 터미널·커맨드 팔레트를 하나로 합친 macOS 네이티브 파일 브라우저",
+          "does": [
+            "Finder·윈도우 탐색기·정통 오쏘독스(Mdir) 스타일을 한 화면에 합침",
+            "파일 목록에서 바로 터미널을 열고 커맨드 팔레트로 기능을 호출",
+            "Swift + AppKit 네이티브 — Electron 없이 가볍게 동작"
+          ],
+          "stack": [
+            "Swift",
+            "AppKit",
+            "SwiftPM"
+          ],
+          "learn": [
+            "익숙한 도구를 '내 손에 맞게' 다시 만들어 보는 경험",
+            "490번의 커밋 — 오래 붙잡고 다듬어야 도구가 쓸 만해진다는 것"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/anf/",
+          "github": "https://github.com/rescenedev/anf",
+          "started": "2026-06-10",
+          "updated": "2026-08-07"
+        },
+        {
+          "slug": "lumen-mac",
+          "name": "Lumen (macOS 사진 뷰어)",
+          "folder": "macos/lumen",
+          "oneLiner": "6만 장이 넘는 사진 라이브러리, 특히 NAS에 있는 것도 가볍게 다루는 macOS 사진 매니저",
+          "does": [
+            "JPEG·HEIC·RAW 등 재귀 스캔, 앨범·태그·색상 라벨로 정리",
+            "크롭·리사이즈는 기본이 비파괴 — 새 파일로 저장하고 원본은 보존",
+            "NAS의 대용량 라이브러리도 끊김 없이 넘겨보게 최적화"
+          ],
+          "stack": [
+            "Swift 6",
+            "SwiftUI",
+            "AppKit"
+          ],
+          "learn": [
+            "수만 장을 다뤄도 안 버벅이게 만드는 목록·썸네일 처리",
+            "'되돌릴 수 없는 동작'을 기본값에서 빼두는 설계 태도"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/lumen/",
+          "github": "https://github.com/rescenedev/lumen",
+          "started": "2026-06-07",
+          "updated": "2026-08-09"
+        },
+        {
+          "slug": "markforge",
+          "name": "MarkForge (Markdown 뷰어)",
+          "folder": "macos/markforge",
+          "oneLiner": "Zed의 GPU 렌더링 엔진(GPUI)으로 만든 웹뷰 없는 네이티브 Markdown 뷰어",
+          "does": [
+            "Zed의 미리보기와 같은 엔진으로 Markdown을 GPU 가속 렌더링",
+            "VSCode 스타일 사이드바로 폴더를 열어 문서를 오가며 확인",
+            "웹뷰·Electron 없이 즉시 실행"
+          ],
+          "stack": [
+            "Rust",
+            "GPUI",
+            "gpui-component"
+          ],
+          "learn": [
+            "웹 기술 없이 데스크탑 UI를 그리는 또 다른 길",
+            "이미 잘 만들어진 엔진을 가져다 쓰면 어디까지 빨라지는지"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/markforge/",
+          "github": "https://github.com/rescenedev/markforge",
+          "started": "2026-06-07",
+          "updated": "2026-06-14"
+        },
+        {
+          "slug": "termina",
+          "name": "Termina (SSH·SFTP 클라이언트)",
+          "folder": "macos/terminus",
+          "oneLiner": "Ghostty의 GPU 터미널 코어를 얹은 macOS 네이티브 SSH·SFTP 관리자",
+          "does": [
+            "저장한 호스트 목록에서 탭으로 여러 서버에 동시 접속",
+            "libghostty로 터미널을 렌더링하고 tmux 세션을 유지",
+            "원격 파일 브라우저와 SSH 터널 상태를 한 화면에서 확인"
+          ],
+          "stack": [
+            "Swift",
+            "AppKit",
+            "libghostty"
+          ],
+          "learn": [
+            "서버에 접속하는 도구가 안에서 어떻게 동작하는지",
+            "검증된 코어(Ghostty)를 끼워 넣어 앱을 빨리 완성하는 법"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/termina/",
+          "github": "https://github.com/rescenedev/termina",
+          "started": "2026-06-07",
+          "updated": "2026-06-07"
+        },
+        {
+          "slug": "containerdesk",
+          "name": "ContainerDesk (Apple Container GUI)",
+          "folder": "macos/coui",
+          "oneLiner": "Apple Container를 Docker Desktop처럼 클릭으로 다루는 macOS 관리 앱",
+          "does": [
+            "컨테이너 목록·검색과 시작·정지·삭제, 실시간 로그 스트리밍",
+            "이미지 pull과 볼륨·네트워크 생성·삭제를 화면에서 처리",
+            "엔진 자체를 사이드바에서 켜고 끄기"
+          ],
+          "stack": [
+            "Swift",
+            "SwiftUI",
+            "Apple Container"
+          ],
+          "learn": [
+            "명령어로만 되던 일을 GUI로 감싸 남도 쓰게 만드는 과정",
+            "3초마다 상태를 물어보며 화면을 최신으로 유지하는 폴링 설계"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://github.com/seongilp/ContainerDesk",
+          "started": "2026-07-04",
+          "updated": "2026-07-09"
+        },
+        {
+          "slug": "meradio",
+          "name": "meradio (라디오 메뉴바 앱)",
+          "folder": "macos/meradio",
+          "oneLiner": "한국 라디오 57개 방송국을 메뉴 바에서 바로 듣는 macOS 앱",
+          "does": [
+            "방송국 목록과 스트림 주소를 모아 메뉴 바에서 선택 재생",
+            "독 아이콘도 창도 없이 메뉴 바에만 상주",
+            "Homebrew로 설치"
+          ],
+          "stack": [
+            "Swift",
+            "SwiftUI (MenuBarExtra)",
+            "Homebrew Cask"
+          ],
+          "learn": [
+            "창 없는 앱 — 메뉴 바에만 사는 프로그램 만들기",
+            "웹에 흩어진 스트림 주소를 모아 내 앱의 데이터로 쓰기"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/meradio/",
+          "github": "https://github.com/rescenedev/meradio",
+          "started": "2026-06-21",
+          "updated": "2026-06-21"
+        },
+        {
+          "slug": "pomodoro",
+          "name": "Pomodoro (뽀모도로 타이머)",
+          "folder": "macos/pomodoro",
+          "oneLiner": "메뉴 바에 사는 가벼운 뽀모도로 타이머 — iPhone·Apple Watch까지 App Store 출시",
+          "does": [
+            "집중·짧은 휴식·긴 휴식 주기를 자동으로 전환",
+            "독 아이콘 없이 메뉴 바에서만 동작",
+            "iPhone은 Live Activity·다이내믹 아일랜드 지원, Apple Watch 앱도 함께 배포"
+          ],
+          "stack": [
+            "Swift",
+            "SwiftUI (MenuBarExtra)",
+            "WidgetKit",
+            "App Store"
+          ],
+          "learn": [
+            "같은 아이디어를 Mac·iPhone·Watch 세 화면에 맞게 펼치는 법",
+            "작은 앱이라도 스토어 심사를 통과해 출시까지 가보는 경험"
+          ],
+          "status": "working",
+          "live": "https://rescenedev.github.io/pomodoro/",
+          "github": "https://github.com/rescenedev/pomodoro",
+          "started": "2026-06-21",
+          "updated": "2026-06-27"
+        },
+        {
+          "slug": "vpdf",
+          "name": "vpdf (PDF 뷰어)",
+          "folder": "macos/vpdf",
+          "oneLiner": "AppKit + PDFKit으로 만든 빠른 macOS 네이티브 PDF 뷰어",
+          "does": [
+            "SwiftUI 없이 AppKit·PDFKit만 써서 즉시 뜨는 가벼운 뷰어",
+            "DMG와 Homebrew Cask로 배포"
+          ],
+          "stack": [
+            "Swift",
+            "AppKit",
+            "PDFKit",
+            "Homebrew Cask"
+          ],
+          "learn": [
+            "OS가 이미 주는 기능(PDFKit)을 찾아 쓰면 앱이 얼마나 빨리 완성되는지",
+            "만든 앱을 남이 설치할 수 있는 형태로 포장하기"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://github.com/seongilp/vpdf",
+          "started": "2026-07-09",
+          "updated": "2026-07-10"
         }
       ]
     },
