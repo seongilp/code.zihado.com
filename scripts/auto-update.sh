@@ -1,11 +1,11 @@
 #!/bin/zsh
-# 포트폴리오(vibe.zihado.com) 자동 업데이트
+# 포트폴리오(code.zihado.com) 자동 업데이트
 # launchd(com.zihado.portfolio-update)가 매주 일요일 21:00 KST에 실행.
 # ~/work/playground의 새 디렉토리를 headless Claude가 조사해 쇼케이스에 추가하고,
 # 결과를 텔레그램으로 알린다 (~/.env의 TELEGRAM_BOT_TOKEN / AUTHORIZED_CHAT_ID 사용).
 set -euo pipefail
 
-REPO="$HOME/work/playground/vibe-coding"
+REPO="$HOME/work/playground/code.zihado.com"
 LOG_DIR="$HOME/Library/Logs"
 LOG="$LOG_DIR/portfolio-update.log"
 CLAUDE="$HOME/.local/bin/claude"
@@ -41,12 +41,24 @@ if [[ ! -x "$CLAUDE" ]]; then
   exit 1
 fi
 
+# 저장소 이름을 바꾸면 여기가 먼저 깨진다. 조용히 죽지 말고 알린다.
+if [[ ! -d "$REPO/.git" ]]; then
+  echo "ERROR: repo not found at $REPO"
+  notify "🔴 포트폴리오 자동 업데이트 실패 — 저장소 경로를 찾을 수 없음 ($REPO)
+디렉토리 이름이 바뀌었다면 이 스크립트의 REPO 와
+~/Library/LaunchAgents/com.zihado.portfolio-update.plist 의 경로를 함께 고쳐야 합니다."
+  exit 1
+fi
+
 cd "$REPO"
+
+# 마지막 실행 시각을 남긴다 — 오래됐으면 스케줄이 깨진 것
+date '+%Y-%m-%d %H:%M:%S' > "$LOG_DIR/portfolio-update.lastrun"
 
 # 사용자가 작업 중인 변경사항이 있으면 건드리지 않고 이번 주기는 건너뛴다
 if [[ -n "$(git status --porcelain)" ]]; then
   echo "SKIP: 워킹 트리에 커밋 안 된 변경사항이 있어 이번 실행을 건너뜁니다."
-  notify "🟡 포트폴리오 자동 업데이트 건너뜀 — vibe-coding 저장소에 커밋 안 된 변경사항이 있어요. 정리 후 다음 주기에 다시 시도합니다."
+  notify "🟡 포트폴리오 자동 업데이트 건너뜀 — code.zihado.com 저장소에 커밋 안 된 변경사항이 있어요. 정리 후 다음 주기에 다시 시도합니다."
   exit 0
 fi
 
@@ -63,6 +75,6 @@ notify "🟢 포트폴리오 자동 업데이트 완료
 
 ${SUMMARY}
 
-https://vibe.zihado.com"
+https://code.zihado.com"
 
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') done ====="
