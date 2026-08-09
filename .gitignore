@@ -2,3 +2,9 @@ node_modules/
 .gstack/
 .wrangler/
 preview-hero.png
+
+# Claude Code 가 만드는 worktree.
+# 이게 없으면 메인 체크아웃의 워킹 트리가 더러워지고,
+# scripts/auto-update.sh 의 "커밋 안 된 변경사항이면 건너뛴다" 가드에 걸려
+# 주간 자동 업데이트가 영구히 스킵된다.
+.claude/
