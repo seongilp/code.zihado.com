@@ -1,8 +1,16 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 포트폴리오 업데이트 시 실제 디렉토리 목록과 이 파일을 비교해서, 여기 없는 새 디렉토리만 조사해 projects.json에 추가하고 이 파일을 갱신한다. status: showcased(쇼케이스 등록됨, slug는 projects.json의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-07-26",
+  "lastScanned": "2026-08-09",
   "directories": {
+    "3d-map": {
+      "status": "showcased",
+      "slug": "3d-map"
+    },
+    "ShardBrowser": {
+      "status": "excluded",
+      "reason": "사용자가 쇼케이스에서 제거 (커밋 e2af900)"
+    },
     "ankiyo": {
       "status": "showcased",
       "slug": "ankiyo"
@@ -27,9 +35,21 @@
       "status": "showcased",
       "slug": "boundary"
     },
+    "cell": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
+    },
+    "cgv": {
+      "status": "showcased",
+      "slug": "cgv"
+    },
     "cli": {
       "status": "showcased",
       "slug": "ev"
+    },
+    "code.zihado.com": {
+      "status": "excluded",
+      "reason": "이 쇼케이스 사이트 저장소 자신 (구 vibe-coding)"
     },
     "dart": {
       "status": "showcased",
@@ -65,6 +85,10 @@
       "slug": "meshkr-viewer",
       "note": "실제 프로젝트는 heltec/meshkr-viewer"
     },
+    "homelab": {
+      "status": "showcased",
+      "slug": "homelab"
+    },
     "hwpx": {
       "status": "showcased",
       "slug": "hwpx"
@@ -85,9 +109,21 @@
       "status": "showcased",
       "slug": "ive-hub"
     },
+    "japanese": {
+      "status": "showcased",
+      "slug": "hira"
+    },
+    "kimi": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
+    },
     "kms": {
       "status": "showcased",
       "slug": "kms"
+    },
+    "kumo": {
+      "status": "skipped",
+      "reason": "빈 디렉토리 (항목 1개, 내용 없음)"
     },
     "landman": {
       "status": "showcased",
@@ -96,6 +132,10 @@
     "law.zihado.com": {
       "status": "showcased",
       "slug": "law"
+    },
+    "leptos": {
+      "status": "showcased",
+      "slug": "leptos-bench"
     },
     "london-usage-monitor": {
       "status": "skipped",
@@ -121,6 +161,10 @@
       "status": "showcased",
       "slug": "meshscope"
     },
+    "meshtastic": {
+      "status": "skipped",
+      "reason": "빈 디렉토리 — 내용은 homelab/docs/meshtastic.md 에 정리됨"
+    },
     "musinsa": {
       "status": "skipped",
       "reason": "naver-scrap(상품 스크래퍼 모음) 카드에 포함"
@@ -140,7 +184,9 @@
     },
     "naver-alarm": {
       "status": "showcased",
-      "slug": "naver-alarm"
+      "slug": "naver-alarm",
+      "note": "디렉토리 삭제됨 (카드는 유지)",
+      "present": false
     },
     "naver-scrap": {
       "status": "showcased",
@@ -175,10 +221,6 @@
       "slug": "pixi-particles",
       "note": "실제 프로젝트는 pixijs/work1"
     },
-    "ShardBrowser": {
-      "status": "excluded",
-      "reason": "사용자가 쇼케이스에서 제거 (커밋 e2af900)"
-    },
     "sony-price": {
       "status": "showcased",
       "slug": "sony-price"
@@ -197,7 +239,13 @@
     },
     "vibe-coding": {
       "status": "skipped",
-      "reason": "이 포트폴리오 저장소 자신"
+      "reason": "이 포트폴리오 저장소 자신",
+      "note": "code.zihado.com 으로 이름 변경됨",
+      "present": false
+    },
+    "vms": {
+      "status": "showcased",
+      "slug": "coreos-k8s"
     },
     "wasm": {
       "status": "showcased",
@@ -206,6 +254,10 @@
     "watch": {
       "status": "showcased",
       "slug": "watch"
+    },
+    "waveshare": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
     },
     "web": {
       "status": "excluded",

@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "바이브 코딩 쇼케이스",
-    "subtitle": "AI와 함께 만든 40여 개의 작은 프로젝트들",
+    "subtitle": "AI와 함께 만든 50개의 작은 프로젝트들",
     "intro": "혼자서, 그리고 AI와 짝을 이뤄 만든 프로젝트 모음입니다. 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 — 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
-    "generatedAt": "2026-07-20"
+    "generatedAt": "2026-08-09"
   },
   "categories": [
     {
@@ -36,7 +36,9 @@
           ],
           "status": "working",
           "live": "https://asm.zihado.com",
-          "github": "https://github.com/seongilp/assembly-watch"
+          "github": "https://github.com/seongilp/assembly-watch",
+          "started": "2026-06-07",
+          "updated": "2026-06-17"
         },
         {
           "slug": "dart",
@@ -61,7 +63,9 @@
             "브라우저·엣지·KV를 겹친 다층 캐싱 전략"
           ],
           "status": "working",
-          "live": "https://opendart.pages.dev"
+          "live": "https://opendart.pages.dev",
+          "started": "2026-06-03",
+          "updated": "2026-06-16"
         },
         {
           "slug": "etf-doctor",
@@ -85,7 +89,9 @@
             "정적 prerender + payload 추출로 첫 화면을 즉시 띄우기"
           ],
           "status": "working",
-          "live": "https://etfdoctor.pages.dev"
+          "live": "https://etfdoctor.pages.dev",
+          "started": "2026-06-03",
+          "updated": "2026-06-14"
         },
         {
           "slug": "law",
@@ -110,7 +116,9 @@
           ],
           "status": "working",
           "live": "https://law.zihado.com",
-          "github": "https://github.com/legalize-kr/legalize-kr"
+          "github": "https://github.com/legalize-kr/legalize-kr",
+          "started": "2026-03-30",
+          "updated": "2026-05-29"
         },
         {
           "slug": "bookworm",
@@ -136,7 +144,9 @@
           ],
           "status": "working",
           "live": "https://bookworm-bdt.pages.dev",
-          "github": "https://github.com/seongilp/bookworm"
+          "github": "https://github.com/seongilp/bookworm",
+          "started": "2026-06-03",
+          "updated": "2026-06-05"
         },
         {
           "slug": "landman",
@@ -161,7 +171,9 @@
           ],
           "status": "prototype",
           "live": "https://land.zihado.com",
-          "github": "https://github.com/rescenedev/land.zihado.com"
+          "github": "https://github.com/rescenedev/land.zihado.com",
+          "started": "2026-06-13",
+          "updated": "2026-07-21"
         },
         {
           "slug": "yaho",
@@ -185,7 +197,9 @@
             "ISR + KV + Cache API를 겹친 캐시 전략"
           ],
           "status": "working",
-          "live": "https://rescene.zihado.workers.dev"
+          "live": "https://rescene.zihado.workers.dev",
+          "started": "2026-06-06",
+          "updated": "2026-06-21"
         },
         {
           "slug": "city-tour",
@@ -211,7 +225,9 @@
           ],
           "status": "working",
           "live": "https://webgl-tour.pages.dev",
-          "github": "https://github.com/seongilp/webgl-tour"
+          "github": "https://github.com/seongilp/webgl-tour",
+          "started": "2026-06-17",
+          "updated": "2026-06-17"
         },
         {
           "slug": "webgl-demos",
@@ -236,7 +252,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/particla/",
-          "github": "https://github.com/seongilp/particla"
+          "github": "https://github.com/seongilp/particla",
+          "started": "2026-06-17",
+          "updated": "2026-06-17"
         },
         {
           "slug": "worldcup-2026",
@@ -263,7 +281,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/worldcup-2026/",
-          "github": "https://github.com/seongilp/worldcup-2026"
+          "github": "https://github.com/seongilp/worldcup-2026",
+          "started": "2026-06-16",
+          "updated": "2026-06-17"
         },
         {
           "slug": "openmap-kr",
@@ -291,7 +311,9 @@
           ],
           "status": "prototype",
           "live": null,
-          "github": "https://github.com/seongilp/openmap"
+          "github": "https://github.com/seongilp/openmap",
+          "started": "2026-06-20",
+          "updated": "2026-06-20"
         },
         {
           "slug": "meshscope",
@@ -320,7 +342,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/seongilp/meshscope"
+          "github": "https://github.com/seongilp/meshscope",
+          "started": "2026-06-17",
+          "updated": "2026-06-18"
         },
         {
           "slug": "unflix",
@@ -345,7 +369,9 @@
             "유닛·통합·E2E 테스트를 갖춘 MVP 개발 흐름"
           ],
           "status": "working",
-          "live": "https://unflix.tv"
+          "live": "https://unflix.tv",
+          "started": "2026-06-30",
+          "updated": "2026-07-04"
         },
         {
           "slug": "weblog",
@@ -372,7 +398,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/weblog/",
-          "github": "https://github.com/seongilp/weblog"
+          "github": "https://github.com/seongilp/weblog",
+          "started": "2026-06-29",
+          "updated": "2026-07-04"
         },
         {
           "slug": "web-lumen",
@@ -400,7 +428,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/web-lumen/",
-          "github": "https://github.com/seongilp/web-lumen"
+          "github": "https://github.com/seongilp/web-lumen",
+          "started": "2026-06-30",
+          "updated": "2026-07-13"
         },
         {
           "slug": "pixi-particles",
@@ -424,7 +454,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/pixi-particle-playground/",
-          "github": "https://github.com/seongilp/pixi-particle-playground"
+          "github": "https://github.com/seongilp/pixi-particle-playground",
+          "started": "2026-07-05",
+          "updated": "2026-07-05"
         },
         {
           "slug": "meshkr-viewer",
@@ -450,7 +482,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": null
+          "github": null,
+          "started": "2026-07-11",
+          "updated": "2026-08-02"
         },
         {
           "slug": "ive-hub",
@@ -475,7 +509,9 @@
           ],
           "status": "working",
           "live": "https://ive.zihado.workers.dev",
-          "github": "https://github.com/seongilp/ive.unflix.tv"
+          "github": "https://github.com/seongilp/ive.unflix.tv",
+          "started": "2026-06-06",
+          "updated": "2026-07-28"
         },
         {
           "slug": "trajectory",
@@ -502,7 +538,34 @@
           ],
           "status": "working",
           "live": null,
-          "github": null
+          "github": null,
+          "started": "2026-07-19",
+          "updated": "2026-07-19"
+        },
+        {
+          "slug": "hira",
+          "name": "히라가나 7일 학습",
+          "folder": "japanese",
+          "oneLiner": "일본어 히라가나를 7일에 나눠 익히는 원고용지 스타일 학습 페이지",
+          "does": [
+            "46자를 하루치 분량으로 쪼개 7일 커리큘럼으로 배치",
+            "원고용지(원고지) 칸에 맞춰 획순과 모양을 눈으로 익히게 구성",
+            "의존성 없는 단일 HTML — 인쇄해서 손으로 써도 그대로 쓰임"
+          ],
+          "stack": [
+            "HTML",
+            "CSS",
+            "GitHub Pages"
+          ],
+          "learn": [
+            "배울 내용을 '하루치'로 쪼개 학습 부담을 낮추는 설계",
+            "파일 하나로 끝나는 정적 페이지를 무료로 배포하는 법"
+          ],
+          "status": "working",
+          "live": "https://seongilp.github.io/hira/",
+          "github": "https://github.com/seongilp/hira",
+          "started": "2026-08-02",
+          "updated": "2026-08-02"
         }
       ]
     },
@@ -533,7 +596,9 @@
             "크롤러를 parser/scraper로 나눠 재사용하기"
           ],
           "status": "working",
-          "live": "https://musinsa.rescene.co"
+          "live": "https://musinsa.rescene.co",
+          "started": "2026-06-05",
+          "updated": "2026-06-14"
         },
         {
           "slug": "musinsa",
@@ -557,7 +622,9 @@
             "Cache API·gzip으로 응답 속도(TTFB) 끌어내리기"
           ],
           "status": "working",
-          "live": "https://musinsa.rescene.co"
+          "live": "https://musinsa.rescene.co",
+          "started": "2026-06-05",
+          "updated": "2026-06-07"
         },
         {
           "slug": "opgarun",
@@ -578,7 +645,9 @@
             "Playwright로 실제 브라우저 로그인·자동화하기",
             "텔레그램 폴링 봇으로 양방향 명령 받기"
           ],
-          "status": "working"
+          "status": "working",
+          "started": "2023-05-18",
+          "updated": "2026-07-25"
         },
         {
           "slug": "sony-price",
@@ -601,7 +670,9 @@
             "상태 머신(전이 감지) 기반으로 꼭 필요할 때만 알림 보내기"
           ],
           "status": "working",
-          "live": "https://sony-price-tracker.zihado.workers.dev"
+          "live": "https://sony-price-tracker.zihado.workers.dev",
+          "started": "2026-06-03",
+          "updated": "2026-06-05"
         },
         {
           "slug": "x-collection",
@@ -623,7 +694,9 @@
             "git 친화적인 파일 기반 데이터 저장"
           ],
           "status": "working",
-          "live": "https://x-collection.pages.dev"
+          "live": "https://x-collection.pages.dev",
+          "started": "2026-06-01",
+          "updated": "2026-08-05"
         },
         {
           "slug": "naver-alarm",
@@ -646,7 +719,9 @@
             "쿠키 공급(로컬)과 감시(서버) 역할을 나눈 분산 구조"
           ],
           "status": "working",
-          "github": "https://github.com/seongilp/naver-alarm"
+          "github": "https://github.com/seongilp/naver-alarm",
+          "started": "2026-06-14",
+          "updated": "2026-06-14"
         },
         {
           "slug": "bookstagram-digest",
@@ -672,7 +747,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/seongilp/bookstagram"
+          "github": "https://github.com/seongilp/bookstagram",
+          "started": "2026-07-11",
+          "updated": "2026-07-11"
         },
         {
           "slug": "lotto",
@@ -696,7 +773,35 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/seongilp/lotto"
+          "github": "https://github.com/seongilp/lotto",
+          "started": "2026-07-11",
+          "updated": "2026-07-18"
+        },
+        {
+          "slug": "cgv",
+          "name": "CGV 예매일 오픈 알리미",
+          "folder": "cgv",
+          "oneLiner": "보고 싶은 영화의 예매가 열리는 순간을 놓치지 않게 감시하고 알려주는 봇",
+          "does": [
+            "CGV 내부 API로 극장별 예매 가능 날짜를 주기적으로 조회",
+            "이전에 본 날짜와 비교해 새 날짜가 열리면 즉시 감지",
+            "콘솔·macOS 알림·텔레그램으로 알림 발송 (systemd 상시 구동)"
+          ],
+          "stack": [
+            "TypeScript",
+            "playwright-core",
+            "systemd",
+            "텔레그램 봇 API"
+          ],
+          "learn": [
+            "봇을 막는 사이트를 상대로 '진짜 브라우저'를 띄워 우회하는 방법",
+            "상태를 파일에 저장해 '이번에 새로 생긴 것'만 골라내는 감시 패턴"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://codeberg.org/seongilp/cgv",
+          "started": "2026-07-27",
+          "updated": "2026-07-27"
         }
       ]
     },
@@ -730,7 +835,9 @@
           ],
           "status": "working",
           "live": "https://ankiyo.zihado.com",
-          "github": "https://github.com/seongilp/ankiyo"
+          "github": "https://github.com/seongilp/ankiyo",
+          "started": "2026-05-26",
+          "updated": "2026-06-07"
         },
         {
           "slug": "lumen",
@@ -754,7 +861,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/rescenedev/lumen-ios"
+          "github": "https://github.com/rescenedev/lumen-ios",
+          "started": "2026-06-13",
+          "updated": "2026-06-13"
         },
         {
           "slug": "watch",
@@ -778,7 +887,9 @@
           ],
           "status": "working",
           "live": "https://rescenedev.github.io/watch-hira/",
-          "github": "https://github.com/rescenedev/watch-hira"
+          "github": "https://github.com/rescenedev/watch-hira",
+          "started": "2026-06-13",
+          "updated": "2026-06-15"
         }
       ]
     },
@@ -809,7 +920,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/rescenedev/anf"
+          "github": "https://github.com/rescenedev/anf",
+          "started": "2026-06-07",
+          "updated": "2026-08-09"
         },
         {
           "slug": "hwpx",
@@ -832,7 +945,9 @@
             "ZIP·XML을 저수준에서 직접 파싱하기"
           ],
           "status": "working",
-          "github": "https://github.com/seongilp/hwpx-spotlight"
+          "github": "https://github.com/seongilp/hwpx-spotlight",
+          "started": "2026-06-11",
+          "updated": "2026-06-11"
         },
         {
           "slug": "ev",
@@ -858,7 +973,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/rescenedev/ev"
+          "github": "https://github.com/rescenedev/ev",
+          "started": "2026-05-30",
+          "updated": "2026-06-09"
         },
         {
           "slug": "mp3-player",
@@ -882,7 +999,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": null
+          "github": null,
+          "started": "2026-07-22",
+          "updated": "2026-07-22"
         }
       ]
     },
@@ -916,7 +1035,9 @@
           ],
           "status": "working",
           "live": "https://pypi.org/project/tossinvest-cli/",
-          "github": "https://github.com/rescenedev/tossinvest-cli"
+          "github": "https://github.com/rescenedev/tossinvest-cli",
+          "started": "2026-06-12",
+          "updated": "2026-06-22"
         }
       ]
     },
@@ -948,7 +1069,9 @@
             "소프트웨어 서명과 검증"
           ],
           "status": "working",
-          "github": "https://github.com/seongilp/image-harden"
+          "github": "https://github.com/seongilp/image-harden",
+          "started": "2026-05-30",
+          "updated": "2026-05-31"
         },
         {
           "slug": "boundary",
@@ -973,7 +1096,9 @@
             "zero-trust 인프라 전체 구성 흐름"
           ],
           "status": "prototype",
-          "github": "https://github.com/seongilp/boundary"
+          "github": "https://github.com/seongilp/boundary",
+          "started": "2026-06-06",
+          "updated": "2026-06-06"
         },
         {
           "slug": "oy-guard",
@@ -996,7 +1121,9 @@
             "웹과 CLI가 같은 서비스 코드를 재사용하는 구조"
           ],
           "status": "working",
-          "github": "https://github.com/seongilp/oyguard"
+          "github": "https://github.com/seongilp/oyguard",
+          "started": "2026-06-09",
+          "updated": "2026-06-09"
         },
         {
           "slug": "oy-hack",
@@ -1017,7 +1144,9 @@
             "API 보안 점검 방법론 (인증·CORS·에러·권한)",
             "대규모 엔드포인트를 카탈로깅하고 위험도로 줄세우기"
           ],
-          "status": "prototype"
+          "status": "prototype",
+          "started": "2026-06-06",
+          "updated": "2026-06-06"
         },
         {
           "slug": "kms",
@@ -1038,7 +1167,9 @@
             "엔터프라이즈 키관리 아키텍처 설계 사상",
             "보안 의사결정 시 트레이드오프 비교하기"
           ],
-          "status": "proposal"
+          "status": "proposal",
+          "started": "2026-05-30",
+          "updated": "2026-05-30"
         },
         {
           "slug": "mcp-gateway",
@@ -1060,7 +1191,9 @@
             "API 게이트웨이 패턴 (인증·라우팅·도구 화이트리스팅)"
           ],
           "status": "working",
-          "github": "https://github.com/seongilp/mcp-gateway"
+          "github": "https://github.com/seongilp/mcp-gateway",
+          "started": "2026-07-11",
+          "updated": "2026-07-11"
         },
         {
           "slug": "dbt",
@@ -1085,7 +1218,9 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/seongilp/dbt-playground"
+          "github": "https://github.com/seongilp/dbt-playground",
+          "started": "2026-05-31",
+          "updated": "2026-05-31"
         },
         {
           "slug": "nimbo",
@@ -1113,7 +1248,9 @@
           ],
           "status": "working",
           "live": "https://seongilp.github.io/nimbo/",
-          "github": "https://github.com/seongilp/nimbo"
+          "github": "https://github.com/seongilp/nimbo",
+          "started": "2026-06-27",
+          "updated": "2026-07-10"
         },
         {
           "slug": "zen",
@@ -1139,7 +1276,116 @@
           ],
           "status": "working",
           "live": null,
-          "github": "https://github.com/seongilp/zen-nas"
+          "github": "https://github.com/seongilp/zen-nas",
+          "started": "2026-07-10",
+          "updated": "2026-07-11"
+        },
+        {
+          "slug": "homelab",
+          "name": "홈랩 구성 기록",
+          "folder": "homelab",
+          "oneLiner": "집에서 직접 굴리는 서버 4대의 스토리지·백업·네트워크를 문서로 정리한 운영 기록",
+          "does": [
+            "노드 4대(스토리지·컴퓨트·상시서비스·워크스테이션)의 하드웨어와 역할 정리",
+            "ZFS 미러·rsync·restic 3중 백업과 10G 네트워크 이중화 구성 기록",
+            "장애 상황과 복구 절차를 실측 기반으로 문서화 (13종 문서)"
+          ],
+          "stack": [
+            "Ubuntu",
+            "ZFS",
+            "libvirt/KVM",
+            "Tailscale",
+            "Jekyll"
+          ],
+          "learn": [
+            "'지루하고 안정적인 것이 미덕' — 검증된 조합으로 시스템을 짜는 관점",
+            "직접 겪은 장애와 해결 과정을 남겨 다음 사람이 덜 헤매게 하는 법"
+          ],
+          "status": "working",
+          "live": "https://seongilp.github.io/homelab/",
+          "github": "https://github.com/seongilp/homelab",
+          "started": "2026-07-18",
+          "updated": "2026-08-09"
+        },
+        {
+          "slug": "coreos-k8s",
+          "name": "CoreOS 쿠버네티스 클러스터",
+          "folder": "vms/coreos-k8s",
+          "oneLiner": "집 서버 위에 가상머신을 띄워 쿠버네티스 클러스터를 바닥부터 구성한 실습",
+          "does": [
+            "Fedora CoreOS VM을 Butane 설정으로 자동 프로비저닝",
+            "kubeadm으로 control plane + worker 구성, Flannel로 네트워크 연결",
+            "Gitea·모니터링까지 올려 실제 굴러가는 클러스터로 완성"
+          ],
+          "stack": [
+            "Fedora CoreOS",
+            "Kubernetes",
+            "CRI-O",
+            "Flannel",
+            "libvirt/KVM"
+          ],
+          "learn": [
+            "클라우드를 빌리지 않고 내 컴퓨터에서 쿠버네티스를 만져보는 방법",
+            "설정 파일 하나로 서버를 똑같이 찍어내는 자동 구성(IaC) 감각"
+          ],
+          "status": "working",
+          "live": null,
+          "github": null,
+          "started": "2026-07-27",
+          "updated": "2026-07-30"
+        },
+        {
+          "slug": "3d-map",
+          "name": "3D 지형 · 인구 지도 렌더링",
+          "folder": "3d-map",
+          "oneLiner": "공개 지형·인구 데이터를 받아 대륙별 3D 지도 이미지로 렌더링하는 파이프라인",
+          "does": [
+            "ETOPO 고도 데이터와 GHSL 인구격자 데이터를 내려받아 전처리",
+            "대륙별(유럽·북미·남미 등) 고도 지도와 인구 밀도 지도를 렌더링",
+            "국가 경계를 겹쳐 그리고 3D 형태로 내보내기"
+          ],
+          "stack": [
+            "Python",
+            "GDAL/rasterio",
+            "ETOPO",
+            "GHSL 인구격자",
+            "Natural Earth"
+          ],
+          "learn": [
+            "위성·통계 기관이 무료로 푸는 지리 데이터를 실제로 다뤄보는 경험",
+            "숫자 격자 데이터를 사람이 '오' 하고 보게 되는 그림으로 바꾸는 과정"
+          ],
+          "status": "experiment",
+          "live": null,
+          "github": null,
+          "started": "2026-08-09",
+          "updated": "2026-08-09"
+        },
+        {
+          "slug": "leptos-bench",
+          "name": "Leptos 서버 렌더링 성능 측정",
+          "folder": "leptos",
+          "oneLiner": "Rust 웹 프레임워크로 서버를 짜고 초당 몇 건까지 버티는지 실측한 하네스",
+          "does": [
+            "Leptos SSR + Axum으로 서버 렌더링 전용 백엔드 구성",
+            "wrk로 부하를 걸어 엔드포인트별 처리량을 측정",
+            "'초당 100만 요청'이 성립하는 조건과 한계를 함께 기록"
+          ],
+          "stack": [
+            "Rust",
+            "Leptos 0.8",
+            "Axum 0.8",
+            "wrk"
+          ],
+          "learn": [
+            "성능 수치는 '조건'과 함께 봐야 한다는 것 — 벤치마크를 의심하는 법",
+            "직접 부하를 걸어 내 코드의 한계를 숫자로 확인하는 습관"
+          ],
+          "status": "experiment",
+          "live": null,
+          "github": null,
+          "started": "2026-07-28",
+          "updated": "2026-07-28"
         }
       ]
     }
