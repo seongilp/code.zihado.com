@@ -5,6 +5,14 @@
 ## 절차
 
 1. `ls ~/work/playground` 의 디렉토리 목록과 `playground-index.json`의 `directories` 키를 비교한다.
+   - **컨테이너 디렉토리는 한 단계 더 내려가서 본다.** `macos/`, `native/`, `vms/` 처럼 여러 프로젝트를
+     담고 있는 폴더는 최상위 이름만 비교하면 안에 새로 생긴 프로젝트를 통째로 놓친다.
+     `ls ~/work/playground/{macos,native,vms}` 도 함께 비교하고, 키는 `macos/diskspeed` 형식으로 적는다.
+   - 판단 기준: 하위 디렉토리에 자체 `README.md`·`Package.swift`·`package.json`·`.git` 이 있으면
+     독립 프로젝트로 보고 개별 카드 후보에 올린다.
+   - 같은 저장소의 작업 사본(예: `anf-ai`, `anf-feat` 는 `all_new_finder` 와 같은 `rescenedev/anf`)이나
+     내용이 같은 복사본은 하나로 합치고 나머지는 `skipped` + reason 으로 기록한다.
+     `git remote get-url origin` 이 같은지로 판별한다.
 2. **새 디렉토리가 없으면 아무것도 바꾸지 말고 "변경 없음"만 출력하고 종료한다.**
 3. `playground-index.json`에서 status가 `excluded` 또는 `skipped`인 디렉토리는 **절대 조사·추가하지 않는다.** (특히 `heeppeu_`는 사용자가 명시적으로 제외 지시함 — 영구 제외)
 4. 새 디렉토리마다 README·package.json·`git log --oneline -5`를 읽고 실질적인 프로젝트인지 판단한다.

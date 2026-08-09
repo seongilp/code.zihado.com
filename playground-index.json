@@ -149,6 +149,10 @@
       "status": "showcased",
       "slug": "macos"
     },
+    "macos/diskspeed": {
+      "status": "showcased",
+      "slug": "diskspeed"
+    },
     "makemoney": {
       "status": "skipped",
       "reason": "아이디어 정리 HTML 한 장"

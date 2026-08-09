@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 50개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 51개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-08-09",
@@ -1007,6 +1007,32 @@
           "github": null,
           "started": "2026-07-22",
           "updated": "2026-07-22"
+        },
+        {
+          "slug": "diskspeed",
+          "name": "diskspeed (디스크 속도 측정기)",
+          "folder": "macos/diskspeed",
+          "oneLiner": "내장 SSD·외장 드라이브·NAS의 진짜 읽기/쓰기 속도를 재는 macOS 네이티브 앱",
+          "does": [
+            "순차 읽기/쓰기(8 MiB 블록)와 랜덤 4K 읽기/쓰기를 나눠 측정",
+            "내장·외장·네트워크(SMB/NFS) 볼륨을 자동으로 찾아 목록에 표시",
+            "테스트 파일은 임시로 만들었다가 종료할 때 자동 삭제"
+          ],
+          "stack": [
+            "Swift",
+            "AppKit",
+            "Swift Package Manager",
+            "Homebrew Cask"
+          ],
+          "learn": [
+            "'측정했다'는 말이 믿을 만하려면 캐시를 우회해야 한다는 것 (F_NOCACHE)",
+            "만든 앱을 DMG로 묶고 brew로 남이 설치할 수 있게 배포하는 과정"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://github.com/seongilp/diskspeed",
+          "started": "2026-08-09",
+          "updated": "2026-08-09"
         }
       ]
     },
