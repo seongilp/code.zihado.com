@@ -11,6 +11,11 @@
       "status": "excluded",
       "reason": "사용자가 쇼케이스에서 제거 (커밋 e2af900)"
     },
+    "agentic-engineering": {
+      "status": "showcased",
+      "slug": "agentic-engineering-studio",
+      "note": "실제 프로젝트는 agentic-engineering/site (seongilp.github.io 저장소), /company/ 소개 페이지"
+    },
     "ankiyo": {
       "status": "showcased",
       "slug": "ankiyo"

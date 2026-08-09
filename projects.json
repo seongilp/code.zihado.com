@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 59개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 60개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-08-09",
@@ -571,6 +571,31 @@
           "github": "https://github.com/seongilp/hira",
           "started": "2026-08-02",
           "updated": "2026-08-02"
+        },
+        {
+          "slug": "agentic-engineering-studio",
+          "name": "Agentic Engineering Studio 소개 페이지",
+          "folder": "agentic-engineering",
+          "oneLiner": "AI 에이전트를 개발 조직처럼 운영하는 1인 스튜디오의 소개 페이지",
+          "does": [
+            "제품 개발·업무 자동화·인프라 구축을 한 사람이 기획부터 배포까지 책임진다는 메시지 전달",
+            "에디토리얼 스타일 레이아웃으로 서비스 범위와 문의 방법을 정리",
+            "개인 블로그(seongilp.github.io) 안에 회사 소개 서브 경로(/company/)로 배치"
+          ],
+          "stack": [
+            "Jekyll",
+            "HTML/CSS",
+            "GitHub Pages"
+          ],
+          "learn": [
+            "1인 기업을 소개하는 랜딩 페이지를 카피와 레이아웃으로 설계하는 법",
+            "기존 개인 블로그 저장소에 정적 서브 페이지를 얹어 배포하는 방법"
+          ],
+          "status": "working",
+          "live": "https://seongilp.github.io/company/",
+          "github": "https://github.com/seongilp/seongilp.github.io",
+          "started": "2026-08-09",
+          "updated": "2026-08-09"
         }
       ]
     },
