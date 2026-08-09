@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>바이브 코딩 쇼케이스 — AI와 함께 만든 것들</title>
-<meta name="description" content="AI와 짝을 이뤄 만든 50개의 작은 프로젝트. 동네 주민 코딩 교육용 포트폴리오.">
+<title>100개 서비스 만들기 프로젝트 — 1년 동안 직접 만든 것들</title>
+<meta name="description" content="1년 동안 100개의 서비스를 만드는 프로젝트. 지금까지 50개 — 웹·앱·자동화·보안까지 직접 굴러가는 것들만 모았습니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -278,9 +278,9 @@
   <!-- TOP NAV -->
   <nav class="topnav">
     <div class="wrap topnav-inner">
-      <button class="brand" data-view="showcase"><span class="bdot"></span><span>바이브 코딩</span></button>
+      <button class="brand" data-view="showcase"><span class="bdot"></span><span>100개 서비스 만들기</span></button>
       <div class="tabs">
-        <button class="tab active" data-view="showcase">쇼케이스</button>
+        <button class="tab active" data-view="showcase">프로젝트</button>
         <button class="tab" data-view="curriculum">커리큘럼</button>
         <button class="tab" data-view="pricing">가격</button>
         <button class="tab" data-view="timeline">타임라인</button>
@@ -296,8 +296,8 @@
     <span class="deco d1"></span><span class="deco d2"></span><span class="d3"></span>
     <div class="wrap hero-inner">
       <div>
-        <span class="kicker">동네 코딩 교실 · 포트폴리오</span>
-        <h1>바이브 코딩<br><span class="amber">쇼케이스</span></h1>
+        <span class="kicker">동네 코딩 교실 · 1년에 100개</span>
+        <h1>100개 서비스<br><span class="amber">만들기 프로젝트</span></h1>
         <p class="sub" id="sub"></p>
       </div>
       <div class="statcards" id="statcards"></div>
@@ -501,17 +501,19 @@ function card(p, variant, idx){
 }
 
 function render(data){
+  GOAL = {...GOAL_DEFAULT, ...(data.meta && data.meta.goal || {})};   // projects.json 값이 있으면 덮어쓴다
   const total = data.categories.reduce((n,c)=>n+c.projects.length,0);
   const working = data.categories.reduce((a,c)=>a+c.projects.filter(p=>p.status==='working').length,0);
   document.getElementById('count2').textContent = total;
   document.getElementById('sub').innerHTML =
-    'AI와 짝을 이뤄 만든 50개의 작은 프로젝트. 웹·앱·자동화·보안까지, 직접 굴러가는 것들만 모았습니다.';
+    '1년 동안 <b>'+GOAL.target+'개의 서비스</b>를 만드는 프로젝트입니다. 지금까지 '+total+'개 — '+
+    '웹·앱·자동화·보안까지, 직접 굴러가는 것들만 모았습니다.';
 
   document.getElementById('statcards').innerHTML =
-    '<div class="sc b"><div class="n">'+total+'</div><div class="l">개의 프로젝트</div></div>'+
-    '<div class="sc e"><div class="n">'+data.categories.length+'</div><div class="l">개 분야</div></div>'+
+    '<div class="sc b"><div class="n">'+total+'</div><div class="l">개 만들었어요</div></div>'+
+    '<div class="sc e"><div class="n">'+Math.max(0, GOAL.target-total)+'</div><div class="l">개 남았어요</div></div>'+
     '<div class="sc a"><div class="n">'+working+'</div><div class="l">실제 작동 중</div></div>'+
-    '<div class="sc g"><div class="n">∞</div><div class="l">배울 거리</div></div>';
+    '<div class="sc g"><div class="n">'+data.categories.length+'</div><div class="l">개 분야</div></div>';
 
   const filters = document.getElementById('filters');
   const all = el('button','chip active','✺ 전체'); all.dataset.cat='all'; filters.appendChild(all);
@@ -553,7 +555,8 @@ function render(data){
 }
 
 // ---- 타임라인 (1년 100개) ----
-const GOAL = {start:'2026-05-26', target:100, months:12};
+const GOAL_DEFAULT = {start:'2026-05-26', target:100, months:12};
+let GOAL = GOAL_DEFAULT;   // projects.json의 meta.goal 이 있으면 render()에서 교체된다
 const CAT_COLOR = {web:'var(--blue)',automation:'var(--emerald)',mobile:'var(--amber-d)',
                   desktop:'#8B5CF6','cli-fin':'#EC4899',security:'var(--fg)'};
 const DAY = 86400000;
