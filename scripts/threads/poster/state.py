@@ -18,7 +18,7 @@ class LockBusy(RuntimeError):
 class State:
     def __init__(self, state_dir: Path | str) -> None:
         self.dir = Path(state_dir)
-        self.dir.mkdir(parents=True, exist_ok=True)
+        self.dir.mkdir(parents=True, exist_ok=True, mode=0o700)
 
     def path(self, name: str) -> Path:
         return self.dir / name
@@ -43,6 +43,14 @@ class State:
                 os.fsync(handle.fileno())
             os.chmod(tmp, 0o600 if private else 0o644)
             os.replace(tmp, target)
+            # rename 자체는 디렉토리 메타데이터 변경이라 따로 sync 해야 살아남는다.
+            # 이게 없으면 게시 직후 전원이 나갔을 때 posted.json 이 옛 내용으로
+            # 돌아가고, 다음 날 같은 글이 두 번 올라간다.
+            dir_fd = os.open(self.dir, os.O_RDONLY)
+            try:
+                os.fsync(dir_fd)
+            finally:
+                os.close(dir_fd)
         except BaseException:
             tmp.unlink(missing_ok=True)
             raise
@@ -53,9 +61,13 @@ class State:
 
 @contextmanager
 def exclusive_lock(state_dir: Path | str) -> Iterator[None]:
-    """겹쳐 실행되면 두 번째는 LockBusy 로 즉시 빠져나간다."""
+    """겹쳐 실행되면 두 번째는 LockBusy 로 즉시 빠져나간다.
+
+    재진입 불가 — 같은 프로세스에서 두 번 잡아도 LockBusy 가 난다.
+    진입점에서 딱 한 번만 잡을 것.
+    """
     directory = Path(state_dir)
-    directory.mkdir(parents=True, exist_ok=True)
+    directory.mkdir(parents=True, exist_ok=True, mode=0o700)
     fd = os.open(directory / "lock", os.O_CREAT | os.O_RDWR, 0o600)
     try:
         try:

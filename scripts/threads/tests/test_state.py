@@ -51,3 +51,12 @@ def test_lock_is_released_after_exit(tmp_path):
         pass
     with exclusive_lock(tmp_path):
         pass  # 예외 없이 다시 잡힌다
+
+
+def test_failed_write_leaves_previous_file_intact(tmp_path):
+    state = State(tmp_path)
+    state.write_json("posted.json", [{"slug": "law"}])
+    with pytest.raises(TypeError):
+        state.write_json("posted.json", {"bad": {1, 2}})  # set → 직렬화 도중 실패
+    assert state.read_json("posted.json", None) == [{"slug": "law"}]
+    assert [p.name for p in tmp_path.iterdir()] == ["posted.json"]
