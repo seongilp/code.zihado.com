@@ -34,6 +34,17 @@ def test_build_prompt_includes_previous_texts_from_the_second_round():
     assert "예전에 쓴 글" in prompt
 
 
+def test_build_prompt_ends_with_the_output_format_reminder():
+    # 앞에만 두면 프로젝트 JSON 을 읽는 사이 잊고 머리말을 붙인다.
+    prompt = build_prompt("지침", selection())
+    assert prompt.rstrip().endswith("본문만 출력하세요.")
+
+
+def test_the_reminder_stays_last_even_with_previous_texts():
+    prompt = build_prompt("지침", selection(round_=2, previous=("예전 글",)))
+    assert prompt.index("이전 회차") < prompt.index("마지막 확인")
+
+
 def test_compose_returns_the_cleaned_text():
     result = compose("지침", selection(), runner=lambda prompt: "```\n  본문  \n```")
     assert result == ComposeResult(text="본문", warning=None)

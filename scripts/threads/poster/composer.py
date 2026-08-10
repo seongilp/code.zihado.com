@@ -66,6 +66,16 @@ def build_prompt(instructions: str, selection: Selection, *, retry_hint: bool = 
             f"내용을 덜어내고 {MAX_LENGTH}자 안에 확실히 들어오게 쓰세요."
         )
 
+    # 출력 형식 지시는 맨 뒤에 한 번 더 박는다. 앞에만 두면 프로젝트 JSON 을
+    # 읽는 사이에 잊고 "다음은 최종 본문입니다" 같은 머리말을 붙인다.
+    # sanitize 는 펜스와 따옴표만 벗기지 이런 문장은 못 걸러낸다.
+    blocks.append(
+        "## 마지막 확인\n\n"
+        "지금부터 출력하는 첫 글자가 그대로 게시됩니다.\n"
+        "`다음은 ...입니다`, `N자입니다`, `최종 본문입니다` 같은 설명을 앞이나 뒤에\n"
+        "붙이지 마세요. 본문만 출력하세요."
+    )
+
     return "\n\n".join(blocks)
 
 
