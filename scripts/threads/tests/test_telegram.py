@@ -88,7 +88,7 @@ def test_poll_callbacks_parses_updates_and_advances_the_offset():
         }
     )
     callbacks, offset = telegram.poll_callbacks(0)
-    assert callbacks == [Callback(id="cb1", action="publish", slug="law", message_id=4521)]
+    assert callbacks == [Callback(id="cb1", action="publish", slug="law")]
     assert offset == 101
 
 
@@ -128,6 +128,27 @@ def test_poll_callbacks_ignores_updates_from_other_features():
     callbacks, offset = telegram.poll_callbacks(0)
     assert callbacks == []
     assert offset == 7  # 처리하지 않아도 offset 은 넘긴다
+
+
+def test_poll_callbacks_survives_a_callback_without_a_message():
+    # message 없는 콜백 하나에 터지면 offset 이 못 넘어가고
+    # 5분마다 같은 업데이트를 영원히 다시 받는다.
+    telegram, _ = make(
+        {
+            "getUpdates": {
+                "ok": True,
+                "result": [
+                    {
+                        "update_id": 11,
+                        "callback_query": {"id": "cb", "data": "threads:publish:law"},
+                    }
+                ],
+            }
+        }
+    )
+    callbacks, offset = telegram.poll_callbacks(0)
+    assert callbacks == [Callback(id="cb", action="publish", slug="law")]
+    assert offset == 12
 
 
 def test_resolve_edits_the_message_and_drops_the_buttons():

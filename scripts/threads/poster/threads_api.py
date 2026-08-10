@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta
@@ -22,6 +23,27 @@ class ThreadsError(RuntimeError):
 Transport = Callable[[str, str, dict[str, Any]], dict[str, Any]]
 
 
+def _decode_error_body(exc: urllib.error.HTTPError) -> dict[str, Any]:
+    """오류 응답의 JSON 바디를 살려낸다.
+
+    Threads 는 오류를 400 + JSON 바디로 돌려준다. HTTPError 를 그대로 흘리면
+    텔레그램에는 "HTTP Error 400: Bad Request" 만 남고, 진짜 이유가 담긴
+    error.message 는 버려진다. 이 시스템의 유일한 관측 수단이 텔레그램이라
+    그러면 원인을 알 방법이 없다.
+    """
+    try:
+        raw = exc.read().decode("utf-8")
+    except Exception:  # noqa: BLE001 — 바디를 못 읽어도 상태코드는 알려야 한다
+        raw = ""
+    try:
+        payload = json.loads(raw)
+    except ValueError:
+        payload = None
+    if isinstance(payload, dict) and "error" in payload:
+        return payload
+    return {"error": {"message": f"HTTP {exc.code} — {raw[:300] or exc.reason}"}}
+
+
 def _http_transport() -> Transport:
     def call(method: str, url: str, params: dict[str, Any]) -> dict[str, Any]:
         encoded = urllib.parse.urlencode(params)
@@ -29,8 +51,11 @@ def _http_transport() -> Transport:
             request = urllib.request.Request(f"{url}?{encoded}", method="GET")
         else:
             request = urllib.request.Request(url, data=encoded.encode("utf-8"), method="POST")
-        with urllib.request.urlopen(request, timeout=_TIMEOUT_SECONDS) as response:
-            return json.loads(response.read().decode("utf-8"))
+        try:
+            with urllib.request.urlopen(request, timeout=_TIMEOUT_SECONDS) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            return _decode_error_body(exc)
 
     return call
 

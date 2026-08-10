@@ -84,6 +84,18 @@ def run(
     return 0
 
 
+def _notify_safely(telegram, text: str) -> None:
+    """마지막 방어선에서 쓰는 알림.
+
+    notify 자체가 네트워크 호출이라, 장애 원인이 텔레그램이면 여기서 또 던진다.
+    그러면 예외가 main 밖으로 나가 아무도 안 읽는 launchd 로그에만 남는다.
+    """
+    try:
+        telegram.notify(text)
+    except Exception:  # noqa: BLE001
+        log.exception("텔레그램 알림마저 실패 — %s", text)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Threads 초안 생성")
     parser.add_argument("--project", dest="force_slug", help="특정 slug 를 강제 지정")
@@ -112,11 +124,19 @@ def main(argv: list[str] | None = None) -> int:
                 dry_run=args.dry_run,
             )
     except LockBusy:
+        # 08:00 실행은 놓치면 launchd 가 다시 부르지 않는다. 그날 포스팅이
+        # 통째로 사라지므로 조용히 넘어가면 안 된다. approve 가 게시 중이거나
+        # 재작성으로 claude 를 돌리는 동안 겹칠 수 있다.
         log.info("다른 인스턴스가 실행 중 — 건너뜁니다")
+        _notify_safely(
+            telegram,
+            "🟡 Threads 초안을 건너뛰었습니다 — 승인 처리가 진행 중이라 잠금이 잡혀 있었어요.\n"
+            "직접 돌리려면: python3 scripts/threads/compose.py",
+        )
         return 0
     except Exception as exc:  # noqa: BLE001 — 조용히 죽지 않는다
         log.exception("compose 실패")
-        telegram.notify(f"🔴 Threads 초안 실패 — {exc}")
+        _notify_safely(telegram, f"🔴 Threads 초안 실패 — {exc}")
         return 1
 
 

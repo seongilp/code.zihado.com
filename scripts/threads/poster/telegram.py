@@ -19,13 +19,39 @@ class TelegramError(RuntimeError):
 
 @dataclass(frozen=True)
 class Callback:
+    """버튼 한 번의 누름.
+
+    메시지 id 는 담지 않는다. 쓰는 곳이 없는데(승인 쪽은 pending.json 의
+    telegramMessageId 를 쓴다) query["message"] 를 파고들어야 해서, message 가
+    없는 콜백이 하나 오면 poll_callbacks 가 터지고 offset 이 전진하지 못해
+    5분마다 같은 업데이트를 영원히 다시 받게 된다.
+    """
+
     id: str
     action: str
     slug: str
-    message_id: int
 
 
 Transport = Callable[[str, dict[str, Any]], dict[str, Any]]
+
+
+def _decode_error_body(exc: urllib.error.HTTPError) -> dict[str, Any]:
+    """오류 응답의 JSON 바디를 살려낸다.
+
+    텔레그램은 오류를 4xx + {"ok": false, "description": ...} 로 돌려준다.
+    HTTPError 를 그대로 흘리면 description 이 버려져 원인을 알 수 없다.
+    """
+    try:
+        raw = exc.read().decode("utf-8")
+    except Exception:  # noqa: BLE001 — 바디를 못 읽어도 상태코드는 알려야 한다
+        raw = ""
+    try:
+        payload = json.loads(raw)
+    except ValueError:
+        payload = None
+    if isinstance(payload, dict) and "description" in payload:
+        return {"ok": False, "description": payload["description"]}
+    return {"ok": False, "description": f"HTTP {exc.code} — {raw[:300] or exc.reason}"}
 
 
 def _http_transport(token: str) -> Transport:
@@ -33,8 +59,11 @@ def _http_transport(token: str) -> Transport:
         url = f"https://api.telegram.org/bot{token}/{method}"
         body = urllib.parse.urlencode(params).encode("utf-8")
         request = urllib.request.Request(url, data=body)
-        with urllib.request.urlopen(request, timeout=_TIMEOUT_SECONDS) as response:
-            return json.loads(response.read().decode("utf-8"))
+        try:
+            with urllib.request.urlopen(request, timeout=_TIMEOUT_SECONDS) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            return _decode_error_body(exc)
 
     return call
 
@@ -98,14 +127,7 @@ class Telegram:
             parts = str(query.get("data", "")).split(":")
             if len(parts) != 3 or parts[0] != CALLBACK_PREFIX:
                 continue
-            callbacks.append(
-                Callback(
-                    id=query["id"],
-                    action=parts[1],
-                    slug=parts[2],
-                    message_id=query["message"]["message_id"],
-                )
-            )
+            callbacks.append(Callback(id=query["id"], action=parts[1], slug=parts[2]))
 
         return callbacks, next_offset
 
