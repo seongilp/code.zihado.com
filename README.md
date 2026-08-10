@@ -14,6 +14,7 @@
 | `content.md` | 같은 내용을 읽기 좋게 정리한 마크다운 |
 | `BLOG.md` | 동네 주민에게 소개하는 글 (발표/배포용) |
 | `playground-index.json` | `~/work/playground` 하위 디렉토리 추적 파일 — 새 디렉토리가 생기면 여기와 비교해 쇼케이스를 갱신 |
+| `scripts/threads/` | Threads 일일 자동 포스팅 — 매일 프로젝트 하나를 소개 ([설명](scripts/threads/README.md)) |
 
 내용을 추가·수정하려면 `projects.json`의 `categories → projects` 배열만 손보면 됩니다.
 세 가지 테마가 모두 같은 `projects.json`을 공유합니다.

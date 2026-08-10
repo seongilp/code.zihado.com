@@ -8,7 +8,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/zsh</string>
-    <string>/Users/zihado/work/playground/vibe-coding/scripts/auto-update.sh</string>
+    <string>/Users/zihado/work/playground/code.zihado.com/scripts/auto-update.sh</string>
   </array>
 
   <!-- 매주 일요일 21:00 (KST, 로컬 시간) -->

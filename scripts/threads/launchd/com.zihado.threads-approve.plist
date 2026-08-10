@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.zihado.threads-approve</string>
+
+  <!-- launchd 는 로그인 셸의 PATH 를 쓰지 않으므로 절대 경로를 박는다.
+       /usr/bin/python3 는 3.9 라 쓸 수 없다. 파이썬을 올리면 여기도 함께 고칠 것. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Library/Frameworks/Python.framework/Versions/3.13/bin/python3</string>
+    <string>/Users/zihado/work/playground/code.zihado.com/scripts/threads/approve.py</string>
+  </array>
+
+  <!-- 5분마다. pending 이 없으면 즉시 종료한다. -->
+  <key>StartInterval</key>
+  <integer>300</integer>
+
+  <key>StandardOutPath</key>
+  <string>/Users/zihado/Library/Logs/threads-poster.launchd.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/zihado/Library/Logs/threads-poster.launchd.log</string>
+</dict>
+</plist>
