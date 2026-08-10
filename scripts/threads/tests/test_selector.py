@@ -2,7 +2,13 @@ import random
 
 import pytest
 
-from poster.selector import NoProjectsError, UnknownSlugError, choose, flatten_projects
+from poster.selector import (
+    MalformedCatalogError,
+    NoProjectsError,
+    UnknownSlugError,
+    choose,
+    flatten_projects,
+)
 
 
 def catalog(*slugs):
@@ -90,3 +96,46 @@ def test_selection_is_deterministic_for_a_seeded_rng():
     first = choose(catalog("a", "b", "c"), [], rng=random.Random(7))
     second = choose(catalog("a", "b", "c"), [], rng=random.Random(7))
     assert first.project["slug"] == second.project["slug"]
+
+
+def test_string_round_is_treated_as_a_number_not_ignored():
+    # posted.json 을 손으로 고쳐 round 가 문자열이 되어도 기록이 사라지면 안 된다.
+    # 사라지면 그 프로젝트를 안 올린 것으로 보고 같은 글을 두 번 올린다.
+    posted = [{"slug": "a", "round": "1"}]
+    selection = choose(catalog("a", "b"), posted, rng=rng())
+    assert selection.project["slug"] == "b"
+
+
+def test_garbage_round_falls_back_to_round_one():
+    posted = [{"slug": "a", "round": "어제"}]
+    selection = choose(catalog("a", "b"), posted, rng=rng())
+    assert selection.project["slug"] == "b"
+
+
+def test_zero_or_negative_round_falls_back_to_round_one():
+    posted = [{"slug": "a", "round": 0}, {"slug": "b", "round": -3}]
+    selection = choose(catalog("a", "b"), posted, rng=rng())
+    assert selection.round == 2
+
+
+def test_string_round_does_not_crash_force_slug():
+    posted = [{"slug": "a", "round": "2"}]
+    selection = choose(catalog("a"), posted, rng=rng(), force_slug="a")
+    assert selection.round == 3
+
+
+def test_project_without_slug_names_its_category():
+    broken = {"categories": [{"id": "web", "projects": [{"name": "이름만 있음"}]}]}
+    with pytest.raises(MalformedCatalogError, match="web"):
+        flatten_projects(broken)
+
+
+def test_round_two_excludes_projects_already_posted_in_round_two():
+    posted = [
+        {"slug": "a", "round": 1},
+        {"slug": "b", "round": 1},
+        {"slug": "a", "round": 2},
+    ]
+    selection = choose(catalog("a", "b"), posted, rng=rng())
+    assert selection.project["slug"] == "b"
+    assert selection.round == 2
