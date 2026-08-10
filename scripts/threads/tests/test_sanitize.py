@@ -56,3 +56,43 @@ def test_too_long_error_keeps_the_text_for_the_warning_path():
     with pytest.raises(TooLongError) as excinfo:
         validate(text)
     assert excinfo.value.text == text
+
+
+def test_clean_keeps_quotes_when_the_whole_string_is_not_one_quoted_span():
+    assert clean('"안녕" 그리고 "잘가"') == '"안녕" 그리고 "잘가"'
+
+
+def test_clean_keeps_curly_quotes_when_not_one_quoted_span():
+    assert clean("“안녕” 그리고 “잘가”") == "“안녕” 그리고 “잘가”"
+
+
+def test_clean_removes_a_single_line_fence():
+    assert clean("```본문```") == "본문"
+
+
+def test_clean_removes_a_fence_tagged_with_digits():
+    assert clean("```py3\n본문\n```") == "본문"
+
+
+def test_clean_unwraps_a_fence_nested_inside_quotes():
+    assert clean('"```\n본문\n```"') == "본문"
+
+
+def test_clean_leaves_doubled_quotes_alone():
+    # 안쪽에 따옴표가 남아 있으면 벗기지 않는다. '"안녕" 그리고 "잘가"' 를
+    # 지키려면 이 경우도 포기해야 한다 — 둘을 구분할 방법이 없다.
+    # 따옴표가 남는 쪽이 본문이 망가지는 쪽보다 낫다.
+    assert clean('""본문""') == '""본문""'
+
+
+def test_clean_normalises_crlf():
+    assert clean("```\r\n본문\r\n```") == "본문"
+
+
+def test_clean_can_return_empty_for_an_empty_fence():
+    assert clean("```\n\n```") == ""
+
+
+def test_validate_rejects_whitespace_only_text():
+    with pytest.raises(EmptyTextError):
+        validate("   ")
