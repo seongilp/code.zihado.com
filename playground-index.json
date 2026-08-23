@@ -1,8 +1,36 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 포트폴리오 업데이트 시 실제 디렉토리 목록과 이 파일을 비교해서, 여기 없는 새 디렉토리만 조사해 projects.json에 추가하고 이 파일을 갱신한다. status: showcased(쇼케이스 등록됨, slug는 projects.json의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-08-09",
+  "lastScanned": "2026-08-23",
   "directories": {
+    "japan_tour": {
+      "status": "showcased",
+      "slug": "japan-tour"
+    },
+    "kiki.unflix.tv": {
+      "status": "showcased",
+      "slug": "kiki-live"
+    },
+    "shorts": {
+      "status": "skipped",
+      "reason": "쇼츠 대본 마크다운 문서 모음, 코드 없음"
+    },
+    "study": {
+      "status": "skipped",
+      "reason": "Google Cloud PCA 자격증 학습 노트 (study/google_pca)"
+    },
+    "subway": {
+      "status": "showcased",
+      "slug": "mini-seoul-3d"
+    },
+    "temp": {
+      "status": "skipped",
+      "reason": "임시 실험 폴더 (temp/0xalpha, git 없음)"
+    },
+    "timeline": {
+      "status": "showcased",
+      "slug": "my-timeline"
+    },
     "3d-map": {
       "status": "showcased",
       "slug": "3d-map"

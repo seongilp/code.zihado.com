@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 60개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 64개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
-    "generatedAt": "2026-08-09",
+    "generatedAt": "2026-08-23",
     "goal": {
       "target": 100,
       "start": "2026-05-26",
@@ -596,6 +596,112 @@
           "github": "https://github.com/seongilp/seongilp.github.io",
           "started": "2026-08-09",
           "updated": "2026-08-09"
+        },
+        {
+          "slug": "kiki-live",
+          "name": "KiiiKiii LIVE (유튜브 댓글 라이브챗 + 팬덤 허브)",
+          "folder": "kiki.unflix.tv",
+          "oneLiner": "유튜브 채널 댓글을 라이브 채팅처럼 재생하고, 뉴스·커뮤니티 피드부터 OSINT 리스크 모니터링까지 갖춘 K-pop 그룹 팬덤 허브",
+          "does": [
+            "유튜브 댓글을 페이지네이션해 실시간 채팅처럼 재생 (속도·정렬·시어터 모드)",
+            "유튜브·네이버뉴스·다음·디시·네이트판·인스타그램을 하나의 피드로 모으는 애그리게이터",
+            "2시간 간격 스냅샷으로 멤버별 위협도·감성 추이를 추적하는 리스크 인텔리전스 뷰"
+          ],
+          "stack": [
+            "Next.js 16",
+            "React 19",
+            "Cloudflare Workers (OpenNext)",
+            "Cloudflare D1",
+            "YouTube Data API"
+          ],
+          "learn": [
+            "이종 소스를 하나의 피드로 합치는 애그리게이터 설계",
+            "베이스라인 대비 이탈만 알림으로 보내는 이상탐지 패턴"
+          ],
+          "status": "working",
+          "live": "https://kiki.unflix.tv",
+          "github": "https://github.com/seongilp/kiki.unflix.tv",
+          "started": "2026-06-06",
+          "updated": "2026-08-22"
+        },
+        {
+          "slug": "mini-seoul-3d",
+          "name": "Mini Seoul 3D (수도권 전철 3D 지도)",
+          "folder": "subway",
+          "oneLiner": "수도권 전철 24개 노선을 3D 지도 위에 올려 열차가 실제 노선을 따라 움직이는 걸 실시간으로 보여주는 웹 모형",
+          "does": [
+            "24개 노선·634개 역·32개 운행 경로를 실좌표 기반으로 렌더링",
+            "배차 간격과 시간대별 운행 밀도를 반영해 열차를 생성하고 노선을 따라 보간 이동",
+            "낮/밤 스타일 전환, 지하 구간 강조, 재생 속도 조절(1x~15x)"
+          ],
+          "stack": [
+            "MapLibre GL JS",
+            "Three.js",
+            "TypeScript",
+            "Vite"
+          ],
+          "learn": [
+            "지리 좌표 보간으로 움직이는 오브젝트를 자연스럽게 표현하는 법",
+            "배차·시간대 같은 실제 운행 데이터를 시뮬레이션 파라미터로 바꾸는 감각"
+          ],
+          "status": "working",
+          "live": "https://mini-seoul-3d.vercel.app",
+          "github": "https://github.com/seongilp/mini-seoul-3d",
+          "started": "2026-08-23",
+          "updated": "2026-08-23"
+        },
+        {
+          "slug": "my-timeline",
+          "name": "My Timeline (개인 이동 기록 지도)",
+          "folder": "timeline",
+          "oneLiner": "지난 몇 년간의 내 이동을 지도 위에 그리는 로컬 도구 — 위치 데이터는 브라우저 밖으로 나가지 않는다",
+          "does": [
+            "Apple 사진 GPS·구글 타임라인 Takeout 데이터를 브라우저에서만 파싱해 지도에 렌더링",
+            "연도별 필터와 재생 중 카메라가 이동 경로를 따라가는 시각화",
+            "PhotoKit으로 촬영 시각·GPS 좌표만 추출하고 사진 원본은 읽지 않는 프라이버시 우선 설계"
+          ],
+          "stack": [
+            "React 19",
+            "deck.gl",
+            "MapLibre GL",
+            "Vite",
+            "Swift (PhotoKit)"
+          ],
+          "learn": [
+            "서버 전송 없이 브라우저에서만 개인 데이터를 처리하는 로컬 퍼스트 설계",
+            "대용량 좌표 데이터를 deck.gl로 부드럽게 렌더링하는 법"
+          ],
+          "status": "working",
+          "live": "https://timeline-omega-mocha.vercel.app",
+          "github": null,
+          "started": "2026-08-22",
+          "updated": "2026-08-23"
+        },
+        {
+          "slug": "japan-tour",
+          "name": "니혼수첩 (일본 여행 가이드)",
+          "folder": "japan_tour",
+          "oneLiner": "한국인을 위한 일본 여행 가이드 — 도쿄·오사카 등 대도시와 인근 소도시를 엮은 3박4일·4박5일 코스 정리",
+          "does": [
+            "도쿄·나고야·오사카·후쿠오카·삿포로 5개 대도시와 인근 소도시를 엮은 여행 코스 정리",
+            "코스 상세 페이지에서 일정별 히어로 이미지와 연결 동선을 확인",
+            "여행 준비물 체크리스트 제공"
+          ],
+          "stack": [
+            "Next.js 16",
+            "React 19",
+            "Tailwind CSS v4",
+            "TypeScript"
+          ],
+          "learn": [
+            "여행 정보처럼 반복되는 콘텐츠를 컴포넌트로 구조화하는 법",
+            "카드 비율·그라디언트 같은 디테일을 반복 다듬어 가독성을 끌어올리는 과정"
+          ],
+          "status": "working",
+          "live": "https://japan-tour.vercel.app",
+          "github": null,
+          "started": "2026-08-23",
+          "updated": "2026-08-23"
         }
       ]
     },
