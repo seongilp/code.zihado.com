@@ -5,7 +5,20 @@
   "directories": {
     "datalab": {
       "status": "showcased",
-      "slug": "fuel-route"
+      "slug": "fuel-route",
+      "note": "fuel-route(옛 datalab/fuel-route)는 oil-price 디렉토리로 이동함(git remote seongilp/ssan-oil 동일) — datalab 자체는 이제 seoul-pulse·sanhaeng 두 프로젝트를 담는 컨테이너 디렉토리"
+    },
+    "datalab/seoul-pulse": {
+      "status": "showcased",
+      "slug": "seoul-pulse"
+    },
+    "datalab/sanhaeng": {
+      "status": "showcased",
+      "slug": "sanhaeng"
+    },
+    "oil-price": {
+      "status": "skipped",
+      "reason": "fuel-route 카드(slug: fuel-route, folder: datalab)의 실제 작업 디렉토리가 이곳으로 이동한 것 — 같은 저장소(github seongilp/ssan-oil), 같은 배포(ssan-oil.vercel.app). 새 프로젝트 아님"
     },
     "doro": {
       "status": "showcased",

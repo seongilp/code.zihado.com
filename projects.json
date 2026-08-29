@@ -783,6 +783,57 @@
           "github": null,
           "started": "2026-08-29",
           "updated": "2026-08-29"
+        },
+        {
+          "slug": "seoul-pulse",
+          "name": "서울 실시간 혼잡도 지도",
+          "folder": "datalab/seoul-pulse",
+          "oneLiner": "서울 121장소의 실시간 인구 혼잡도를 지도에 얹고, 장소를 고르면 날씨·대기질·도로소통·주차장·따릉이·문화행사를 한 화면에서 보여주는 대시보드",
+          "does": [
+            "서울 열린데이터광장 실시간 도시데이터로 121장소 혼잡도를 지도 위에 색으로 표시",
+            "장소 클릭 시 날씨·대기질·도로소통·주차장·따릉이·문화행사를 한 패널에 모아 보여줌",
+            "평문 HTTP·비표준 포트인 서울 API를 서버 라우트로 감싸 프록시"
+          ],
+          "stack": [
+            "Next.js",
+            "MapLibre GL",
+            "서울 열린데이터광장 API"
+          ],
+          "learn": [
+            "예비 인증키를 트래픽 초과 시에만 넘기는 폴백 설계 (fetch 캐시 히트율 유지)",
+            "레거시 평문 HTTP API를 안전하게 서버 라우트로 감싸는 법"
+          ],
+          "status": "prototype",
+          "live": "https://seoul-pulse-xi.vercel.app",
+          "github": null,
+          "started": "2026-08-29",
+          "updated": "2026-08-29"
+        },
+        {
+          "slug": "sanhaeng",
+          "name": "산행 — 전국 등산로 지도",
+          "folder": "datalab/sanhaeng",
+          "oneLiner": "산림청 100대명산·국립공원 탐방로 등 전국 등산 공공데이터를 지도 위에서 훑어보는 웹앱",
+          "does": [
+            "100대명산 607코스, 국립공원 탐방로 1,890구간 등 공공데이터를 지도에 표시",
+            "난이도·소요시간·통제여부를 코스별로 확인 가능",
+            "산악기상정보·산불위험예보를 실시간 API로 얹어 표시"
+          ],
+          "stack": [
+            "Next.js",
+            "MapLibre GL",
+            "브이월드",
+            "공공데이터포털 API"
+          ],
+          "learn": [
+            "좌표 없는 원시 공공데이터를 GeoJSON으로 변환해 지도에 얹는 파이프라인",
+            "기상청 격자 좌표계 변환으로 지점별 산악기상 조회하기"
+          ],
+          "status": "working",
+          "live": "https://sanhaeng.vercel.app",
+          "github": null,
+          "started": "2026-08-29",
+          "updated": "2026-08-29"
         }
       ]
     },
