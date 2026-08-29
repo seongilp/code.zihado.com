@@ -15,9 +15,43 @@
 | `BLOG.md` | 동네 주민에게 소개하는 글 (발표/배포용) |
 | `playground-index.json` | `~/work/playground` 하위 디렉토리 추적 파일 — 새 디렉토리가 생기면 여기와 비교해 쇼케이스를 갱신 |
 | `scripts/threads/` | Threads 일일 자동 포스팅 — 매일 프로젝트 하나를 소개 ([설명](scripts/threads/README.md)) |
+| `scripts/auto-update.sh` | **매일 21:00** 새 프로젝트를 찾아 쇼케이스에 추가하고 텔레그램·Discord로 알림 |
+| `scripts/discord.py` | Discord 웹훅 알림 — 포트폴리오 전체 목록 게시(`--list`), 한 줄 알림(`--message`) |
 
 내용을 추가·수정하려면 `projects.json`의 `categories → projects` 배열만 손보면 됩니다.
 세 가지 테마가 모두 같은 `projects.json`을 공유합니다.
+
+## 자동 업데이트 (매일)
+
+launchd `com.zihado.portfolio-update` 가 **매일 21:00 (KST)** 에
+`scripts/auto-update.sh` 를 돌립니다. `~/work/playground` 의 새 디렉토리를
+headless Claude 가 조사해 쇼케이스에 추가하고, 결과를 텔레그램과 Discord 로 알립니다.
+
+```bash
+# 스케줄 다시 적용 (plist 를 고쳤을 때)
+cp scripts/launchd/com.zihado.portfolio-update.plist ~/Library/LaunchAgents/
+launchctl bootout gui/$(id -u)/com.zihado.portfolio-update
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.zihado.portfolio-update.plist
+
+# 포트폴리오 전체 목록을 Discord 에 다시 게시
+python3 scripts/discord.py --list
+```
+
+Discord 웹훅 URL 은 공개 저장소라 커밋하지 않습니다. `~/.env` 에만 둡니다:
+
+```
+DISCORD_WEBHOOK_PORTFOLIO="https://discord.com/api/webhooks/..."
+```
+
+게시되는 항목마다 **저장소 · 랜딩 · 접속** 세 링크가 붙습니다.
+저장소 링크가 없는 프로젝트는 비공개 저장소라는 뜻이라
+목록과 카드 양쪽에 `🔒 private (미공개)` 로 표시됩니다.
+
+## 프로젝트 카드 딥링크
+
+카드 하나를 바로 가리키는 주소가 있습니다 — `https://code.zihado.com/#p/<slug>`
+(예: [`#p/asm`](https://code.zihado.com/#p/asm)). 해당 카드로 스크롤하며 잠깐 강조합니다.
+`<slug>` 는 `projects.json` 의 `slug` 값입니다.
 
 ## 타임라인 (1년에 100개 만들기)
 

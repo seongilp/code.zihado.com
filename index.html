@@ -75,6 +75,9 @@
   .card{border-radius:12px;padding:24px;display:flex;flex-direction:column;cursor:default;
     transition:transform .2s ease, background .2s ease}
   .card:hover{transform:scale(1.02)}
+  /* #p/<slug> 딥링크로 들어왔을 때 해당 카드를 잠깐 강조한다 */
+  .card.hl{outline:3px solid var(--amber-d);outline-offset:4px;animation:cardpulse 1.6s ease 2}
+  @keyframes cardpulse{0%,100%{outline-color:var(--amber-d)}50%{outline-color:transparent}}
   .card .topbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .card .dot{width:34px;height:34px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-family:'Outfit';font-size:.9rem}
   .card .folder{font-family:'Outfit';font-weight:500;font-size:.78rem;color:var(--gray-500)}
@@ -116,6 +119,10 @@
   /* github link button — always dark regardless of variant */
   .card .live.gh{background:#24292f}
   .live.gh::before{content:"⎇ "}
+  /* 저장소가 비공개라 링크를 걸 수 없는 프로젝트 표시 */
+  .private{font-family:'Outfit';font-weight:600;font-size:.8rem;padding:6px 11px;border-radius:6px;
+    background:var(--muted-2);color:var(--gray-500)}
+  .private::before{content:"🔒 "}
 
   /* ---------- LESSONS (dark color block) ---------- */
   .lessons{background:var(--fg);color:#fff;padding:72px 0;margin-top:72px}
@@ -475,11 +482,18 @@ const VARS = ['v-blue','v-emerald','v-amber'];
 const LABEL_BG = ['var(--blue)','var(--emerald)','var(--amber-d)'];
 const STATUS_LABEL = {working:'돌아가는 중',prototype:'프로토타입',wip:'개발 중',proposal:'제안서'};
 
+// 저장소 호스트에 맞는 버튼 라벨 — 전부 GitHub 인 건 아니다 (codeberg 등)
+function repoLabel(url){
+  try { const h = new URL(url).hostname.replace(/^www\./,''); return h==='github.com' ? 'GitHub' : h; }
+  catch(e){ return '저장소'; }
+}
+
 function el(tag, cls, html){const e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e;}
 
 function card(p, variant, idx){
   const c = el('div','card reveal '+variant);
   c.dataset.cat = p._cat;
+  if(p.slug) c.id = 'p-'+p.slug;   // #p/<slug> 딥링크의 착지점
   const top = el('div','topbar');
   const dot = el('div','dot', (idx+1)); top.appendChild(dot);
   top.appendChild(el('span','folder', p.folder));
@@ -495,7 +509,8 @@ function card(p, variant, idx){
   const foot = el('div','card-foot');
   foot.appendChild(el('span','status '+(p.status||'working'), STATUS_LABEL[p.status]||p.status));
   if(p.live){ const a=el('a','live', p.live.replace(/^https?:\/\//,'')); a.href=p.live; a.target='_blank'; a.rel='noopener'; foot.appendChild(a); }
-  if(p.github){ const g=el('a','live gh','GitHub'); g.href=p.github; g.target='_blank'; g.rel='noopener'; foot.appendChild(g); }
+  if(p.github){ const g=el('a','live gh', repoLabel(p.github)); g.href=p.github; g.target='_blank'; g.rel='noopener'; foot.appendChild(g); }
+  else { foot.appendChild(el('span','private','private (미공개)')); }   // 비공개 저장소라 링크가 없다
   c.appendChild(foot);
   return c;
 }
@@ -552,6 +567,7 @@ function render(data){
 
   renderTimeline(data);
   setupFilter(); setupReveal();
+  focusProject(location.hash);   // #p/<slug> 로 들어왔다면 해당 카드로 이동
 }
 
 // ---- 타임라인 (1년 100개) ----
@@ -662,17 +678,45 @@ function setupReveal(){
 }
 
 // ---- page tabs (쇼케이스 / 커리큘럼 / 가격) ----
-function showView(name){
+function showView(name, keepHash){
   const ok = ['showcase','curriculum','pricing','timeline'].includes(name) ? name : 'showcase';
   document.querySelectorAll('.view').forEach(v=>{ v.hidden = (v.id !== 'view-'+ok); });
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.view===ok));
-  if(('#'+ok) !== location.hash) history.replaceState(null,'','#'+ok);
-  window.scrollTo({top:0});
+  // keepHash: #p/<slug> 딥링크로 들어온 경우 해시를 #showcase 로 덮어쓰면 링크가 사라진다
+  if(!keepHash && ('#'+ok) !== location.hash) history.replaceState(null,'','#'+ok);
+  if(!keepHash) window.scrollTo({top:0});
   // re-trigger reveal animation for the newly shown view
   document.querySelectorAll('#view-'+ok+' .reveal').forEach(r=>r.classList.add('in'));
 }
+// ---- 프로젝트 카드 딥링크 (#p/<slug>) ----
+// Discord/블로그에서 카드 하나를 바로 가리키기 위한 주소. 카드는 fetch 이후에
+// 그려지므로 render() 끝에서 한 번, 이후에는 hashchange 에서 처리한다.
+function projectSlug(hash){
+  const m = /^#p\/([A-Za-z0-9._-]+)$/.exec(hash||'');
+  return m ? m[1] : '';
+}
+function focusProject(hash){
+  const slug = projectSlug(hash);
+  if(!slug) return false;
+  const card = document.getElementById('p-'+slug);
+  if(!card) return false;                       // 아직 안 그려졌거나 없는 슬러그
+  showView('showcase', true);
+  // 분야 필터가 걸려 있으면 카드가 숨어 있을 수 있어 '전체'로 되돌린다.
+  // 이미 '전체'면 누르지 않는다 — 필터 클릭 핸들러의 스크롤이 카드 이동과 부딪힌다.
+  const all = document.querySelector('.filters .chip[data-cat="all"]');
+  if(all && !all.classList.contains('active')) all.click();
+  card.classList.add('in');
+  document.querySelectorAll('.card.hl').forEach(c=>c.classList.remove('hl'));
+  card.classList.add('hl');
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+  return true;
+}
+
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
-window.addEventListener('hashchange',()=>showView(location.hash.replace('#','')));
+window.addEventListener('hashchange',()=>{
+  if(focusProject(location.hash)) return;
+  showView(location.hash.replace('#',''));
+});
 { const start = location.hash.replace('#',''); if(['curriculum','pricing','timeline'].includes(start)) showView(start); }
 
 fetch('./projects.json')
