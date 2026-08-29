@@ -725,7 +725,7 @@
             "KATEC 좌표계를 WGS84로 변환해 지도에 얹는 법"
           ],
           "status": "prototype",
-          "live": "https://datalab-pearl.vercel.app",
+          "live": "https://ssan-oil.vercel.app",
           "github": null,
           "started": "2026-08-29",
           "updated": "2026-08-29"
