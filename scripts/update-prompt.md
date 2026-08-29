@@ -25,7 +25,15 @@
    - git이 없으면 `stat -f %SB -t %Y-%m-%d <dir>`(생성일)과 `stat -f %Sm`(수정일)로 채운다.
    - 형식은 항상 `YYYY-MM-DD`. 추측하지 말고 위 명령의 출력을 그대로 쓴다.
 6. **링크 규칙:**
-   - 랜딩 페이지·배포 URL이 있으면 `live`에 넣는다. 반드시 `curl -s -o /dev/null -w "%{http_code}"`로 200 확인 후 넣고, 확인 안 되면 null.
+   - **배포 URL은 추측하지 말고 배포 설정에서 읽는다.** 이름으로 `<프로젝트>.vercel.app` 같은 주소를
+     찍어보면 남의 프로젝트가 200을 주기 때문에, 실제로는 배포돼 있는데 "없음"으로 버리게 된다.
+     - Vercel: `cat <dir>/.vercel/project.json` 으로 프로젝트를 확인한 뒤,
+       `cd <dir> && vercel ls` 로 최신 Production 배포 URL을 얻고,
+       `vercel inspect <배포URL>` 의 **Aliases** 에 나오는 짧은 주소를 `live`에 넣는다.
+     - Cloudflare: `wrangler.toml` / `wrangler.jsonc` 의 `name`, 또는 Pages 프로젝트 이름으로 확인한다.
+     - 위 방법으로 확인이 안 되면 README 안의 명시된 URL만 쓴다.
+   - `live`에 넣기 전 `curl -s -o /dev/null -w "%{http_code}"` 로 200 이고,
+     **`<title>` 이 그 프로젝트가 맞는지**까지 확인한다. 확인 안 되면 null.
    - `git remote get-url origin`에 GitHub 주소가 있으면 `https://github.com/{owner}/{repo}` 형식으로 `github`에 넣는다. 단, **익명 curl로 200이 나오는 공개 저장소만** 넣는다 (비공개면 null).
 7. `playground-index.json` 갱신: 새 디렉토리를 `showcased`(slug 포함) 또는 `skipped`(reason 포함)로 기록하고 `lastScanned`를 오늘 날짜로 바꾼다.
 8. `content.md`에 같은 프로젝트의 요약 섹션을 추가하고 "한눈에 보기" 표의 카운트를 갱신한다. 총 개수가 십의 자리를 넘어가면 README.md·index.html·content.md·projects.json의 "N여 개" 문구도 갱신한다.

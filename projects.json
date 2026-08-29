@@ -725,7 +725,7 @@
             "KATEC 좌표계를 WGS84로 변환해 지도에 얹는 법"
           ],
           "status": "prototype",
-          "live": null,
+          "live": "https://datalab-pearl.vercel.app",
           "github": null,
           "started": "2026-08-29",
           "updated": "2026-08-29"
@@ -751,7 +751,7 @@
             "매분 바뀌는 값만 골라 보내는 계층별 캐시 전략"
           ],
           "status": "working",
-          "live": null,
+          "live": "https://doro-pi.vercel.app",
           "github": null,
           "started": "2026-08-29",
           "updated": "2026-08-29"
