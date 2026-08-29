@@ -236,6 +236,32 @@
   .goal-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:12px;font-weight:600;font-size:.92rem;color:rgba(255,255,255,.92)}
   .goal-meta b{font-family:'Outfit';font-size:1.15rem;font-weight:800}
 
+  .tl-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:34px 48px;align-items:start;margin-top:16px}
+  .tl-hero-left .lead{margin-top:0}
+  @media(max-width:900px){.tl-hero-grid{grid-template-columns:1fr}}
+
+  .pace-card{background:rgba(255,255,255,.13);border-radius:16px;padding:20px 22px 18px;
+    backdrop-filter:blur(2px);position:relative;z-index:1}
+  .pace-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+  .pace-head h3{font-size:1rem;font-weight:800;color:#fff}
+  .pace-head .need{font-family:'Outfit';font-weight:800;font-size:.8rem;color:var(--fg);
+    background:var(--amber);border-radius:999px;padding:4px 10px;white-space:nowrap}
+  .pace-sub{font-size:.78rem;color:rgba(255,255,255,.72);font-weight:500;margin-bottom:14px}
+  .pace-chart{display:flex;align-items:flex-end;gap:6px;height:120px}
+  .pace-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;height:100%}
+  .pace-val{font-family:'Outfit';font-weight:800;font-size:.74rem;color:rgba(255,255,255,.95);line-height:1}
+  .pace-col.plan .pace-val{color:rgba(255,255,255,.6)}
+  .pace-bar{width:100%;border-radius:5px;background:var(--amber);min-height:3px;
+    transition:height .8s cubic-bezier(.2,.8,.2,1)}
+  .pace-col.now .pace-bar{background:#fff}
+  .pace-col.plan .pace-bar{background:transparent;border:2px dashed rgba(255,255,255,.55)}
+  .pace-x{display:flex;gap:6px;margin-top:8px}
+  .pace-x span{flex:1;text-align:center;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7)}
+  .pace-x span.now{color:#fff}
+  .pace-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:.72rem;
+    font-weight:600;color:rgba(255,255,255,.78)}
+  .pace-legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;font-style:normal;vertical-align:middle}
+
   .tl-wrap{padding:44px 0 72px}
   .tl-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
   .tl-legend .lg{display:inline-flex;align-items:center;gap:6px;background:var(--muted);
@@ -465,8 +491,13 @@
       <div class="wrap">
         <span class="kicker">1년에 100개 만들기</span>
         <h1>무엇을 <span class="amber">언제</span> 만들었나</h1>
-        <p class="lead" id="tl-lead"></p>
-        <div class="goal" id="tl-goal"></div>
+        <div class="tl-hero-grid">
+          <div class="tl-hero-left">
+            <p class="lead" id="tl-lead"></p>
+            <div class="goal" id="tl-goal"></div>
+          </div>
+          <div class="pace-card" id="tl-pace"></div>
+        </div>
       </div>
     </section>
     <div class="wrap tl-wrap">
@@ -579,6 +610,66 @@ const DAY = 86400000;
 const parseDay = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
 const fmtNum = n => n.toLocaleString('ko-KR');
 
+// 월별 페이스: 지난 달은 실제 개수, 남은 달은 목표를 채우려면 필요한 개수(점선)
+function renderPace(items, start, end, today, remain){
+  const box = document.getElementById('tl-pace');
+  if(!box) return;
+  const key = d => d.getFullYear()*12 + d.getMonth();
+  const first = key(start), last = key(end), now = key(today);
+  const months = [];
+  for(let k=first; k<=last; k++) months.push(k);
+  if(months.length === 0){ box.innerHTML=''; return; }
+
+  // 목표 시작월보다 이른 프로젝트는 첫 달 칸에 합산한다 (총합이 상단 카운트와 맞도록)
+  const actual = {};
+  months.forEach(k => actual[k] = 0);
+  items.forEach(it => {
+    const k = Math.min(last, Math.max(first, key(parseDay(it.started))));
+    actual[k]++;
+  });
+
+  const future = months.filter(k => k > now);
+  const need = future.length > 0 ? remain / future.length : 0;
+  const max = Math.max(1, ...months.map(k => k > now ? need : actual[k]));
+
+  const cols = months.map(k => {
+    const plan = k > now, v = plan ? need : actual[k];
+    const cls = plan ? 'plan' : (k === now ? 'now' : '');
+    const label = plan ? (Math.round(v*10)/10).toFixed(1) : v;
+    return '<div class="pace-col ' + cls + '">' +
+             '<span class="pace-val">' + label + '</span>' +
+             '<div class="pace-bar" style="height:0"></div>' +
+           '</div>';
+  }).join('');
+
+  const xs = months.map(k => {
+    const m = (k % 12) + 1;
+    return '<span class="' + (k === now ? 'now' : '') + '">' + m + '월</span>';
+  }).join('');
+
+  box.innerHTML =
+    '<div class="pace-head"><h3>월별 페이스</h3>' +
+      (future.length ? '<span class="need">남은 ' + future.length + '개월 · 월 ' +
+        (Math.round(need*10)/10).toFixed(1) + '개</span>' : '') +
+    '</div>' +
+    '<p class="pace-sub">막대는 그 달에 <b>시작한</b> 프로젝트 수입니다.</p>' +
+    '<div class="pace-chart">' + cols + '</div>' +
+    '<div class="pace-x">' + xs + '</div>' +
+    '<div class="pace-legend">' +
+      '<span><i style="background:var(--amber)"></i>지난 달 실적</span>' +
+      '<span><i style="background:#fff"></i>이번 달</span>' +
+      '<span><i style="border:2px dashed rgba(255,255,255,.55);background:transparent"></i>필요 페이스</span>' +
+    '</div>';
+
+  requestAnimationFrame(()=>{
+    box.querySelectorAll('.pace-col').forEach((col,i)=>{
+      const k = months[i], v = k > now ? need : actual[k];
+      const bar = col.querySelector('.pace-bar');
+      if(bar) bar.style.height = Math.max(3, Math.round(v/max*100)) + '%';
+    });
+  });
+}
+
 function renderTimeline(data){
   const cats = {};
   data.categories.forEach(c => cats[c.id] = c);
@@ -592,7 +683,9 @@ function renderTimeline(data){
 
   const total = items.length;
   const start = parseDay(GOAL.start);
-  const end = new Date(start.getFullYear()+1, start.getMonth(), start.getDate());
+  // meta.goal.end 가 있으면 그 날짜가 마감, 없으면 시작일로부터 1년
+  const end = GOAL.end ? parseDay(GOAL.end)
+                       : new Date(start.getFullYear()+1, start.getMonth(), start.getDate());
   const today = new Date(); today.setHours(0,0,0,0);
   const elapsed = Math.max(0, Math.round((today-start)/DAY));
   const left = Math.max(0, Math.round((end-today)/DAY));
@@ -614,6 +707,8 @@ function renderTimeline(data){
   requestAnimationFrame(()=>{
     const f = document.querySelector('.goal-fill'); if(f) f.style.width = pct + '%';
   });
+
+  renderPace(items, start, end, today, remain);
 
   const used = new Set(items.map(i=>i.cat));
   document.getElementById('tl-legend').innerHTML = data.categories

@@ -8,6 +8,7 @@
     "goal": {
       "target": 100,
       "start": "2026-05-26",
+      "end": "2026-12-31",
       "months": 12
     }
   },
@@ -1800,7 +1801,7 @@
             "숫자 격자 데이터를 사람이 '오' 하고 보게 되는 그림으로 바꾸는 과정"
           ],
           "status": "experiment",
-          "live": null,
+          "live": "https://terrain-population-maps.pages.dev",
           "github": null,
           "started": "2026-08-09",
           "updated": "2026-08-09"
