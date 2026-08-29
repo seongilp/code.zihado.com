@@ -17,7 +17,7 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
 # 텔레그램·Discord 자격증명 — 공개 저장소이므로 절대 커밋하지 말고 ~/.env에서만 읽는다
 [[ -f "$HOME/.env" ]] && source "$HOME/.env"
 
-notify() {
+notify_telegram() {
   local text="$1"
   if [[ -z "${TELEGRAM_BOT_TOKEN:-}" || -z "${AUTHORIZED_CHAT_ID:-}" ]]; then
     echo "WARN: 텔레그램 설정 없음 — 텔레그램 알림 생략"
@@ -28,12 +28,21 @@ notify() {
       --data-urlencode text="$text" \
       -d disable_web_page_preview=true || echo "WARN: 텔레그램 전송 실패"
   fi
+}
 
+notify_discord() {
+  local text="$1"
   if [[ -z "${DISCORD_WEBHOOK_PORTFOLIO:-}" ]]; then
     echo "WARN: Discord 웹훅 설정 없음 — 알림 생략"
   else
     "$PYTHON" "$REPO/scripts/discord.py" --message "$text" || echo "WARN: Discord 전송 실패"
   fi
+}
+
+# 실패·건너뜀 같은 운영 알림은 양쪽에 모두 보낸다
+notify() {
+  notify_telegram "$1"
+  notify_discord "$1"
 }
 
 mkdir -p "$LOG_DIR"
@@ -73,6 +82,9 @@ fi
 
 git pull --rebase origin main
 
+# 스캔 전 커밋 — 끝난 뒤 이 시점과 비교해 "오늘 뭐가 발견됐는지"를 뽑는다
+BEFORE=$(git rev-parse HEAD)
+
 RESULT=$("$CLAUDE" -p "$(cat scripts/update-prompt.md)" \
   --model claude-sonnet-5 \
   --allowed-tools "Read,Write,Edit,Glob,Grep,Bash" \
@@ -80,10 +92,19 @@ RESULT=$("$CLAUDE" -p "$(cat scripts/update-prompt.md)" \
 echo "$RESULT"
 
 SUMMARY=$(echo "$RESULT" | tail -n 12)
-notify "🟢 포트폴리오 자동 업데이트 완료
+notify_telegram "🟢 포트폴리오 자동 업데이트 완료
 
 ${SUMMARY}
 
 https://code.zihado.com"
+
+# Discord 에는 요약 대신 "무엇이 발견됐는지"를 카드로 보낸다.
+# 발견이 없는 날도 한 줄은 남긴다 — 조용하면 스케줄이 죽은 건지 알 수 없다.
+if [[ -z "${DISCORD_WEBHOOK_PORTFOLIO:-}" ]]; then
+  echo "WARN: Discord 웹훅 설정 없음 — 스캔 리포트 생략"
+else
+  "$PYTHON" "$REPO/scripts/discord.py" --scan-report "$BEFORE" \
+    || echo "WARN: Discord 스캔 리포트 실패"
+fi
 
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') done ====="

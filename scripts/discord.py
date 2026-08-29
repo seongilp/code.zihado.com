@@ -14,6 +14,7 @@ import argparse
 import json
 import os
 import ssl
+import subprocess
 import sys
 import time
 import urllib.error
@@ -239,11 +240,95 @@ def batch_embeds(embeds: list[dict]) -> list[list[dict]]:
     return batches
 
 
+def json_at_ref(ref: str, path: str) -> dict:
+    """특정 커밋 시점의 JSON 파일. 그 시점에 없던 파일이면 빈 dict."""
+    try:
+        out = subprocess.run(
+            ["git", "show", f"{ref}:{path}"],
+            cwd=REPO,
+            capture_output=True,
+            check=True,
+        ).stdout
+    except (subprocess.CalledProcessError, OSError):
+        return {}
+    try:
+        return json.loads(out.decode("utf-8"))
+    except ValueError:
+        return {}
+
+
+def all_projects(data: dict) -> dict[str, dict]:
+    return {
+        p["slug"]: p
+        for c in data.get("categories", [])
+        for p in c.get("projects", [])
+        if p.get("slug")
+    }
+
+
+def post_scan_report(webhook: str, base_ref: str) -> str:
+    """base_ref 이후로 무엇이 발견됐는지 보고한다. 발견이 없어도 매일 한 줄은 남긴다."""
+    today = time.strftime("%Y-%m-%d")
+
+    before = all_projects(json_at_ref(base_ref, "projects.json"))
+    after = all_projects(json.loads(PROJECTS_JSON.read_text(encoding="utf-8")))
+    added = [after[s] for s in after.keys() - before.keys()]
+
+    idx_before = json_at_ref(base_ref, "playground-index.json").get("directories", {})
+    idx_after = json.loads(
+        (REPO / "playground-index.json").read_text(encoding="utf-8")
+    ).get("directories", {})
+    skipped = [
+        (name, meta.get("reason", ""))
+        for name, meta in idx_after.items()
+        if name not in idx_before and meta.get("status") == "skipped"
+    ]
+
+    if not added and not skipped:
+        send_message(
+            webhook,
+            f"🔍 **{today} 스캔** — 새로 발견된 프로젝트 없음 (총 {len(after)}개 그대로)",
+        )
+        return "새 프로젝트 없음"
+
+    head = f"🔍 **{today} 스캔** — "
+    head += f"새 프로젝트 **{len(added)}개** 발견" if added else "새로 등록할 프로젝트 없음"
+    if skipped:
+        head += f" · 건너뜀 {len(skipped)}개"
+    head += f"\n총 {len(after)}개 · https://code.zihado.com"
+    send_message(webhook, head)
+
+    embeds = []
+    if added:
+        added.sort(key=lambda p: p.get("name", ""))
+        for part in split_text(
+            "\n".join(project_line(p) for p in added), MAX_EMBED_DESC
+        ):
+            embeds.append(
+                {"title": "🆕 새로 추가된 프로젝트", "description": part, "color": EMBED_COLOR}
+            )
+    if skipped:
+        lines = [f"• `{name}` — {reason or '사유 없음'}" for name, reason in skipped]
+        for part in split_text("\n".join(lines), MAX_EMBED_DESC):
+            embeds.append(
+                {"title": "⏭️ 등록하지 않은 디렉토리", "description": part, "color": 0x9CA3AF}
+            )
+    for batch in batch_embeds(embeds):
+        post(webhook, {"embeds": batch})
+
+    return f"추가 {len(added)}개 / 건너뜀 {len(skipped)}개"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="포트폴리오 Discord 알림")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--list", action="store_true", help="projects.json 전체 목록을 게시")
     group.add_argument("--message", help="한 줄 알림 전송")
+    group.add_argument(
+        "--scan-report",
+        metavar="BASE_REF",
+        help="BASE_REF 이후 새로 발견된 프로젝트·건너뛴 디렉토리를 보고",
+    )
     args = parser.parse_args()
 
     try:
@@ -251,6 +336,8 @@ def main() -> int:
         if args.list:
             count = post_list(webhook)
             print(f"OK: 포트폴리오 {count}개를 Discord 에 게시했습니다.")
+        elif args.scan_report:
+            print(f"OK: 스캔 리포트 전송 — {post_scan_report(webhook, args.scan_report)}")
         else:
             send_message(webhook, args.message)
             print("OK: Discord 알림 전송 완료.")
