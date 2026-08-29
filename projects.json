@@ -514,7 +514,7 @@
             "어댑터별 실패를 격리하는 테스트로 깨지기 쉬운 외부 스크레이핑 안정화하기"
           ],
           "status": "working",
-          "live": "https://ive.zihado.workers.dev",
+          "live": "https://ive.unflix.tv",
           "github": "https://github.com/seongilp/ive.unflix.tv",
           "started": "2026-06-06",
           "updated": "2026-07-28"
@@ -699,7 +699,7 @@
             "카드 비율·그라디언트 같은 디테일을 반복 다듬어 가독성을 끌어올리는 과정"
           ],
           "status": "working",
-          "live": "https://japan-tour.vercel.app",
+          "live": "https://japan-tour-eta.vercel.app",
           "github": null,
           "started": "2026-08-23",
           "updated": "2026-08-23"
@@ -887,7 +887,7 @@
             "상태 머신(전이 감지) 기반으로 꼭 필요할 때만 알림 보내기"
           ],
           "status": "working",
-          "live": "https://sony-price-tracker.zihado.workers.dev",
+          "live": null,
           "started": "2026-06-03",
           "updated": "2026-06-05"
         },
