@@ -16,7 +16,10 @@
    - 같은 저장소의 작업 사본(예: `anf-ai`, `anf-feat` 는 `all_new_finder` 와 같은 `rescenedev/anf`)이나
      내용이 같은 복사본은 하나로 합치고 나머지는 `skipped` + reason 으로 기록한다.
      `git remote get-url origin` 이 같은지로 판별한다.
-2. **새 디렉토리가 없으면 아무것도 바꾸지 말고 "변경 없음"만 출력하고 종료한다.**
+2. **"변경 없음"은 스캐너가 새 후보 0개를 냈을 때만 쓴다.** 직접 훑어보니 없어 보인다는
+   이유로 종료하지 마라 — 예전에 그렇게 넘어가서 `datalab/` 하위 4개가 몇 주 동안 조용히 빠졌다.
+   후보가 하나라도 있으면 반드시 `showcased` 또는 `skipped` 중 하나로 정리하고 끝낸다.
+   정리하지 않고 남기면 `auto-update.sh` 가 실행 끝에 다시 감지해 경고 알림을 보낸다.
 3. `playground-index.json`에서 status가 `excluded` 또는 `skipped`인 디렉토리는 **절대 조사·추가하지 않는다.** (특히 `heeppeu_`는 사용자가 명시적으로 제외 지시함 — 영구 제외)
 4. 새 디렉토리마다 README·package.json·`git log --oneline -5`를 읽고 실질적인 프로젝트인지 판단한다.
    - 빈 폴더, 개인 기록, 단순 실험이면 `playground-index.json`에 `skipped` + reason으로만 기록한다.

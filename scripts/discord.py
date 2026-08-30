@@ -71,19 +71,40 @@ def read_webhook() -> str:
     return url
 
 
-def post(webhook: str, payload: dict, *, retries: int = 3) -> None:
-    """웹훅으로 한 건 전송. 429(레이트리밋)는 Retry-After 만큼 기다렸다 재시도."""
+def with_wait(webhook: str) -> str:
+    """웹훅 URL 에 ?wait=true 를 붙인다.
+
+    이게 없으면 Discord 는 204 No Content 만 준다 — 전송이 실제로 채널에 꽂혔는지
+    확인할 방법이 없어서 "HTTP 는 성공했는데 메시지는 안 보이는" 실패를 못 잡는다.
+    wait=true 면 생성된 메시지 객체(id 포함)가 돌아와 발송을 증명할 수 있다.
+    """
+    parsed = urllib.parse.urlparse(webhook)
+    query = dict(urllib.parse.parse_qsl(parsed.query))
+    query["wait"] = "true"
+    return urllib.parse.urlunparse(parsed._replace(query=urllib.parse.urlencode(query)))
+
+
+def post(webhook: str, payload: dict, *, retries: int = 3) -> str:
+    """웹훅으로 한 건 전송하고 생성된 메시지 id 를 돌려준다.
+
+    429(레이트리밋)는 Retry-After 만큼 기다렸다 재시도.
+    """
     body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    url = with_wait(webhook)
     for attempt in range(1, retries + 1):
         req = urllib.request.Request(
-            webhook,
+            url,
             data=body,
             headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
             method="POST",
         )
         try:
-            with urllib.request.urlopen(req, timeout=20, context=ssl_context()):
-                return
+            with urllib.request.urlopen(req, timeout=20, context=ssl_context()) as resp:
+                raw = resp.read().decode("utf-8", "replace")
+                try:
+                    return str(json.loads(raw).get("id", ""))
+                except ValueError:
+                    return ""
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:400]
             if exc.code == 429 and attempt < retries:
@@ -102,10 +123,9 @@ def post(webhook: str, payload: dict, *, retries: int = 3) -> None:
             raise DiscordError(f"Discord 연결 실패: {exc.reason}") from exc
 
 
-def send_message(webhook: str, text: str) -> None:
-    """긴 텍스트는 2000자 단위로 잘라 여러 건으로 보낸다."""
-    for chunk in split_text(text, MAX_CONTENT):
-        post(webhook, {"content": chunk})
+def send_message(webhook: str, text: str) -> list[str]:
+    """긴 텍스트는 2000자 단위로 잘라 여러 건으로 보낸다. 생성된 메시지 id 들을 돌려준다."""
+    return [post(webhook, {"content": chunk}) for chunk in split_text(text, MAX_CONTENT)]
 
 
 def split_text(text: str, limit: int) -> list[str]:
@@ -339,8 +359,9 @@ def main() -> int:
         elif args.scan_report:
             print(f"OK: 스캔 리포트 전송 — {post_scan_report(webhook, args.scan_report)}")
         else:
-            send_message(webhook, args.message)
-            print("OK: Discord 알림 전송 완료.")
+            ids = [i for i in send_message(webhook, args.message) if i]
+            # 발송 증거를 남긴다 — 204 만 보고 "보냈다"고 단정하면 조용한 실패를 놓친다
+            print(f"OK: Discord 알림 전송 완료. messageId={','.join(ids) or '(응답에 id 없음)'}")
     except (DiscordError, OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1

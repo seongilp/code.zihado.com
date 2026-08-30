@@ -107,4 +107,18 @@ else
     || echo "WARN: Discord 스캔 리포트 실패"
 fi
 
+# 갱신이 끝난 뒤에도 index 에 안 들어간 프로젝트가 남아 있는지 기계적으로 다시 본다.
+# 에이전트의 "변경 없음" 보고를 그대로 믿으면 조용히 빠지는 경로가 생긴다 —
+# 실제로 datalab/ 하위 4개가 몇 주 동안 그렇게 누락됐고, 사용자가 직접 지적해서야 드러났다.
+LEFTOVER=$("$PYTHON" "$REPO/scripts/scan-dirs.py" --new-only || true)
+if [[ -n "$LEFTOVER" ]]; then
+  echo "WARN: 갱신 후에도 index 에 없는 디렉토리가 남았습니다:"
+  echo "$LEFTOVER"
+  notify "🟠 포트폴리오 스캔 — 갱신 후에도 등록되지 않은 프로젝트가 남았습니다:
+
+${LEFTOVER}
+
+showcased 나 skipped 중 하나로 정리해 주세요."
+fi
+
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') done ====="

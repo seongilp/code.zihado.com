@@ -19,7 +19,8 @@
 
 사용법:
     python3 scripts/scan-dirs.py          # 새 후보 / 사라진 항목만 보고
-    python3 scripts/scan-dirs.py --all    # 스캔된 전체 목록
+    python3 scripts/scan-dirs.py --all       # 스캔된 전체 목록
+    python3 scripts/scan-dirs.py --new-only  # 새 후보 키만 한 줄씩 (자동화 점검용)
 """
 import json
 import os
@@ -94,6 +95,12 @@ def main():
 
     new = [k for k in keys if k not in directories and not is_blocked(k)]
     gone = [k for k in directories if k not in keys]
+
+    # 자동화가 "정말 남은 게 없나"를 기계적으로 확인할 때 쓰는 모드.
+    # 갱신 에이전트가 "변경 없음"이라고 보고해도, 여기서 후보가 나오면 놓친 것이다.
+    if "--new-only" in sys.argv:
+        print("\n".join(new))
+        return
 
     print("# 새 후보 (index 에 없는 프로젝트 디렉토리) — %d개" % len(new))
     for k in new:
