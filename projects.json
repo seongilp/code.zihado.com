@@ -753,7 +753,7 @@
           ],
           "status": "working",
           "live": "https://doro-pi.vercel.app",
-          "github": null,
+          "github": "https://github.com/seongilp/doro",
           "started": "2026-08-29",
           "updated": "2026-08-29"
         },
