@@ -4,12 +4,15 @@
 
 ## 절차
 
-1. `ls ~/work/playground` 의 디렉토리 목록과 `playground-index.json`의 `directories` 키를 비교한다.
-   - **컨테이너 디렉토리는 한 단계 더 내려가서 본다.** `macos/`, `native/`, `vms/` 처럼 여러 프로젝트를
-     담고 있는 폴더는 최상위 이름만 비교하면 안에 새로 생긴 프로젝트를 통째로 놓친다.
-     `ls ~/work/playground/{macos,native,vms}` 도 함께 비교하고, 키는 `macos/diskspeed` 형식으로 적는다.
-   - 판단 기준: 하위 디렉토리에 자체 `README.md`·`Package.swift`·`package.json`·`.git` 이 있으면
-     독립 프로젝트로 보고 개별 카드 후보에 올린다.
+1. `python3 scripts/scan-dirs.py` 를 실행한다. 이 스크립트가 `~/work/playground` 를 훑어
+   `playground-index.json` 에 없는 **새 후보**와, index 에만 남은 **사라진 항목**을 출력한다.
+   - **디렉토리 목록을 이 프롬프트에 손으로 적지 마라.** 예전에는 컨테이너 폴더 목록
+     (`macos`, `native`, `vms`)이 여기 하드코딩돼 있었고, 그래서 나중에 생긴 `datalab/` 하위
+     프로젝트 4개가 통째로 스캔에서 빠졌다. 판별 규칙은 스크립트 안에 주석으로 있다.
+   - 새 컨테이너 폴더가 생겨도 스크립트가 알아서 한 단계 내려간다. 키는 `datalab/gofish` 형식이다.
+   - "사라진 항목"은 참고용이다. 대부분 디렉토리 이름이 바뀐 것이니 **카드를 지우지 말고**,
+     확실할 때만 index 키를 새 이름으로 고치고 그 카드의 `folder`·`live`·`github` 를 맞춰 준다.
+     slug 는 딥링크(`#p/<slug>`)가 이미 돌아다니므로 바꾸지 않는다.
    - 같은 저장소의 작업 사본(예: `anf-ai`, `anf-feat` 는 `all_new_finder` 와 같은 `rescenedev/anf`)이나
      내용이 같은 복사본은 하나로 합치고 나머지는 `skipped` + reason 으로 기록한다.
      `git remote get-url origin` 이 같은지로 판별한다.
@@ -44,6 +47,8 @@
 ## 금지 사항
 
 - excluded 디렉토리 추가 금지 (heeppeu_, ShardBrowser, tactics-5sa, web)
-- 기존 카드의 수정·삭제 금지 — 새 항목 추가만 한다
+- 기존 카드의 삭제 금지, 내용 변경 금지 — 새 항목 추가만 한다.
+  단 **디렉토리 이름이 바뀐 게 확실한 경우에 한해** `folder`·`live`·`github` 는 실제 값으로 맞춘다
+  (slug·name·설명은 그대로 둔다)
 - force push 금지, main 외 브랜치 작업 금지
 - 확인 안 된 URL을 카드에 넣는 것 금지

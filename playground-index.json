@@ -1,20 +1,21 @@
 {
-  "_readme": "~/work/playground 하위 디렉토리 추적 파일. 포트폴리오 업데이트 시 실제 디렉토리 목록과 이 파일을 비교해서, 여기 없는 새 디렉토리만 조사해 projects.json에 추가하고 이 파일을 갱신한다. status: showcased(쇼케이스 등록됨, slug는 projects.json의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고).",
+  "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-08-29",
+  "lastScanned": "2026-08-31",
   "directories": {
     "datalab": {
-      "status": "showcased",
-      "slug": "fuel-route",
-      "note": "fuel-route(옛 datalab/fuel-route)는 oil-price 디렉토리로 이동함(git remote seongilp/ssan-oil 동일) — datalab 자체는 이제 seoul-pulse·sanhaeng 두 프로젝트를 담는 컨테이너 디렉토리"
+      "status": "skipped",
+      "reason": "여러 프로젝트를 담는 컨테이너 디렉토리 — 카드는 datalab/* 하위 키로 추적한다. 옛 fuel-route 작업 사본은 oil-price 로 이동함"
     },
-    "datalab/seoul-pulse": {
+    "datalab/seoul-vibe": {
       "status": "showcased",
-      "slug": "seoul-pulse"
+      "slug": "seoul-pulse",
+      "note": "seoul-pulse 에서 이름이 바뀜 (디렉토리·저장소·배포 모두). 카드 slug 는 딥링크 유지를 위해 seoul-pulse 그대로 둔다"
     },
-    "datalab/sanhaeng": {
+    "datalab/korea-mountain": {
       "status": "showcased",
-      "slug": "sanhaeng"
+      "slug": "sanhaeng",
+      "note": "sanhaeng 에서 이름이 바뀜 (디렉토리·저장소·배포 모두). 카드 slug 는 딥링크 유지를 위해 sanhaeng 그대로 둔다"
     },
     "oil-price": {
       "status": "skipped",
@@ -64,7 +65,7 @@
       "status": "excluded",
       "reason": "사용자가 쇼케이스에서 제거 (커밋 e2af900)"
     },
-    "agentic-engineering": {
+    "agentic-engineering/site": {
       "status": "showcased",
       "slug": "agentic-engineering-studio",
       "note": "실제 프로젝트는 agentic-engineering/site (seongilp.github.io 저장소), /company/ 소개 페이지"
@@ -137,7 +138,7 @@
       "status": "skipped",
       "reason": "law.zihado.com 카드(slug: law)와 동일 프로젝트 — 같은 라이브 URL(law.zihado.com)과 같은 판례 저장소(legalize-kr/legalize-kr)를 쓰는 소스 디렉토리"
     },
-    "google": {
+    "google/gps": {
       "status": "showcased",
       "slug": "trajectory",
       "note": "실제 프로젝트는 google/gps"
@@ -146,7 +147,7 @@
       "status": "excluded",
       "reason": "사용자 지시로 제외 (2026-07-11, 개인용 도구)"
     },
-    "heltec": {
+    "heltec/meshkr-viewer": {
       "status": "showcased",
       "slug": "meshkr-viewer",
       "note": "실제 프로젝트는 heltec/meshkr-viewer"
@@ -167,7 +168,7 @@
       "status": "skipped",
       "reason": "개인 투자 기록 마크다운 문서 모음"
     },
-    "ios": {
+    "ios/lumen-ios": {
       "status": "showcased",
       "slug": "lumen"
     },
@@ -314,7 +315,7 @@
       "status": "skipped",
       "reason": "빈 디렉토리 (.gstack 캐시만 존재)"
     },
-    "native": {
+    "native/mp3_player": {
       "status": "showcased",
       "slug": "mp3-player",
       "note": "실제 프로젝트는 native/mp3_player"
@@ -353,7 +354,7 @@
       "status": "showcased",
       "slug": "webgl-demos"
     },
-    "pixijs": {
+    "pixijs/work1": {
       "status": "showcased",
       "slug": "pixi-particles",
       "note": "실제 프로젝트는 pixijs/work1"
@@ -380,7 +381,7 @@
       "note": "code.zihado.com 으로 이름 변경됨",
       "present": false
     },
-    "vms": {
+    "vms/coreos-k8s": {
       "status": "showcased",
       "slug": "coreos-k8s"
     },
@@ -388,7 +389,7 @@
       "status": "showcased",
       "slug": "web-lumen"
     },
-    "watch": {
+    "watch/hiragana": {
       "status": "showcased",
       "slug": "watch"
     },
@@ -428,6 +429,14 @@
     "zen": {
       "status": "showcased",
       "slug": "zen"
+    },
+    "datalab/ipyang": {
+      "status": "showcased",
+      "slug": "ipyang"
+    },
+    "datalab/gofish": {
+      "status": "showcased",
+      "slug": "gofish"
     }
   }
 }

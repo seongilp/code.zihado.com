@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 67개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 71개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
-    "generatedAt": "2026-08-29",
+    "generatedAt": "2026-08-31",
     "goal": {
       "target": 100,
       "start": "2026-05-26",
@@ -707,7 +707,7 @@
         {
           "slug": "fuel-route",
           "name": "경로 위의 싼 주유소",
-          "folder": "datalab",
+          "folder": "oil-price",
           "oneLiner": "출발지에서 목적지까지 가는 경로 위에서, 우회 기름값까지 계산해 실제로 가장 싸게 넣을 수 있는 주유소를 찾는 지도",
           "does": [
             "리터당 가격이 아니라 '주유비 + 우회 주행 기름값'의 합으로 순위를 매김",
@@ -787,12 +787,12 @@
         {
           "slug": "seoul-pulse",
           "name": "서울 실시간 혼잡도 지도",
-          "folder": "datalab/seoul-pulse",
+          "folder": "datalab/seoul-vibe",
           "oneLiner": "서울 121장소의 실시간 인구 혼잡도를 지도에 얹고, 장소를 고르면 날씨·대기질·도로소통·주차장·따릉이·문화행사를 한 화면에서 보여주는 대시보드",
           "does": [
             "서울 열린데이터광장 실시간 도시데이터로 121장소 혼잡도를 지도 위에 색으로 표시",
             "장소 클릭 시 날씨·대기질·도로소통·주차장·따릉이·문화행사를 한 패널에 모아 보여줌",
-            "평문 HTTP·비표준 포트인 서울 API를 서버 라우트로 감싸 프록시"
+            "업스트림이 흔들리면 마지막 성공 데이터를 'stale' 로 표시해 빈 화면 대신 보여줌"
           ],
           "stack": [
             "Next.js",
@@ -801,21 +801,22 @@
           ],
           "learn": [
             "예비 인증키를 트래픽 초과 시에만 넘기는 폴백 설계 (fetch 캐시 히트율 유지)",
-            "레거시 평문 HTTP API를 안전하게 서버 라우트로 감싸는 법"
+            "레거시 평문 HTTP API를 안전하게 서버 라우트로 감싸는 법",
+            "평문 HTTP·비표준 포트 API 를 서버 라우트로 감싸 mixed content 를 피하는 법"
           ],
-          "status": "prototype",
-          "live": "https://seoul-pulse-xi.vercel.app",
-          "github": null,
+          "status": "working",
+          "live": "https://seoul-vibe.vercel.app",
+          "github": "https://github.com/seongilp/seoul-vibe",
           "started": "2026-08-29",
-          "updated": "2026-08-29"
+          "updated": "2026-08-30"
         },
         {
           "slug": "sanhaeng",
           "name": "산행 — 전국 등산로 지도",
-          "folder": "datalab/sanhaeng",
+          "folder": "datalab/korea-mountain",
           "oneLiner": "산림청 100대명산·국립공원 탐방로 등 전국 등산 공공데이터를 지도 위에서 훑어보는 웹앱",
           "does": [
-            "100대명산 607코스, 국립공원 탐방로 1,890구간 등 공공데이터를 지도에 표시",
+            "100대명산 607코스·전국 4,492봉우리·국립공원 탐방로 1,890구간을 지도에 표시",
             "난이도·소요시간·통제여부를 코스별로 확인 가능",
             "산악기상정보·산불위험예보를 실시간 API로 얹어 표시"
           ],
@@ -830,10 +831,64 @@
             "기상청 격자 좌표계 변환으로 지점별 산악기상 조회하기"
           ],
           "status": "working",
-          "live": "https://sanhaeng.vercel.app",
-          "github": null,
+          "live": "https://korea-mountain.vercel.app",
+          "github": "https://github.com/seongilp/korea-mountain",
           "started": "2026-08-29",
-          "updated": "2026-08-29"
+          "updated": "2026-08-30"
+        },
+        {
+          "slug": "ipyang",
+          "name": "입양 — 전국 유기동물 공고",
+          "folder": "datalab/ipyang",
+          "oneLiner": "전국 동물보호센터의 구조동물 공고를 '마감이 임박한 순서'로 보여줘, 지금 도움이 급한 아이부터 눈에 띄게 하는 웹앱",
+          "does": [
+            "최신순으로만 주는 원본 API 대신 공고를 전부 받아 남은 날짜로 다시 정렬해 보여줌",
+            "시도·축종·공고 상태로 걸러 보고, 상세에서 보호소 전화로 바로 연결",
+            "평문 HTTP 로 오는 정부 사진 서버를 서버 라우트로 감싸 CDN 에 한 달간 캐시"
+          ],
+          "stack": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "shadcn/ui",
+            "공공데이터포털 국가동물보호정보시스템 API"
+          ],
+          "learn": [
+            "원본 API 의 정렬 순서를 믿을 수 없을 때, 전수 수집 후 서버에서 다시 정렬해 내려주기",
+            "mixed content 와 잘못된 content-type 을 이미지 프록시 라우트로 바로잡는 법"
+          ],
+          "status": "working",
+          "live": "https://ipyang.vercel.app",
+          "github": "https://github.com/seongilp/ipyang",
+          "started": "2026-08-30",
+          "updated": "2026-08-30"
+        },
+        {
+          "slug": "gofish",
+          "name": "gofish — 전국 바다낚시지수",
+          "folder": "datalab/gofish",
+          "oneLiner": "전국 49개 예보지점의 바다낚시지수를 7일치로 보는 지도 — 오늘 어디가 좋은지는 랭킹으로, 이번 주 흐름은 지점별 추이로",
+          "does": [
+            "국립해양조사원 바다낚시지수 1,750건을 받아 지점·날짜·어종별 지수를 지도와 랭킹으로 표시",
+            "물때·파고·수온·기온·유속·풍속을 지점마다 함께 보여줌",
+            "지점을 고르면 7일 추이를 그려, 언제 나갈지 비교할 수 있게 함"
+          ],
+          "stack": [
+            "Next.js",
+            "TypeScript",
+            "MapLibre GL",
+            "Tailwind CSS",
+            "공공데이터포털 바다낚시지수 API"
+          ],
+          "learn": [
+            "페이지당 100건 상한이 있는 공공 API 를 통째로 받아 두고 메모리에서 거르는 캐시 설계",
+            "지도 글리프 서버에 한글이 없어 라벨이 조용히 사라질 때 브라우저 폰트로 그리게 하는 법"
+          ],
+          "status": "working",
+          "live": "https://gofish-kr.vercel.app",
+          "github": "https://github.com/seongilp/gofish",
+          "started": "2026-08-30",
+          "updated": "2026-08-30"
         }
       ]
     },
