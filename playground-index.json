@@ -330,6 +330,10 @@
       "status": "showcased",
       "slug": "naver-scrap"
     },
+    "office/Untitled": {
+      "status": "skipped",
+      "reason": "커밋 없는 신규 스캐폴드(package.json name: untitled-hq, Three.js). 2026-08-31 오늘 생성되어 현재 작업 중으로 보임 — 실질적 프로젝트로 판단할 근거 부족"
+    },
     "nimbo": {
       "status": "showcased",
       "slug": "nimbo"
