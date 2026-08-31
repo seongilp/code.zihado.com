@@ -17,6 +17,16 @@
       "slug": "sanhaeng",
       "note": "sanhaeng 에서 이름이 바뀜 (디렉토리·저장소·배포 모두). 카드 slug 는 딥링크 유지를 위해 sanhaeng 그대로 둔다"
     },
+    "datalab/pet-travel": {
+      "status": "showcased",
+      "slug": "pet-travel",
+      "note": "멍냥로드 — 반려동물 동반여행 지도. 정식 배포는 meongtrip.vercel.app (pet-travel.vercel.app 은 남의 앱)"
+    },
+    "datalab/kr-airport-now": {
+      "status": "showcased",
+      "slug": "kr-airport-now",
+      "note": "공항 지금 — 전국 공항 운항 보드. 정식 배포는 kr-airport-now.vercel.app (incheon-parking.vercel.app 은 같은 앱의 옛 alias)"
+    },
     "oil-price": {
       "status": "skipped",
       "reason": "fuel-route 카드(slug: fuel-route, folder: datalab)의 실제 작업 디렉토리가 이곳으로 이동한 것 — 같은 저장소(github seongilp/ssan-oil), 같은 배포(ssan-oil.vercel.app). 새 프로젝트 아님"
