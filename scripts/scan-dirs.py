@@ -83,24 +83,71 @@ def main():
         directories = json.load(f)["directories"]
 
     # 부모가 skipped/excluded 면 그 안의 하위 디렉토리도 조사 대상이 아니다.
-    # (web/, temp/, study/ 처럼 통째로 제외하기로 한 폴더의 내부를 매번 다시 물어보면
-    #  진짜 누락이 잡음에 묻힌다.)
+    # (web/, temp/, study/, app_in_toss/ 처럼 통째로 제외하기로 한 폴더의 내부를
+    #  매번 다시 물어보면 진짜 누락이 잡음에 묻힌다.)
+    #
+    # !!! 두 종류의 컨테이너를 절대 헷갈리지 마라 — 이 실명은 두 번 났다 !!!
+    #   - datalab 처럼 "쇼케이스할 앱들을 담는" 컨테이너: 부모 자신은 카드가
+    #     아니지만 하위는 반드시 스캔 후보여야 한다 → status="container".
+    #   - temp/study 처럼 "통째로 무시하는" 컨테이너 → status="skipped"/"excluded".
+    #
+    # 처음엔 datalab 하위 4개가 컨테이너 목록을 손으로 유지하다 몇 주간 누락됐고,
+    # 그걸 이 스캐너로 고쳤다. 그런데 datalab 을 skipped 로 표시하는 순간 하위가
+    # 이 blocked 규칙에 걸려 같은 실명이 되살아났다(두 번째 발생). 그래서 "무시"와
+    # "컨테이너"를 status 로 명확히 갈랐다. container 는 절대 blocked 에 넣지 않는다.
+    # 다음 사람에게: datalab 을 skipped 로 되돌리지 마라. 하위 앱이 조용히 사라진다.
     blocked = {
         k for k, v in directories.items()
         if "/" not in k and v.get("status") in ("skipped", "excluded")
     }
 
+    # 재발 방지 가드: skipped/excluded 로 막아둔 부모인데 하위 카드가 index 에
+    # 남아 있으면 모순이다 — 누군가 container 를 다시 skipped 로 되돌렸다는 뜻이고,
+    # 그 순간 하위가 스캔에서 통째로 사라진다. 사후 감시(--new-only)가 감시 대상과
+    # 똑같은 blocked 규칙을 타기 때문에, 이 모순만은 규칙 바깥에서 직접 잡아낸다.
+    # (감시 장치가 감시 대상과 같은 결함을 공유하면 감시가 아니다.)
+    mislabeled = sorted(
+        p for p in blocked
+        if any(k.startswith(p + "/") for k in directories)
+    )
+
     def is_blocked(key):
         return "/" in key and key.split("/", 1)[0] in blocked
 
     new = [k for k in keys if k not in directories and not is_blocked(k)]
-    gone = [k for k in directories if k not in keys]
+
+    # scan 이 하위를 내보낸 부모(datalab, macos, cli, native ...)의 bare 키는
+    # "사라진 항목"이 아니다 — 카드를 하위 키로 추적할 뿐 부모는 원래 카드가 아니다.
+    # 그걸 gone 에 남기면 진짜 삭제된 프로젝트가 잡음에 묻힌다.
+    emitted_parents = {k.split("/", 1)[0] for k in keys if "/" in k}
+    gone = [k for k in directories if k not in keys and k not in emitted_parents]
 
     # 자동화가 "정말 남은 게 없나"를 기계적으로 확인할 때 쓰는 모드.
     # 갱신 에이전트가 "변경 없음"이라고 보고해도, 여기서 후보가 나오면 놓친 것이다.
+    # 컨테이너 오분류도 여기에 한 줄로 섞어 내보낸다 — auto-update.sh 의 가드가
+    # 이 출력이 비어있지 않으면 알림을 보내므로, 재발이 즉시 사람에게 도달한다.
     if "--new-only" in sys.argv:
-        print("\n".join(new))
+        out = list(new)
+        for p in mislabeled:
+            n = sum(1 for k in directories if k.startswith(p + "/"))
+            out.append(
+                "!! 컨테이너 오분류: '%s' 가 skipped/excluded 인데 하위 카드 %d개가 "
+                "index 에 있음 — status 를 'container' 로 되돌려야 하위 스캔이 살아난다"
+                % (p, n)
+            )
+        print("\n".join(out))
         return
+
+    # 오분류는 조용히 지나가면 안 되는 재발 신호다. 맨 위에 눈에 띄게 경고한다.
+    if mislabeled:
+        for p in mislabeled:
+            n = sum(1 for k in directories if k.startswith(p + "/"))
+            print(
+                "!! 컨테이너 오분류: '%s' 가 skipped/excluded 인데 하위 카드 %d개가 "
+                "index 에 있음 — status 를 'container' 로 고쳐라 (하위가 스캔에서 사라진다)"
+                % (p, n),
+                file=sys.stderr,
+            )
 
     print("# 새 후보 (index 에 없는 프로젝트 디렉토리) — %d개" % len(new))
     for k in new:
