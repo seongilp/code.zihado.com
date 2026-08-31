@@ -1,8 +1,13 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-08-31",
+  "lastScanned": "2026-09-01",
   "directories": {
+    "datalab/kr-events-now": {
+      "status": "showcased",
+      "slug": "kr-events-now",
+      "note": "한국 축제·행사 다국어 파인더 — 영/일/중(간·번체) 4개 언어, 한국관광공사 다국어 TourAPI"
+    },
     "datalab": {
       "status": "container",
       "reason": "쇼케이스할 앱들을 담는 컨테이너 — 부모 자신은 카드가 아니지만 하위(datalab/*)는 반드시 스캔 후보다. skipped 로 두면 하위 앱이 스캐너 블록 규칙에 걸려 통째로 사라진다(이 실명이 두 번 났다 — 절대 skipped 로 되돌리지 마라). 카드는 datalab/* 하위 키로 추적한다. 옛 fuel-route 작업 사본은 oil-price 로 이동함"
