@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 74개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 75개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-01",
@@ -970,6 +970,34 @@
           "status": "working",
           "live": "https://kr-events-now.vercel.app",
           "github": "https://github.com/seongilp/kr-events-now",
+          "started": "2026-09-01",
+          "updated": "2026-09-01"
+        },
+        {
+          "slug": "kr-taxfree-now",
+          "name": "택스리펀 지금",
+          "folder": "datalab/kr-taxfree-now",
+          "oneLiner": "내 주변에서 택스리펀(사후면세) 되는 가게를 영어·일본어·중국어(간체/번체)로 지도에서 찾는 외국인 여행객용 앱",
+          "does": [
+            "한국관광공사 다국어 관광정보서비스(쇼핑, contentTypeId=79)를 언어별로 하루 한 번 전량 수집해 서버 메모리에 캐싱",
+            "요청 좌표 기준 가까운 200건만 응답 — 위치가 바뀌어도 업스트림 호출은 0",
+            "브랜드 칩을 데이터에서 자동 추출(올리브영·롯데하이마트·아트박스 등), 환급률·금액은 계산하지 않고 태그 유무만 정직하게 표시"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS v4",
+            "shadcn/ui",
+            "MapLibre GL v5",
+            "한국관광공사 다국어 TourAPI"
+          ],
+          "learn": [
+            "전량 데이터를 서버가 하루 1회 캐싱하고 요청마다는 nearest 만 골라 내려, 위치가 바뀌어도 업스트림 호출을 0으로 유지하는 설계",
+            "태그 없음('정보 없음')과 미해당을 구분해 돈이 걸린 정보를 과장하지 않는 법"
+          ],
+          "status": "working",
+          "live": "https://kr-taxfree-now.vercel.app",
+          "github": "https://github.com/seongilp/kr-taxfree-now",
           "started": "2026-09-01",
           "updated": "2026-09-01"
         }

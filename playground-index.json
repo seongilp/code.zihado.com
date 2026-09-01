@@ -3,6 +3,11 @@
   "playgroundPath": "~/work/playground",
   "lastScanned": "2026-09-01",
   "directories": {
+    "datalab/kr-taxfree-now": {
+      "status": "showcased",
+      "slug": "kr-taxfree-now",
+      "note": "택스리펀(사후면세) 다국어 지도 — 영/일/중(간·번체) 4개 언어, 한국관광공사 다국어 TourAPI 쇼핑 카탈로그"
+    },
     "datalab/kr-events-now": {
       "status": "showcased",
       "slug": "kr-events-now",
