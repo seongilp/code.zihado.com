@@ -13,6 +13,11 @@
       "slug": "kr-library-now",
       "note": "공공도서관 열람실 실시간 잔여 좌석 지도 — 168곳 중 123곳 실시간 제공, 만석·미제공·갱신안됨 구분"
     },
+    "datalab/kr-museum-now": {
+      "status": "showcased",
+      "slug": "kr-museum-now",
+      "note": "전국 박물관·미술관·전시관·기념관 지도 — '오늘 여는 곳' 휴관일 필터, 한국관광공사 TourAPI"
+    },
     "datalab/kr-taxfree-now": {
       "status": "showcased",
       "slug": "kr-taxfree-now",
@@ -50,6 +55,15 @@
     "oil-price": {
       "status": "skipped",
       "reason": "fuel-route 카드(slug: fuel-route, folder: datalab)의 실제 작업 디렉토리가 이곳으로 이동한 것 — 같은 저장소(github seongilp/ssan-oil), 같은 배포(ssan-oil.vercel.app). 새 프로젝트 아님"
+    },
+    "blog": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
+    },
+    "tesla": {
+      "status": "showcased",
+      "slug": "tesla",
+      "note": "GV70 vs Tesla Model Y 유지비 손익분기 계산기 — 빌드 도구 없는 단일 HTML, Vercel 정적 배포"
     },
     "doro": {
       "status": "showcased",
