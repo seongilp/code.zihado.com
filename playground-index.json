@@ -1,8 +1,18 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-01",
+  "lastScanned": "2026-09-02",
   "directories": {
+    "datalab/kr-camping-now": {
+      "status": "showcased",
+      "slug": "kr-camping-now",
+      "note": "전국 캠핑장 3,099곳 지도 — 업종(글램핑·카라반·오토캠핑)·입지(해변·계곡·숲)·반려동물 동반·연중운영 필터, 한국관광공사 고캠핑 API"
+    },
+    "datalab/kr-library-now": {
+      "status": "showcased",
+      "slug": "kr-library-now",
+      "note": "공공도서관 열람실 실시간 잔여 좌석 지도 — 168곳 중 123곳 실시간 제공, 만석·미제공·갱신안됨 구분"
+    },
     "datalab/kr-taxfree-now": {
       "status": "showcased",
       "slug": "kr-taxfree-now",
