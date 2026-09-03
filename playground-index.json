@@ -1,8 +1,13 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-02",
+  "lastScanned": "2026-09-03",
   "directories": {
+    "paving-tetris": {
+      "status": "showcased",
+      "slug": "paving-tetris",
+      "note": "보도블록 — 줄을 지우지 않고 패턴 점수로 승부하는 테트리스 변형 게임, node --test 8개 통과"
+    },
     "datalab/kr-camping-now": {
       "status": "showcased",
       "slug": "kr-camping-now",
