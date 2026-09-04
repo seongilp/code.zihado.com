@@ -1121,7 +1121,8 @@
           "does": [
             "헤링본·바구니짜기·완성 줄·대각선 악센트 패턴을 판정해 점수를 매기고, 구멍이 생기면 감점",
             "I형·L형·2×2 판석 조각을 셀 단위로 충돌 판정하되, 렌더링에서는 톱니 실루엣으로 이웃과 맞물리게 그림",
-            "키보드·터치 양쪽을 지원하는 모바일 우선(390px) 레이아웃, 빌드 도구 없는 순수 HTML/CSS/JS + Canvas 2D"
+            "키보드·터치 양쪽을 지원하는 모바일 우선(390px) 레이아웃, 빌드 도구 없는 순수 HTML/CSS/JS + Canvas 2D",
+            "완성한 바닥을 자랑하기 게시판에 올리면 서버가 배치 기록을 재계산해 점수를 검증(Upstash Redis 리더보드)"
           ],
           "stack": [
             "HTML",
@@ -1134,10 +1135,10 @@
             "충돌 판정(셀 단위 직사각)과 시각적 표현(물결 실루엣)을 분리해 렌더링만 바꾸는 구조"
           ],
           "status": "working",
-          "live": null,
-          "github": null,
+          "live": "https://paving-tetris.vercel.app",
+          "github": "https://github.com/seongilp/paving-tetris",
           "started": "2026-09-03",
-          "updated": "2026-09-03"
+          "updated": "2026-09-04"
         }
       ]
     },
