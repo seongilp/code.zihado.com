@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 80개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 84개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
-    "generatedAt": "2026-09-02",
+    "generatedAt": "2026-09-04",
     "goal": {
       "target": 100,
       "start": "2026-05-26",
@@ -1138,6 +1138,116 @@
           "live": "https://paving-tetris.vercel.app",
           "github": "https://github.com/seongilp/paving-tetris",
           "started": "2026-09-03",
+          "updated": "2026-09-04"
+        },
+        {
+          "slug": "gm-now",
+          "name": "광명나우",
+          "folder": "datalab/gm-now",
+          "oneLiner": "광명시 지금 날씨·미세먼지·버스 도착·주차장을 한 화면에서 — 지역 밀착형 '나우' 패밀리",
+          "does": [
+            "기상청 초단기실황·예보로 광명시청 격자 기준 현재 날씨와 6시간 예보를 보여줌",
+            "에어코리아 소하동·철산동 두 측정소 미세먼지를 색+텍스트 병기로 표시(색맹 접근성 고려)",
+            "경기버스정보시스템(GBIS) 실시간 버스 도착정보와 광명시 주차장 28곳을 거리순으로 안내"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS v4",
+            "기상청 단기예보 API",
+            "에어코리아 API",
+            "GBIS"
+          ],
+          "learn": [
+            "정부 API 3개가 성공·실패를 서로 다른 필드로 알리는 문제를 공통 파서로 흡수하는 법",
+            "게이트웨이 버스트 장애가 잦은 API에 '3시간 이내 마지막 성공값' stale 폴백을 설계하는 법"
+          ],
+          "status": "working",
+          "live": "https://gm-now.vercel.app",
+          "github": null,
+          "started": "2026-09-04",
+          "updated": "2026-09-04"
+        },
+        {
+          "slug": "kr-expense-now",
+          "name": "업추비나우",
+          "folder": "datalab/kr-expense-now",
+          "oneLiner": "전국 243개 지자체 업무추진비를 랭킹·지도로 비교한다 — 지방재정365 결산 데이터 기반",
+          "does": [
+            "지방재정365 데이터셋 5개를 결합해 243개 지자체의 업무추진비 결산액·절감률·1인당 지출을 계산",
+            "카카오지도에서 시군구 경계 hover 하이라이트로 지역별 순위를 시각화, 연도별 타임라인 슬라이더 지원",
+            "시도별·전국 랭킹과 7개 지표 정렬, 지자체 243곳 상세 페이지(추이 차트·전국 순위) 정적 생성"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS v4",
+            "shadcn/ui",
+            "카카오지도 JS SDK",
+            "지방재정365"
+          ],
+          "learn": [
+            "data.go.kr 'LINK' 유형 데이터를 활용신청 없이 원본 소스에서 직접 받아오는 우회 경로 찾기",
+            "연도별로 정의가 뒤집힌 원본 지표(절감률)를 원시 데이터로 직접 재계산해 신뢰성을 확보하는 법"
+          ],
+          "status": "working",
+          "live": "https://kr-expense-now.vercel.app",
+          "github": "https://github.com/seongilp/kr-expense-now",
+          "started": "2026-09-04",
+          "updated": "2026-09-04"
+        },
+        {
+          "slug": "kr-park-now",
+          "name": "공원나우",
+          "folder": "datalab/kr-park-now",
+          "oneLiner": "전국 도시공원 17,377곳을 지도에서 — 내 위치 기준 가까운 순·넓은 순, '지금 갈 만한 공원' 즉시 추천",
+          "does": [
+            "행안부 전국도시공원정보표준데이터 17,377건을 정적 스냅샷으로 수집·정규화(시도 오타·행정구역 개편까지 흡수)",
+            "MapLibre GL로 전량 지도 표시, 공원구분·시도·시설(놀이·운동·편익) 필터와 거리순·면적순 정렬",
+            "반경 1km 안 가장 넓은 공원을 즉시 추천하고, 면적을 축구장·농구장 개수로 환산해 직관적으로 보여줌"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS v4",
+            "shadcn/ui",
+            "MapLibre GL v5",
+            "행안부 표준데이터"
+          ],
+          "learn": [
+            "유일키인 줄 알았던 필드(manageNo)가 실제로는 중복되는 공공데이터를 이름+좌표로 정제하는 패턴",
+            "17만 건급 지도 데이터를 브라우저 메모리 계산으로 처리해 런타임 API 호출 0회로 만드는 설계"
+          ],
+          "status": "working",
+          "live": "https://kr-park-now.vercel.app",
+          "github": null,
+          "started": "2026-09-04",
+          "updated": "2026-09-04"
+        },
+        {
+          "slug": "grimoire",
+          "name": "그리모어",
+          "folder": "vfx/grimoire",
+          "oneLiner": "자연어로 절차적 VFX를 만들고 링크 하나로 공유한다 — 서버도 계정도 없는 이펙트 에디터",
+          "does": [
+            "오픈소스 VFX 샌드박스(Elemental Sandbox) 위에 파라미터 diff를 URL로 인코딩하는 공유 링크 기능 추가",
+            "'불덩이를 더 크게' 같은 자연어 요청을 Claude가 실제 슬라이더 패치로 변환해 화면에 즉시 반영",
+            "알 수 없는 키·잘못된 타입·범위 밖 값을 걸러내는 검증된 병합으로, 모델의 실수를 되돌릴 수 있는 시각적 오류로 국한"
+          ],
+          "stack": [
+            "Three.js",
+            "GLSL",
+            "Vite",
+            "Claude API"
+          ],
+          "learn": [
+            "LLM이 '이미 존재하는 슬라이더'만 조작하게 제한해 실패 모드를 안전한 범위로 좁히는 설계",
+            "서버·DB 없이 파라미터 diff만 URL에 담아 상태를 공유하는 패턴"
+          ],
+          "status": "prototype",
+          "live": null,
+          "github": null,
+          "started": "2026-09-04",
           "updated": "2026-09-04"
         }
       ]

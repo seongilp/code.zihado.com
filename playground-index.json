@@ -1,8 +1,32 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-03",
+  "lastScanned": "2026-09-04",
   "directories": {
+    "datalab/gm-now": {
+      "status": "showcased",
+      "slug": "gm-now",
+      "note": "광명나우 — 광명시 날씨·미세먼지·버스도착·주차장, GitHub 비공개(seongilp/gm-now 404)라 카드 github는 null"
+    },
+    "datalab/kr-expense-now": {
+      "status": "showcased",
+      "slug": "kr-expense-now",
+      "note": "업추비나우 — 전국 243개 지자체 업무추진비 랭킹·지도"
+    },
+    "datalab/kr-park-now": {
+      "status": "showcased",
+      "slug": "kr-park-now",
+      "note": "공원나우 — 전국 도시공원 17,377곳 지도, GitHub 비공개(seongilp/kr-park-now 404)라 카드 github는 null"
+    },
+    "vfx/grimoire": {
+      "status": "showcased",
+      "slug": "grimoire",
+      "note": "자연어 VFX 에디터 + 공유링크. vfx/LinearAbilityExtThreeJS(Elemental Sandbox) 위에 얹은 사용자 프로젝트. 배포·origin remote 없어 live/github는 null"
+    },
+    "vfx/LinearAbilityExtThreeJS": {
+      "status": "skipped",
+      "reason": "타인(achrefelouafi)의 오픈소스 저장소를 그대로 클론한 것 — remote가 achrefelouafi/LinearAbilityExtThreeJS, 커밋 전부 그 사람 명의. grimoire가 이 엔진을 fork해 얹은 실제 프로젝트"
+    },
     "paving-tetris": {
       "status": "showcased",
       "slug": "paving-tetris",
