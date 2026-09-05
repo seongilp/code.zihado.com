@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-04",
+  "lastScanned": "2026-09-05",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -289,10 +289,6 @@
       "status": "showcased",
       "slug": "macos"
     },
-    "macos/all_new_finder": {
-      "status": "showcased",
-      "slug": "anf"
-    },
     "macos/alldoc": {
       "status": "showcased",
       "slug": "macos",
@@ -514,6 +510,42 @@
     "datalab/gofish": {
       "status": "showcased",
       "slug": "gofish"
+    },
+    "datalab/gta-seoul": {
+      "status": "showcased",
+      "slug": "gta-seoul"
+    },
+    "datalab/kr-flight-now": {
+      "status": "showcased",
+      "slug": "kr-flight-now"
+    },
+    "datalab/kr-worldjob-now": {
+      "status": "showcased",
+      "slug": "kr-worldjob-now"
+    },
+    "futures-scan": {
+      "status": "showcased",
+      "slug": "futures-scan"
+    },
+    "macos/anf": {
+      "status": "showcased",
+      "slug": "anf"
+    },
+    "blender": {
+      "status": "skipped",
+      "reason": "컨테이너 폴더뿐, 실질적 프로젝트 파일 없음 (.omx/output만 존재)"
+    },
+    "codex": {
+      "status": "skipped",
+      "reason": "빈 컨테이너 폴더 (.omx만 존재)"
+    },
+    "socrates": {
+      "status": "skipped",
+      "reason": "실질적 코드 없음 (skills-lock.json, .agents, .claude 뿐)"
+    },
+    "datalab/alert-data": {
+      "status": "showcased",
+      "slug": "alert-data"
     }
   }
 }

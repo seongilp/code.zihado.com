@@ -22,7 +22,7 @@
         {
           "slug": "gta-seoul",
           "name": "GTA 서울",
-          "folder": "gta-seoul",
+          "folder": "datalab/gta-seoul",
           "oneLiner": "실제 강남 지형 데이터로 만든 브라우저 3D 드라이빙 데모",
           "does": [
             "Overture Maps 건물 18,075동·도로 5,023개를 압출해 실제 강남을 3D로 재현",
@@ -48,7 +48,7 @@
         {
           "slug": "kr-flight-now",
           "name": "플라이트나우",
-          "folder": "kr-flight-now",
+          "folder": "datalab/kr-flight-now",
           "oneLiner": "대한민국 상공과 전 세계 항공기를 실시간으로 보여주는 지도 (FlightRadar24 스타일)",
           "does": [
             "무료 ADS-B 3개 망을 합쳐 항공기 위치를 10초마다 갱신, 회전하는 기종별 아이콘으로 표시",
@@ -75,7 +75,7 @@
         {
           "slug": "kr-worldjob-now",
           "name": "해외취업나우",
-          "folder": "kr-worldjob-now",
+          "folder": "datalab/kr-worldjob-now",
           "oneLiner": "지금 채용 중인 해외 기업과 지금 신청 가능한 해외취업 준비 일정을 모은 사이트",
           "does": [
             "채용 진행 중인 기업 267곳·공고 626건·마감 임박 83건을 국가·업종으로 탐색",
@@ -1592,6 +1592,29 @@
           "github": "https://codeberg.org/seongilp/cgv",
           "started": "2026-07-27",
           "updated": "2026-07-27"
+        },
+        {
+          "slug": "alert-data",
+          "name": "공공데이터 신규 API 알리미",
+          "folder": "datalab/alert-data",
+          "oneLiner": "공공데이터포털에 새로 올라온 오픈API를 감지해 디스코드·텔레그램으로 알려주는 서버 봇",
+          "does": [
+            "매시간 폴링해 본 적 없는 API id만 신규로 판정 (state.json에 누적 기록)",
+            "상세 페이지까지 읽어 REST 여부·좌표 포함 여부를 확인, \"떴는데 쓸 수 있나\"까지 판정",
+            "전송 실패 시 상태를 전진시키지 않고, 60건 넘게 신규로 잡히면 오탐으로 보고 발송을 멈춤"
+          ],
+          "stack": [
+            "Python 3.12",
+            "Discord Webhook · Telegram Bot API",
+            "systemd user timer (ebs 서버)"
+          ],
+          "learn": [
+            "정렬값 하나(sort=date) 때문에 오탐이 쏟아질 수 있다는 것 — 기본 랭킹은 매 요청 순서가 흔들린다",
+            "상태 파일은 임시파일에 쓰고 rename해야 중단된 실행이 다음 실행을 막지 않는다"
+          ],
+          "status": "working",
+          "started": "2026-09-05",
+          "updated": "2026-09-05"
         }
       ]
     },
@@ -1823,7 +1846,7 @@
         {
           "slug": "anf",
           "name": "anf (all new finder)",
-          "folder": "macos/all_new_finder",
+          "folder": "macos/anf",
           "oneLiner": "분할 뷰·내장 터미널·커맨드 팔레트를 하나로 합친 macOS 네이티브 파일 브라우저",
           "does": [
             "Finder·윈도우 탐색기·정통 오쏘독스(Mdir) 스타일을 한 화면에 합침",
