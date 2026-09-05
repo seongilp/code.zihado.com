@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 84개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 88개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
-    "generatedAt": "2026-09-04",
+    "generatedAt": "2026-09-05",
     "goal": {
       "target": 100,
       "start": "2026-05-26",
@@ -19,6 +19,86 @@
       "emoji": "🌐",
       "blurb": "공개 데이터를 가져와 누구나 볼 수 있는 웹페이지로 만든 것들. 대부분 Cloudflare로 무료 배포되어 실제로 돌아갑니다.",
       "projects": [
+        {
+          "slug": "gta-seoul",
+          "name": "GTA 서울",
+          "folder": "gta-seoul",
+          "oneLiner": "실제 강남 지형 데이터로 만든 브라우저 3D 드라이빙 데모",
+          "does": [
+            "Overture Maps 건물 18,075동·도로 5,023개를 압출해 실제 강남을 3D로 재현",
+            "WASD로 자동차를 몰고 건물 충돌·3인칭 추적 카메라·미니맵 지원",
+            "선릉로 같은 실제 도로명과 무역센터·파르나스타워 등 랜드마크 표시"
+          ],
+          "stack": [
+            "three.js",
+            "Vite",
+            "DuckDB (Overture Maps 추출)",
+            "Vercel"
+          ],
+          "learn": [
+            "오픈 지리 데이터를 3D 도시로 바꾸는 파이프라인(footprint + 높이 → 압출)",
+            "수만 개 메쉬를 병합해 드로우콜을 줄이는 웹 3D 성능 기초"
+          ],
+          "status": "working",
+          "live": "https://gta-seoul.vercel.app",
+          "github": "https://github.com/seongilp/gta-seoul",
+          "started": "2026-09-05",
+          "updated": "2026-09-05"
+        },
+        {
+          "slug": "kr-flight-now",
+          "name": "플라이트나우",
+          "folder": "kr-flight-now",
+          "oneLiner": "대한민국 상공과 전 세계 항공기를 실시간으로 보여주는 지도 (FlightRadar24 스타일)",
+          "does": [
+            "무료 ADS-B 3개 망을 합쳐 항공기 위치를 10초마다 갱신, 회전하는 기종별 아이콘으로 표시",
+            "항공기를 누르면 편명·기종·등록번호·고도·속도와 출발지→도착지 대권항로, 진행률 표시",
+            "줌아웃하면 전 세계 1만 3천여 대를 격자 솎아내기로 균등하게 렌더"
+          ],
+          "stack": [
+            "Next.js 16",
+            "MapLibre GL v5",
+            "adsb.fi·adsb.lol·OpenSky",
+            "hexdb.io",
+            "Vercel"
+          ],
+          "learn": [
+            "여러 무료 데이터 소스를 합쳐 커버리지를 끌어올리는 법(합집합으로 +47%)",
+            "서버 캐시로 상류 API를 보호하면서 실시간처럼 보이게 만들기(보간 이동)"
+          ],
+          "status": "working",
+          "live": "https://kr-flight-now.vercel.app",
+          "github": "https://github.com/seongilp/kr-flight-now",
+          "started": "2026-09-05",
+          "updated": "2026-09-05"
+        },
+        {
+          "slug": "kr-worldjob-now",
+          "name": "해외취업나우",
+          "folder": "kr-worldjob-now",
+          "oneLiner": "지금 채용 중인 해외 기업과 지금 신청 가능한 해외취업 준비 일정을 모은 사이트",
+          "does": [
+            "채용 진행 중인 기업 267곳·공고 626건·마감 임박 83건을 국가·업종으로 탐색",
+            "해외연수·취업설명회·아카데미 중 오늘 이후 일정만 마감 임박순으로, 월드잡플러스 원문으로 연결",
+            "과거 채용 4,283건을 국가·직종·비자·어학 요건으로 분석해 준비 방향 제시(과거 기록임을 명시)"
+          ],
+          "stack": [
+            "Next.js 16 (App Router)",
+            "TypeScript",
+            "Tailwind CSS v4",
+            "한국산업인력공단 월드잡플러스 OpenAPI 32종",
+            "Vercel"
+          ],
+          "learn": [
+            "공개 데이터가 '살아있는지' 먼저 재고 제품 방향을 정하는 법 — 마감된 공고를 살아있는 척 보여주지 않기",
+            "XML 공공 API를 수집 스크립트로 스냅샷 만들어 런타임 호출 0으로 서비스하기"
+          ],
+          "status": "working",
+          "live": "https://kr-worldjob-now.vercel.app",
+          "github": "https://github.com/seongilp/kr-worldjob-now",
+          "started": "2026-09-05",
+          "updated": "2026-09-05"
+        },
         {
           "slug": "asm",
           "name": "국회 의정활동 감시 대시보드",
@@ -1258,6 +1338,33 @@
       "emoji": "🤖",
       "blurb": "사람이 반복하던 일을 컴퓨터가 대신하게 만든 것들. 정해진 시간에 알아서 돌고, 알림을 보내줍니다.",
       "projects": [
+        {
+          "slug": "futures-scan",
+          "name": "선물 스캔 대시보드",
+          "folder": "futures-scan",
+          "oneLiner": "바이낸스 선물 714종목에서 과매도+거래량 급증 종목을 찾아 백테스트까지 자동으로 굴리는 정적 대시보드",
+          "does": [
+            "RSI(14)<30 이면서 거래량이 20봉 평균의 3배 이상인 종목을 매시간 스캔",
+            "히트 종목마다 차트·지지선·백테스트·캔들 단위 리플레이 페이지를 자동 생성",
+            "서버 크론이 결과를 정적 사이트로 만들어 배포 — 실시간 서버 비용 0"
+          ],
+          "stack": [
+            "Python 3.12",
+            "ccxt",
+            "pandas·parquet",
+            "TradingView Lightweight Charts",
+            "Vercel"
+          ],
+          "learn": [
+            "백테스트로 전략을 검증하는 기본 절차와 그 한계(슬리피지·펀딩 미반영)",
+            "배치가 만든 결과를 정적 사이트로 배포하는 값싼 운영 패턴"
+          ],
+          "status": "working",
+          "live": "https://futures-scan.vercel.app",
+          "github": "https://github.com/seongilp/futures-scan",
+          "started": "2026-09-04",
+          "updated": "2026-09-05"
+        },
         {
           "slug": "naver-scrap",
           "name": "상품 스크래퍼 모음",
