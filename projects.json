@@ -1329,6 +1329,32 @@
           "github": null,
           "started": "2026-09-04",
           "updated": "2026-09-04"
+        },
+        {
+          "slug": "remedy",
+          "name": "Remedy",
+          "folder": "remedy",
+          "oneLiner": "싱잉볼 명상과 데일리 퀘스트, 주간 리더보드를 제공하는 한국어 명상 웹 서비스",
+          "does": [
+            "싱잉볼 명상 세션을 진행하고 완료 여부를 서버에 기록해 데일리 퀘스트와 연동",
+            "Next.js 게이트웨이가 서버 전용 자격증명으로만 호출 가능한 비공개 Cloudflare Worker API에 명상 기록을 위임",
+            "완료한 명상 기록으로 주간 리더보드를 계산하고, 옵트인한 사용자만 순위에 노출"
+          ],
+          "stack": [
+            "Next.js 16",
+            "Cloudflare Workers",
+            "Cloudflare D1",
+            "Drizzle ORM"
+          ],
+          "learn": [
+            "브라우저는 same-origin API만 호출하고, 서버가 비공개 Worker에 인증서를 붙여 대신 호출해주는 게이트웨이 패턴",
+            "HttpOnly 쿠키에는 무작위 토큰만 담고 서버에는 그 해시만 저장해 신원 노출을 최소화하는 설계"
+          ],
+          "status": "active",
+          "live": "https://remedy-beta.vercel.app",
+          "github": null,
+          "started": "2026-09-06",
+          "updated": "2026-09-06"
         }
       ]
     },
