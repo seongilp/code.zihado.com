@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 91개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 93개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-05",
@@ -1381,6 +1381,61 @@
           "github": null,
           "started": "2026-09-07",
           "updated": "2026-09-07"
+        },
+        {
+          "slug": "kr-oldbook-now",
+          "name": "헌책방나우",
+          "folder": "datalab/kr-oldbook-now",
+          "oneLiner": "지금 이 시각 문을 연 전국 헌책방·독립서점·북카페 1,677곳을 찾는 빌드 도구 없는 정적 웹앱",
+          "does": [
+            "한국문화정보원 공공 API 3종(중고서점·독립서점·북카페)을 수집해 이름+150m 이내 중복을 병합",
+            "요일별 영업시간과 정기 휴무를 대조해 '지금 영업 중'·'곧 마감'을 판정, 정보 없음은 휴무로 단정하지 않고 '시간 미상'으로 분리",
+            "카카오맵은 좌표로 이름표 핀을 직접 찍고, 네이버지도는 주소+좌표 중심 고정으로 검색 실패를 우회"
+          ],
+          "stack": [
+            "Vanilla JS",
+            "Node.js",
+            "Leaflet",
+            "한국문화정보원(KCISA) 공공 API"
+          ],
+          "learn": [
+            "엑셀 시리얼 값·손상된 필드(좌표 문자열이 시각 자리에 낀 원본 데이터)를 감지해 추정 복원하고, 추정치는 'reconstructed' 신뢰도 배지로 정직하게 표시하는 법",
+            "빌드 도구 없이 브라우저·Node 양쪽에서 그대로 돌아가는 순수 ES 모듈로 앱을 구성하는 법"
+          ],
+          "status": "working",
+          "live": "https://kr-oldbook-now.vercel.app",
+          "github": null,
+          "started": "2026-09-09",
+          "updated": "2026-09-10"
+        },
+        {
+          "slug": "shortflow",
+          "name": "ShortFlow",
+          "folder": "shortflow",
+          "oneLiner": "브라우저에서 완결되는 유튜브 쇼츠(9:16, 최대 60초) 편집기 — 영상이 서버로 올라가지 않고 ffmpeg.wasm이 클라이언트에서 인코딩한다",
+          "does": [
+            "파일 드롭·유튜브 URL로 영상을 가져와 트림·9:16 리프레임·배경음악 트랙까지 편집",
+            "자막 큐를 타임라인 드래그·핸들로 길이 조절하고 화면에서 위치·크기·색상·정렬을 바로 조정",
+            "1080×1920 H.264/AAC MP4로 내보내기, 프리뷰와 동일한 Canvas 렌더러로 자막을 PNG로 구워 overlay"
+          ],
+          "stack": [
+            "Next.js 16",
+            "React 19",
+            "TypeScript",
+            "Zustand",
+            "ffmpeg.wasm",
+            "Tailwind CSS v4"
+          ],
+          "learn": [
+            "ffmpeg.wasm은 실시간 프리뷰에 못 쓴다는 제약을 인정하고, 프리뷰(video+Canvas 합성)와 익스포트(ffmpeg)를 분리 설계하는 법",
+            "프로젝트 상태 → ffmpeg argv 변환을 부수효과 없는 순수 함수로 만들어 wasm 없이 전부 테스트하는 법",
+            "drawtext 대신 PNG 오버레이로 자막을 구워 한글 폰트 주입 문제를 없애는 트릭"
+          ],
+          "status": "working",
+          "live": "https://shortflow-gamma.vercel.app",
+          "github": "https://github.com/seongilp/shortflow",
+          "started": "2026-09-09",
+          "updated": "2026-09-11"
         }
       ]
     },
