@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-11",
+  "lastScanned": "2026-09-12",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -573,6 +573,22 @@
       "status": "showcased",
       "slug": "share",
       "note": "드래그 앤 드롭 파일 공유, Cloudflare Worker + R2, 24시간 자동 삭제. GitHub origin remote 없어 github는 null"
+    },
+    "datalab/kr-pha-now": {
+      "status": "showcased",
+      "slug": "kr-pha-now"
+    },
+    "korail": {
+      "status": "showcased",
+      "slug": "korail"
+    },
+    "archify": {
+      "status": "skipped",
+      "reason": "zihado 소유 프로젝트가 아님 — tt-a1i/archify 오픈소스 저장소를 스킬용으로 클론한 것"
+    },
+    "monetization-review-2026-09-11": {
+      "status": "skipped",
+      "reason": "git 저장소 아님, 포트폴리오 수익화 검토용 개인 분석 산출물(보고서·데이터)일 뿐 서비스가 아님"
     }
   }
 }
