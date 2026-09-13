@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 95개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 96개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-05",
@@ -1463,6 +1463,33 @@
           "github": "https://github.com/seongilp/kr-pha-now",
           "started": "2026-09-11",
           "updated": "2026-09-12"
+        },
+        {
+          "slug": "clickpower",
+          "name": "클릭파워",
+          "folder": "clickpower",
+          "oneLiner": "ClickHouse 하나로 저장·조회까지 끝내는 가벼운 ELK 대체 로그 플랫폼",
+          "does": [
+            "Vector로 로그를 흘려보내면 ClickHouse에 그대로 쌓고, 로그 탐색기(Discover)에서 검색·필터링",
+            "level:error service:api \"connection timeout\" -host:web-3 같은 DSL 검색 문법을 SQL로 변환해 실행",
+            "모든 사용자 입력값은 파라미터 바인딩으로 처리해 SQL 인젝션 없이 안전하게 쿼리 실행"
+          ],
+          "stack": [
+            "Next.js 16",
+            "ClickHouse",
+            "Vector",
+            "TypeScript",
+            "Docker Compose"
+          ],
+          "learn": [
+            "검색 DSL을 파라미터 바인딩된 SQL로 안전하게 변환하는 파서 설계",
+            "ClickHouse를 로그 저장소로 쓸 때의 스키마 설계(JSON 컬럼 attributes로 임의 필드 수용)"
+          ],
+          "status": "prototype",
+          "live": "https://clickpower.vercel.app",
+          "github": "https://github.com/seongilp/clickpower",
+          "started": "2026-09-12",
+          "updated": "2026-09-13"
         }
       ]
     },
