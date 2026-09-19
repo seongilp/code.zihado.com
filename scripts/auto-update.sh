@@ -14,6 +14,16 @@ CLAUDE="$HOME/.local/bin/claude"
 PYTHON="/Library/Frameworks/Python.framework/Versions/3.13/bin/python3"
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
 
+# Xcode 가 업데이트되고 라이선스에 아직 동의하지 않았으면 /usr/bin/git 같은 xcrun 셔임이 전부 실패한다
+# (2026-09-19 실제로 이걸로 죽었다). Command Line Tools 쪽 도구로 우회하고 로그에 남긴다.
+# 근본 해결은 사용자가 한 번 `sudo xcodebuild -license accept` 를 실행하는 것.
+XCODE_LICENSE_WARN=""
+if [[ -z "${DEVELOPER_DIR:-}" ]] && ! /usr/bin/git --version >/dev/null 2>&1 \
+   && [[ -x /Library/Developer/CommandLineTools/usr/bin/git ]]; then
+  export DEVELOPER_DIR=/Library/Developer/CommandLineTools
+  XCODE_LICENSE_WARN="Xcode 라이선스 미동의로 /usr/bin/git 이 실패해 CommandLineTools 로 우회했습니다. 'sudo xcodebuild -license accept' 를 한 번 실행해 주세요."
+fi
+
 # 텔레그램·Discord 자격증명 — 공개 저장소이므로 절대 커밋하지 말고 ~/.env에서만 읽는다
 [[ -f "$HOME/.env" ]] && source "$HOME/.env"
 
@@ -49,6 +59,7 @@ mkdir -p "$LOG_DIR"
 exec >>"$LOG" 2>&1
 
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') portfolio auto-update start ====="
+[[ -n "$XCODE_LICENSE_WARN" ]] && echo "WARN: $XCODE_LICENSE_WARN"
 
 # set -e로 죽는 모든 실패에서 알림
 trap 'notify "🔴 포트폴리오 자동 업데이트 실패 — 로그: ~/Library/Logs/portfolio-update.log"' ERR
