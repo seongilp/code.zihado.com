@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 96개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 98개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-05",
@@ -840,7 +840,7 @@
         {
           "slug": "kra-data",
           "name": "공영경기 데이터 수집·AI 예측",
-          "folder": "horse",
+          "folder": "kra.unflix.tv",
           "oneLiner": "경마·경륜·경정 공공데이터 182종을 전량 수집해 parquet+DuckDB로 적재하고 예측 모델을 붙인 파이프라인",
           "does": [
             "공공데이터포털 오픈API 182종을 수집해 DuckDB 192테이블·1,838만 행으로 적재",
@@ -1490,6 +1490,62 @@
           "github": "https://github.com/seongilp/clickpower",
           "started": "2026-09-12",
           "updated": "2026-09-13"
+        },
+        {
+          "slug": "kr-busan-now",
+          "name": "부산나우",
+          "folder": "datalab/kr-busan-now",
+          "oneLiner": "부산 여행자가 도착해 오늘 뭘 할지 바로 정하도록 도와주는 5개 언어 여행 정보 웹앱",
+          "does": [
+            "부산관광공사 비짓부산 API로 오늘 열리는 축제·공연·전시·크루즈 입항을 홈에서 바로 보여줌",
+            "9개 카테고리 탐색과 갈맷길 9코스·비짓부산패스 추천 일정 12개를 지도로 제공",
+            "번역이 아니라 언어별로 직접 쓰인 원문(한/영/일/중국어 간·번체)을 그대로 노출"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS",
+            "비짓부산 API",
+            "공공데이터포털",
+            "Vercel"
+          ],
+          "learn": [
+            "번역기를 거치지 않고 언어별 원문 오퍼레이션을 그대로 서빙하는 다국어 설계",
+            "정적 스냅샷이라도 '오늘·이번 주' 판정은 요청 시점 KST 벽시계로 계산하는 법"
+          ],
+          "status": "working",
+          "live": "https://kr-busan-now.vercel.app",
+          "github": null,
+          "started": "2026-09-19",
+          "updated": "2026-09-19"
+        },
+        {
+          "slug": "kr-mfds-now",
+          "name": "식약처나우",
+          "folder": "datalab/kr-mfds-now",
+          "oneLiner": "식약처 공개데이터 전부를 한곳에서 검색·조회하는 웹서비스",
+          "does": [
+            "식약처가 공개하는 데이터셋 전체를 카탈로그로 만들어 검색·탐색 가능하게 정리",
+            "의약품·화장품 등 항목별 상세 조회와 이미지 표시 지원",
+            "Pretendard 폰트에 화이트&블루 톤으로 가독성 위주 UI 구성"
+          ],
+          "stack": [
+            "Next.js 16",
+            "TypeScript",
+            "Tailwind CSS",
+            "Pretendard",
+            "식약처 공공데이터",
+            "Vercel"
+          ],
+          "learn": [
+            "수십 개 공공 데이터셋을 자동으로 카탈로그화하는 스크립트 설계(scripts/build-catalog.py)",
+            "출처가 제각각인 정부 데이터를 하나의 검색 UI로 통합하는 법"
+          ],
+          "status": "working",
+          "live": "https://kr-mfds-now.vercel.app",
+          "github": "https://github.com/seongilp/kr-mfds-now",
+          "started": "2026-09-19",
+          "updated": "2026-09-19"
         }
       ]
     },

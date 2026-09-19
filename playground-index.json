@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-18",
+  "lastScanned": "2026-09-19",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -46,6 +46,16 @@
       "status": "showcased",
       "slug": "kr-museum-now",
       "note": "전국 박물관·미술관·전시관·기념관 지도 — '오늘 여는 곳' 휴관일 필터, 한국관광공사 TourAPI"
+    },
+    "datalab/kr-busan-now": {
+      "status": "showcased",
+      "slug": "kr-busan-now",
+      "note": "부산나우 — 부산 여행자용 5개 언어(한/영/일/중 간·번체) 오늘의 부산 가이드, GitHub 비공개(seongilp/kr-busan-now 404)라 카드 github는 null"
+    },
+    "datalab/kr-mfds-now": {
+      "status": "showcased",
+      "slug": "kr-mfds-now",
+      "note": "식약처나우 — 식약처 공개데이터 전체 검색·조회"
     },
     "datalab/kr-taxfree-now": {
       "status": "showcased",
@@ -108,9 +118,10 @@
       "status": "showcased",
       "slug": "doro"
     },
-    "horse": {
+    "kra.unflix.tv": {
       "status": "showcased",
-      "slug": "kra-data"
+      "slug": "kra-data",
+      "note": "디렉토리 이름이 horse → kra.unflix.tv 로 바뀜, folder/live 갱신"
     },
     "japan_tour": {
       "status": "showcased",
