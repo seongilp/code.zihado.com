@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-09-21",
+  "lastScanned": "2026-09-24",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -614,6 +614,24 @@
       "status": "showcased",
       "slug": "kr-life-now",
       "note": "100년 잔디 — 인생 100년을 1,200칸 잔디밭으로 보여주는 타임라인, git 저장소 없어 github는 null"
+    },
+    "datalab/kr-baby-now": {
+      "status": "showcased",
+      "slug": "kr-baby-now",
+      "note": "육아나우 — 소아과·산부인과·산후조리원·놀이터 지도"
+    },
+    "datalab/kr-finance-now": {
+      "status": "showcased",
+      "slug": "kr-finance-now",
+      "note": "금융나우 — 금융위원회 오픈API 110종 통합 조회"
+    },
+    "kra-accuracy-20260921": {
+      "status": "skipped",
+      "reason": "kra.unflix.tv(kra-data 카드)와 같은 저장소 seongilp/kra-data 의 작업 사본"
+    },
+    "kra-main-merge-20260922": {
+      "status": "skipped",
+      "reason": "kra.unflix.tv(kra-data 카드)와 같은 저장소 seongilp/kra-data 의 작업 사본"
     }
   }
 }
