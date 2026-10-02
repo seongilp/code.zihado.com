@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-10-01",
+  "lastScanned": "2026-10-02",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -632,6 +632,24 @@
     "kra-main-merge-20260922": {
       "status": "skipped",
       "reason": "kra.unflix.tv(kra-data 카드)와 같은 저장소 seongilp/kra-data 의 작업 사본"
+    },
+    "datalab/kr-redev-now": {
+      "status": "showcased",
+      "slug": "kr-redev-now",
+      "note": "재개발나우 — 서울 재개발·재건축 정비구역 2,776곳 지도, 추진단계·입찰공고"
+    },
+    "film": {
+      "status": "skipped",
+      "reason": "빈 디렉토리"
+    },
+    "flight": {
+      "status": "showcased",
+      "slug": "altitude",
+      "note": "Altitude — 보잉·에어버스 기종 three.js 3D 쇼케이스, git 저장소 없어 github는 null, 배포 없어 live도 null"
+    },
+    "hack/ARTEX": {
+      "status": "skipped",
+      "reason": "타인(Autumn-27)의 오픈소스 저장소를 그대로 클론한 것 — origin이 Autumn-27/ARTEX, 458개 커밋 전부 그 쪽 팀 명의"
     }
   }
 }
