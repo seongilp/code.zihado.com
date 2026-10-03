@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 104개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 106개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-05",
@@ -1706,6 +1706,31 @@
           "github": null,
           "started": "2026-10-02",
           "updated": "2026-10-02"
+        },
+        {
+          "slug": "canon-viz",
+          "name": "Canon in D 시각화",
+          "folder": "canon-viz",
+          "oneLiner": "파헬벨 캐논을 4성부 3D 무대로 시각화하는 인터랙티브 플레이어",
+          "does": [
+            "바이올린 3성부·베이스를 색으로 구분해 3D 무대 위에서 성부별로 켜고 끌 수 있음",
+            "따라가기·전체·자유 시점 3가지 카메라 모드와 재생 바·탐색(seek)으로 곡 진행 탐색",
+            "Web Audio API로 직접 합성한 사운드와 시각 요소를 동기화해 재생"
+          ],
+          "stack": [
+            "Three.js",
+            "Web Audio API",
+            "Vercel"
+          ],
+          "learn": [
+            "다성 음악(폴리포니)의 성부 구조를 3D 공간에 매핑해 시각화하는 법",
+            "Web Audio API로 음표를 직접 합성해 시각 애니메이션과 프레임 단위로 동기화하기"
+          ],
+          "status": "working",
+          "live": "https://canon-viz.vercel.app",
+          "github": null,
+          "started": "2026-10-03",
+          "updated": "2026-10-03"
         }
       ]
     },
@@ -2639,6 +2664,29 @@
           "github": "https://github.com/seongilp/mcp-gateway",
           "started": "2026-07-11",
           "updated": "2026-07-11"
+        },
+        {
+          "slug": "litellm-gateway",
+          "name": "LiteLLM 게이트웨이",
+          "folder": "litellm",
+          "oneLiner": "여러 LLM 프로바이더를 OpenAI 호환 API 하나로 묶는 로컬 프록시",
+          "does": [
+            "OpenAI·Anthropic·Gemini 등 프로바이더 키를 한곳에 모아 OpenAI 호환 엔드포인트로 노출",
+            "예산·만료 기한을 지정한 가상 키를 발급해 앱별로 사용량 통제",
+            "Admin UI로 모델 목록·요청 로그 확인, config.yaml로 모델 추가·교체"
+          ],
+          "stack": [
+            "LiteLLM",
+            "Docker Compose",
+            "PostgreSQL"
+          ],
+          "learn": [
+            "LLM API 게이트웨이로 여러 프로바이더를 단일 인터페이스로 추상화하기",
+            "가상 키 기반 예산·만료 관리로 토큰 사용량 통제하기"
+          ],
+          "status": "working",
+          "started": "2026-10-03",
+          "updated": "2026-10-03"
         },
         {
           "slug": "dbt",
