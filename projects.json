@@ -2906,6 +2906,31 @@
           "github": null,
           "started": "2026-07-28",
           "updated": "2026-07-28"
+        },
+        {
+          "slug": "hole",
+          "name": "Hole (DNS 광고 차단 서버)",
+          "folder": "pi-hole",
+          "oneLiner": "Pi-hole 스타일의 로컬 DNS 광고 차단 서버(Go)와 macOS 메뉴바 앱",
+          "does": [
+            "광고·트래커 도메인 질의를 null 응답으로 막고 나머지는 업스트림 DNS로 캐싱 전달",
+            "차단 목록에 없는 이름이 광고 서버를 가리키는 CNAME 클로킹 우회도 탐지해 차단",
+            "메뉴바 앱으로 이 Mac의 DNS를 전환·복원하고, 서버가 죽으면 자동 재시작"
+          ],
+          "stack": [
+            "Go",
+            "Swift (SwiftPM, 메뉴바 앱)",
+            "miekg/dns"
+          ],
+          "learn": [
+            "DNS 응답 조작과 CNAME 체인을 따라가며 우회를 막는 법",
+            "서버 상태에 연동해 시스템 DNS를 안전하게 전환·복원하는 장애 대응 설계"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://github.com/seongilp/hole",
+          "started": "2026-11-08",
+          "updated": "2026-11-08"
         }
       ]
     }

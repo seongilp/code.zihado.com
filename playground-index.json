@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-11-07",
+  "lastScanned": "2026-11-10",
   "directories": {
     "datalab/gm-now": {
       "status": "showcased",
@@ -676,6 +676,15 @@
     "pqc": {
       "status": "skipped",
       "reason": "promptfilm 모션그래픽 1회성 생성물(대칭키/비대칭키 설명 영상) — git 저장소 없음, 유지되는 프로젝트가 아님"
+    },
+    "pi-hole": {
+      "status": "showcased",
+      "slug": "hole",
+      "note": "Hole — Pi-hole 스타일 로컬 DNS 광고 차단 서버(Go) + macOS 메뉴바 앱, Homebrew 배포"
+    },
+    "traffic-watch": {
+      "status": "skipped",
+      "reason": "네트워크 트래픽 로깅용 개인 스크립트 모음(logger.sh, wifi_sniff.py) + 로그 파일 — git 저장소 없음, README 없음"
     }
   }
 }
