@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "100개 서비스 만들기 프로젝트",
-    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 110개",
+    "subtitle": "1년 동안 100개의 서비스를 만드는 프로젝트 — 지금까지 114개",
     "intro": "1년 동안 100개의 서비스를 만들어 보기로 했습니다. 혼자서, 그리고 AI와 짝을 이뤄 웹 서비스부터 모바일 앱, 데스크탑 도구, 자동화 봇, 보안 인프라까지 만들어 왔어요. 거창하지 않아도 '직접 굴러가는 것'을 만드는 게 코딩의 시작입니다. 각 프로젝트마다 '무엇을 만들었나'와 '여러분이 배울 수 있는 것'을 정리했어요.",
     "audience": "동네 주민 코딩 교육용",
     "generatedAt": "2026-09-05",
@@ -1809,6 +1809,33 @@
           "github": null,
           "started": "2026-11-14",
           "updated": "2026-11-14"
+        },
+        {
+          "slug": "atdt01410",
+          "name": "01410 정보광장",
+          "folder": "atdt01410",
+          "oneLiner": "그림과 광고 없이 번호와 명령으로만 조작하는 PC통신 스타일 텍스트 웹 브라우저",
+          "does": [
+            "뉴스·날씨·Hacker News·위키 등을 번호 메뉴로 보여주고 'GO 주소'로 임의 사이트도 텍스트로 변환",
+            "자바스크립트로만 그려지는 사이트는 페이지에 내장된 데이터에서 제목·링크를 찾아 보여주는 폴백 처리",
+            "단위·통합 테스트와 Playwright E2E, IP당 분당 요청 제한까지 갖춘 서버 구조"
+          ],
+          "stack": [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "cheerio"
+          ],
+          "learn": [
+            "복잡한 레이아웃 대신 텍스트와 번호만으로도 충분한 정보 전달이 가능하다는 것",
+            "외부 페이지를 안전하게 긁어와 변환하는 서버 진입점을 순수 함수로 쪼개 테스트하기 쉽게 만드는 법"
+          ],
+          "status": "working",
+          "live": null,
+          "github": null,
+          "started": "2026-11-22",
+          "updated": "2026-11-22"
         }
       ]
     },
@@ -2550,6 +2577,33 @@
           "github": "https://github.com/seongilp/vpdf",
           "started": "2026-07-09",
           "updated": "2026-07-10"
+        },
+        {
+          "slug": "vmail",
+          "name": "vmail (메일 클라이언트)",
+          "folder": "macos/mail",
+          "oneLiner": "AppKit만으로 IMAP/SMTP/MIME을 직접 구현한 외부 의존성 없는 네이티브 macOS 메일 앱",
+          "does": [
+            "여러 계정의 사서함 트리·메시지 목록·본문을 3단 레이아웃으로 보여주고 대화별로 묶어 표시",
+            "규칙 기반 자동 분류, 부재중 자동 응답, 여러 서명 등 실제 메일 앱에 필요한 기능을 두루 구현",
+            "Developer ID 서명·공증된 DMG와 Homebrew Cask로 배포하고, 등록 계정을 그대로 쓰는 CLI(vmail)도 제공"
+          ],
+          "stack": [
+            "Swift",
+            "AppKit",
+            "SwiftPM",
+            "GitHub Actions",
+            "Homebrew Cask"
+          ],
+          "learn": [
+            "프레임워크 없이 IMAP/SMTP/MIME을 직접 구현하며 이메일 프로토콜의 동작 원리를 이해하기",
+            "Developer ID 서명·공증부터 Homebrew Tap 배포까지 macOS 앱을 실제로 배포하는 전체 과정"
+          ],
+          "status": "working",
+          "live": "https://seongilp.github.io/vmail/",
+          "github": "https://github.com/seongilp/vmail",
+          "started": "2026-11-22",
+          "updated": "2026-11-22"
         }
       ]
     },
@@ -2982,6 +3036,61 @@
           "github": "https://github.com/seongilp/hole",
           "started": "2026-11-08",
           "updated": "2026-11-08"
+        },
+        {
+          "slug": "kiri",
+          "name": "Kiri (컨테이너 공급망 보안 파이프라인)",
+          "folder": "kiri",
+          "oneLiner": "Wolfi 베이스 이미지를 조립해 서명하고 매일 취약점을 스캔하는 컨테이너 공급망 보안 실험",
+          "does": [
+            "apko로 Wolfi 기반 nginx 이미지를 조립해 로컬 레지스트리에 push",
+            "cosign과 Sigstore Rekor로 이미지에 서명하고 in-toto 증명(provenance)을 공개 투명성 로그에 기록",
+            "grype로 매일 취약점을 스캔하고 전날과 달라졌을 때만 macOS 알림을 띄움"
+          ],
+          "stack": [
+            "apko",
+            "Docker",
+            "cosign",
+            "Sigstore/Rekor",
+            "grype",
+            "Bash"
+          ],
+          "learn": [
+            "컨테이너 이미지가 만들어져 서명·검증되기까지 이어지는 공급망 보안(SLSA) 흐름",
+            "SBOM만 스캔하면 배포판이 이미 고친 CVE까지 오탐으로 잡히는 이유와 그 해결법"
+          ],
+          "status": "working",
+          "live": null,
+          "github": null,
+          "started": "2026-11-22",
+          "updated": "2026-11-22"
+        },
+        {
+          "slug": "soc-siem",
+          "name": "soc-siem (SIEM 테스트랩)",
+          "folder": "soc-siem",
+          "oneLiner": "SSH 브루트포스·웹 스캔 공격을 시뮬레이션하고 OpenSearch로 탐지하는 단일 노드 SIEM 실습 환경",
+          "does": [
+            "Docker Compose로 공격자·타겟·fluent-bit·OpenSearch·Dashboards를 한 번에 띄우는 랩 구성",
+            "웹 스캔 → SSH 브루트포스 → 로그인 성공까지 이어지는 공격 시나리오를 명령 하나로 재현",
+            "fluent-bit로 로그를 수집·색인하고 OpenSearch Alerting으로 탐지 규칙을 반복 검증"
+          ],
+          "stack": [
+            "Docker Compose",
+            "OpenSearch",
+            "OpenSearch Dashboards",
+            "Fluent Bit",
+            "Makefile"
+          ],
+          "learn": [
+            "로그 수집부터 탐지까지 이어지는 SIEM 파이프라인을 직접 구성해보는 경험",
+            "공격 시나리오를 코드로 재현 가능하게 만들어 탐지 규칙을 반복 테스트하는 법"
+          ],
+          "status": "working",
+          "live": null,
+          "github": "https://github.com/seongilp/soc-siem",
+          "started": "2026-11-22",
+          "updated": "2026-11-22"
         }
       ]
     }

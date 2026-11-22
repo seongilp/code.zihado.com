@@ -1,7 +1,7 @@
 {
   "_readme": "~/work/playground 하위 디렉토리 추적 파일. 갱신 시 `scripts/scan-dirs.sh` 출력과 이 파일의 `directories` 키를 대조해서, 여기 없는 항목만 조사해 projects.json 에 추가하고 이 파일을 갱신한다. 키 형태는 스캐너 출력과 같아야 한다(컨테이너 하위는 `datalab/gofish` 형식). status: showcased(쇼케이스 등록됨, slug 는 projects.json 의 slug) / excluded(사용자가 제외 지시) / skipped(등록 가치 없음, reason 참고) / container(부모는 카드 아님, 하위는 스캔 후보 — datalab 처럼 쇼케이스 앱을 담는 컨테이너. skipped/excluded 와 달리 하위를 막지 않는다).",
   "playgroundPath": "~/work/playground",
-  "lastScanned": "2026-11-21",
+  "lastScanned": "2026-11-22",
   "directories": {
     "notion": {
       "status": "skipped",
@@ -701,6 +701,34 @@
     "missav": {
       "status": "skipped",
       "reason": "빈 디렉토리"
+    },
+    "acm-icpc": {
+      "status": "skipped",
+      "reason": "완전히 빈 디렉토리 (파일 없음)"
+    },
+    "spark": {
+      "status": "skipped",
+      "reason": "PySpark 학습용 실습 스크립트 1개, git 커밋 없음 — 개인 학습 기록 수준"
+    },
+    "atdt01410": {
+      "status": "showcased",
+      "slug": "atdt01410",
+      "note": "01410 정보광장 — 텍스트·번호 메뉴만으로 조작하는 PC통신 스타일 웹, 배포·GitHub 원격 없음"
+    },
+    "kiri": {
+      "status": "showcased",
+      "slug": "kiri",
+      "note": "Wolfi 이미지를 apko로 조립·cosign 서명·grype 스캔하는 컨테이너 공급망 보안 파이프라인, git 저장소 아님이라 github는 null"
+    },
+    "soc-siem": {
+      "status": "showcased",
+      "slug": "soc-siem",
+      "note": "OpenSearch SIEM 테스트랩 — 공격 시뮬레이션·탐지 실습, 로컬 랩이라 live는 null"
+    },
+    "macos/mail": {
+      "status": "showcased",
+      "slug": "vmail",
+      "note": "vmail — AppKit 네이티브 메일 앱, Homebrew Cask·공증 DMG·GitHub Pages 랜딩 배포"
     }
   }
 }
